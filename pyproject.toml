@@ -1,0 +1,21 @@
+[project]
+name = "eskapeguard"
+version = "0.1.0"
+description = "Prediccion y reposicionamiento de farmacos frente a patogenos ESKAPE (AMR)"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.2",
+    "transformers>=4.40",
+    "biomed-multi-alignment",
+    "peft>=0.10",
+    "pandas>=2.2",
+    "rdkit>=2023.9.1",
+    "chromadb>=0.5",
+    "anthropic>=0.40",
+    "python-dotenv>=1.0",
+    "pydantic-settings>=2.0",
+    "streamlit>=1.40",
+    "pypdf>=4.0",
+    "scipy>=1.13",
+    "scikit-learn>=1.4",
+]
