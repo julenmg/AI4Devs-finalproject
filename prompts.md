@@ -80,3 +80,9 @@
 ## 7. Pull Requests
 
 **Prompt 1:**
+
+---
+
+## 8. Limitaciones y Próximos Pasos
+
+**Prompt 1:**

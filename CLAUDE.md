@@ -26,7 +26,16 @@ resultado como si el sistema predijera eficacia clínica.
   Queensland) — screening real frente a ESKAPE, con **positivos y negativos**
   (esto es lo que hace la evaluación honesta frente a otros datasets de
   bioactividad que solo tienen positivos).
-- Alcance manejable: 1-2 patógenos concretos, no los 6 ESKAPE completos.
+- **Patógenos elegidos: *Klebsiella pneumoniae* + *Acinetobacter baumannii***
+  — ambos en el tier crítico de la WHO Bacterial Priority Pathogens List
+  2024 (resistentes a carbapenémicos), misma familia mecanística
+  (carbapenemasas transmisibles por plásmidos), lo que mantiene coherente
+  la narrativa del CAG/RAG. Ambos con datos reales confirmados en las dos
+  fuentes: *Klebsiella* 30.683 filas ChEMBL + 82.516 CO-ADD inhibition +
+  4.631 dose-response; *Acinetobacter* 17.358 filas ChEMBL + 100.519 CO-ADD
+  inhibition + 4.904 dose-response (detalle y comparación de volumen en
+  `docs/decisions.md`, sección Fase 1). Fase 1 de ingesta cerrada para los
+  dos patógenos; queda pendiente `curate_dataset.py`.
 
 ## Modelo base
 
@@ -88,6 +97,7 @@ training/                # Fase 3 — fine-tune LoRA
 evals/                   # Fase 7 — métricas objetivas
 scripts/                 # smoke_test.py y utilidades puntuales
 streamlit_app.py         # Fase 8 — demo pública ligera
+Dockerfile, .dockerignore # Fase 8 — reproducibilidad local, opcional pero recomendado
 docs/decisions.md        # registro de decisiones técnicas (ADR-lite)
 ```
 
@@ -97,18 +107,32 @@ rellenando fase a fase, no todas a la vez.
 
 ## Entrega
 
-- **Fecha objetivo:** 3 de septiembre de 2026.
+- **Fecha objetivo:** 3 de septiembre de 2026. Feedback y aprobación: 17 de
+  septiembre.
 - **Repo:** `julenmg/AI4Devs-finalproject` (fork de
   `LIDR-academy/AI4Devs-finalproject`). Ese repo plantilla no trae código,
   solo `readme.md` y `prompts.md` — es genérico para todos los proyectos
   finales del programa, no específico de IA. La arquitectura CAG→RAG→agentes
-  es un requisito aparte, documentado en el HTML del programa, que se encaja
-  dentro de las secciones genéricas de la plantilla (ver más abajo).
-- **Rama:** `finalproject-JMG`.
-- **Destinatario:** Lía (la plantilla pública por defecto dice
-  alvaro@lidr.co — si el programa ya te confirmó que es Lía, prioriza eso).
-- **`README.md` — estructura de la plantilla** (no inventar secciones
-  nuevas, adaptar el contenido de estas al dominio AMR):
+  es un requisito aparte, documentado en la página oficial del Proyecto
+  Final del programa, que se encaja dentro de las secciones genéricas de la
+  plantilla (ver más abajo).
+- **Rama:** `finalproject-JMG`. Etiqueta de release recomendada (opcional):
+  `v1.0-final-JMG`.
+- **Sin framework obligatorio.** La página oficial no menciona FastAPI,
+  Streamlit ni Gradio en ningún punto — el único requisito real es que el
+  sistema se pueda probar.
+- **Evidencia de despliegue OBLIGATORIA** — sin esto no se puede evaluar el
+  proyecto: URL pública activa, o si no es posible desplegarlo, un vídeo de
+  2-3 min mostrando el flujo principal.
+- **Destinatario:** Lía Carrizo, confirmado (autora de la página oficial del
+  Proyecto Final). El canal exacto (email / WhatsApp / plataforma) NO está
+  confirmado ni siquiera en el documento oficial — preguntarlo directamente
+  al TA antes de la entrega, no asumir el `alvaro@lidr.co` de la plantilla
+  genérica pública.
+- **`README.md` — estructura de la plantilla**, con una sección añadida
+  (la 8) que exige explícitamente la página oficial y que no traía la
+  plantilla genérica (no inventar secciones nuevas más allá de esta,
+  adaptar el contenido al dominio AMR):
   0. Ficha del proyecto (nombre, descripción breve, URL/repo)
   1. Descripción general del producto (objetivo, funcionalidades, UX, instalación)
   2. Arquitectura del sistema (2.1 diagrama, 2.2 componentes — aquí va
@@ -121,9 +145,11 @@ rellenando fase a fase, no todas a la vez.
   6. Tickets de trabajo (3, adaptar backend/frontend/BBDD a
      ingesta+modelo / RAG+agente / evaluación+demo)
   7. Pull requests (3)
-- **`prompts.md`** — también forma parte de la entrega, mismas secciones que
-  el README, máximo 3 prompts por sección que justifiquen el uso de
-  asistentes de código en cada fase. Ir rellenándolo sobre la marcha.
+  8. **Limitaciones y próximos pasos** — requisito explícito de la página
+     oficial, ausente de la plantilla genérica. No omitir.
+- **`prompts.md`** — también forma parte de la entrega, mismas secciones
+  (1-8) que el README, máximo 3 prompts por sección que justifiquen el uso
+  de asistentes de código en cada fase. Ir rellenándolo sobre la marcha.
 
 ## Seguridad — nunca commitear secretos
 
