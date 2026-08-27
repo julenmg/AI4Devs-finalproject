@@ -27,6 +27,37 @@
 
 ## 2. Arquitectura del Sistema
 
+**Prompt 1:**
+Antes de curate_dataset.py, propone por escrito (sin código) cómo resuelves
+cuatro decisiones: variable objetivo continua vs binaria, balanceo de
+clases, el join COADD_ID+ORGANISM, y solapamiento ChEMBL/CO-ADD. No
+implementes nada hasta que las apruebe.
+
+> Resultado: detectó que el 98% de los datos MIC no tienen una diana
+> molecular real asociada (problema no anticipado), y verificó cardinalidad
+> real de los joins antes de escribir el pseudocódigo en vez de asumirla.
+> Decisión final: QSAR fenotípico explícito en vez de simular binding
+> específico con un pseudo-target sin declarar. Ver docs/decisions.md.
+
+**Prompt 2:**
+Tras la primera corrida de curate_dataset.py, pidió verificar que el fix de
+censura (">" nunca cuenta como hit) protegía también la columna de censura
+del target continuo (no solo is_hit binario), y determinar si la tasa de
+discrepancia entre duplicados de A. baumannii (34/55 = 61.8%, muy por
+encima del 1/28 de K. pneumoniae) era un problema real o arrastre del
+mismo bug de parseo de DRVAL_MEDIAN, antes de investigarla como algo
+propio.
+
+> Resultado: la columna `censored` ya usaba la misma relación parseada que
+> `is_hit`, sin necesidad de fix adicional. La sospecha sobre A. baumannii
+> era correcta a medias: al filtrar los grupos con relación mixta (exacto
+> vs censurado, no comparables entre sí) la tasa bajó de 34/55 (61.8%) a
+> 10/55 (18.2%) — sigue siendo mayor que el 0% de K. pneumoniae, así que
+> queda anotada como pendiente real, no cerrada. Se corrigió el bug en el
+> código (`_dedup_dose_response`), no solo en un análisis puntual — mismo
+> patrón de bug que el de `is_hit` (comparar valores sin comprobar si son
+> del mismo tipo de medida).
+
 ### 2.1. Diagrama de arquitectura:
 
 **Prompt 1:**

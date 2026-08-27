@@ -34,8 +34,10 @@ resultado como si el sistema predijera eficacia clínica.
   fuentes: *Klebsiella* 30.683 filas ChEMBL + 82.516 CO-ADD inhibition +
   4.631 dose-response; *Acinetobacter* 17.358 filas ChEMBL + 100.519 CO-ADD
   inhibition + 4.904 dose-response (detalle y comparación de volumen en
-  `docs/decisions.md`, sección Fase 1). Fase 1 de ingesta cerrada para los
-  dos patógenos; queda pendiente `curate_dataset.py`.
+  `docs/decisions.md`, sección Fase 1). Fase 1 cerrada: ingesta + curación
+  (`curate_dataset.py`) — dataset QSAR de potencia fenotípica (SMILES->pMIC,
+  no binding específico) en `data/processed/curated_<patogeno>.csv`, con
+  los Ki/Kd reales (66 filas) apartados para verificación en Fase 7.
 
 ## Modelo base
 
