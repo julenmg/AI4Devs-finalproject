@@ -26,8 +26,12 @@ uno que destaca - las decisiones deben quedar justificadas, no asumidas.
   resistencia (carbapenemasas: KPC/NDM/OXA-48 en K. pneumoniae, OXA-23/24/58
   en A. baumannii) — esto da comparabilidad real al caso de reposicionamiento
   en vez de mezclar mecanismos no relacionados. Alternativa descartada:
-  Pseudomonas aeruginosa (mismo tier, pero mecanismo dominante es eflujo/porinas,
-  no carbapenemasas — rompe la comparabilidad buscada).
+  Pseudomonas aeruginosa — en el BPPL 2017 figuraba como Critical, pero la
+  actualización 2024 de la WHO la bajó a tier High (descenso real de
+  resistencia global reportado); ya no comparte el mismo nivel de urgencia
+  que Klebsiella/Acinetobacter, y además su mecanismo dominante es
+  eflujo/porinas, no carbapenemasas — rompe la comparabilidad buscada en
+  ambos criterios.
   Volumen real descargado (ver ambos loaders):
   | Fuente | K. pneumoniae | A. baumannii |
   |---|---|---|
@@ -178,6 +182,188 @@ uno que destaca - las decisiones deben quedar justificadas, no asumidas.
   etiquetado domine el gradiente) y validar con una métrica específica
   sobre la clase minoritaria en el hold-out (p.ej. recall/PR-AUC de hits),
   no solo el loss agregado.
+
+## Fase 2 - Checkpoint
+
+- **API real descubierta desde el paquete instalado, no asumida del stub.**
+  El stub sugería `from biomed_multi_alignment import Mammal`; el paquete
+  PyPI se llama `biomed-multi-alignment` pero **importa como `mammal`**
+  (`from mammal.model import Mammal`). Hay que cargar dos piezas, no una:
+  el tokenizer modular (`ModularTokenizerOp`) y el modelo — el stub
+  original solo contemplaba el modelo.
+- **ID de repo HF verificado, no copiado del ejemplo oficial del paquete.**
+  El ejemplo oficial de `mammal.examples.dti_bindingdb_kd` usa
+  `ibm/biomed.omics...` (HTTP 307 — redirect, id antiguo); nuestro
+  `app/config.py` ya tenía `ibm-research/biomed.omics...` (HTTP 200 — el
+  canónico actual). Confirmado antes de tocar nada, config correcto sin
+  cambios.
+- **Incidente evitado: `pytdc` como dependencia rompe el entorno.** El
+  código oficial de preprocesado (`DtiBindingdbKdTask` en
+  `mammal.examples.dti_bindingdb_kd.task`) importa `tdc` (Therapeutics
+  Data Commons) a nivel de módulo a través de su `pl_data_module` — código
+  de entrenamiento que no hace falta para inferencia, pero el import es
+  inevitable sin tocar el paquete instalado. Se probó primero añadir
+  `pytdc` (opción "fidelidad al preprocesado oficial, sin riesgo de
+  drift"): arrastró `rdkit-pypi==2022.9.5` en conflicto de namespace con
+  el `rdkit==2026.3.5` ya instalado, y subió `numpy` a 2.x — rompiendo la
+  ingesta de Fase 1 ya funcionando (`_ARRAY_API not found`, típico de
+  extensiones compiladas contra numpy 1.x corriendo bajo numpy 2.x).
+  Revertido (`uv remove pytdc`); como la desinstalación dejó el propio
+  `rdkit` dañado (namespace compartido), se reinstaló limpio
+  (`uv pip install --reinstall rdkit`) y se verificó funcionalmente (no
+  solo el import): InChIKey, peso molecular, fingerprint de Morgan, y que
+  `app.ingestion.curate_dataset` (la Fase 1 real) sigue importando.
+  Confirmado `pyproject.toml`/`uv.lock` sin rastro de `pytdc`.
+- **Decisión final: inlinear los dos métodos necesarios** (preprocesado y
+  postprocesado de `DtiBindingdbKdTask`), copiados fielmente de
+  `biomed-multi-alignment==0.2.5`, en vez de arrastrar `pytdc`. Riesgo
+  asumido explícitamente: si el paquete se actualiza, el formato de
+  tokens inlineado podría divergir del que espera el checkpoint sin que
+  nada lo avise. Mitigación: assertion de versión instalada al cargar el
+  modelo, para que un entorno reconstruido con una versión distinta falle
+  alto y claro en vez de predecir mal en silencio.
+- **Entorno confirmado en CPU** (`torch.cuda.is_available() == False`): el
+  driver NVIDIA local (versión 12020) es demasiado antiguo para la build
+  `torch 2.13.0+cu130` instalada. Viable para inferencia; a tener en
+  cuenta el impacto en tiempos de entrenamiento al llegar a Fase 3.
+- Pendiente: confirmar el smoke test end-to-end (descarga del checkpoint
+  ~2GB en curso) antes de dar la Fase 2 por cerrada y comitear.
+  **Confirmado y cerrado:** `pKd = 5.4933` sobre el par de ejemplo oficial
+  del paquete (1248.7s en la primera ejecución, casi todo descarga del
+  checkpoint de 1.8GB — ya cacheado en `~/.cache/huggingface/hub/`, las
+  siguientes ejecuciones serán rápidas). `dti_model.py` y `scripts/smoke_test.py`
+  commiteados y pusheados a `origin` (`1023ba3`).
+
+## Fase 3 - Fine-tune LoRA
+
+Diseño acordado antes de implementar (`training/lora_finetune.py`). Todas
+las cifras verificadas sobre el dataset curado real, no asumidas.
+
+- **Corrección de un dato mal contextualizado en la propuesta de Fase 3:**
+  el ratio de positivos NO es 1:3750 / 1:2390. Ese 0.0267% era el hit-rate
+  de CO-ADD inhibition-only aislado; la etiqueta `is_hit` del dataset
+  curado completo (que incluye ChEMBL, donde ~45% de las filas exactas son
+  hits) da un ratio real de **8.93% (Kp)** y **4.64% (Ab)**. Desglose por
+  bucket (hits / filas):
+
+  | bucket | Kp | Ab |
+  |---|---|---|
+  | exacto (`=`) | 9 299 / 20 733 (44.85%) | 5 173 / 11 168 (46.32%) |
+  | censurado con cota (`>`,`>=`,`<`,`<=`) | 799 / 13 984 (5.71%) | 301 / 10 538 (2.86%) |
+  | inhibition-only sin cota | 1 / 78 341 (0.00%) | 0 / 96 147 (0.00%) |
+  | **total** | **10 099 / 113 058 (8.93%)** | **5 474 / 117 853 (4.64%)** |
+
+  Los hits del bucket censurado vienen de las filas izquierda-censuradas
+  (`<`/`<=`: compuesto más potente que la dosis más baja probada), no de
+  las `>` (que por definición no son hits). El desequilibrio real (10:1 /
+  20:1) es 1-2 órdenes de magnitud más suave de lo asumido.
+
+- **pMIC de las filas exactas ~gaussiano, no sesgado** (Kp media 4.94 std
+  1.16 skew 0.15; Ab media 4.94 std 0.99 skew 0.17) — casi la distribución
+  nativa del checkpoint (BindingDB pKd media 5.79 std 1.34). La regresión
+  no necesita reweighting propio; el desequilibrio vive solo en el
+  encuadre de clasificación (`is_hit`), no en el target continuo.
+
+- **Diseño de loss (v1): regresión MSE sobre exactas + hinge "Tobit-lite"
+  SIMÉTRICO sobre las censuradas con cota.** pMIC = -log10(MIC molar), así
+  que:
+  - `=` : MSE estándar `(pred - y)²`.
+  - `>` / `>=` (MIC mayor → menos potente → cota SUPERIOR de pMIC `b`):
+    penaliza solo si predice más potente que la cota, `max(0, pred - b)²`.
+  - `<` / `<=` (MIC menor → más potente → cota INFERIOR de pMIC `b`):
+    penaliza solo si predice menos potente que la cota, `max(0, b - pred)²`.
+    Estas son las filas más valiosas para reposicionamiento (compuestos muy
+    potentes); NO se descartan.
+  - `~` (1 fila en todo Kp): se trata como `=` (impacto nulo).
+  Una sola cabeza (la escalar nativa del checkpoint), sin verosimilitud
+  censurada completa (Tobit real) — el hinge captura la dirección de la
+  censura con coste e implementación mínimos y sin código no soportado
+  sobre la cabeza de MAMMAL.
+- **Inhibition-only (sin cota, ~78-96K filas): NO entran en v1.** No tienen
+  pMIC ni cota, solo activo/inactivo a concentración única — ninguna loss
+  de regresión puede usarlas. Se reservan para calibración en Fase 7
+  (¿predice el modelo pMIC más bajo para inactivos conocidos?). Clasificación
+  auxiliar ponderada sobre un submuestreo de estas queda como v2, solo si
+  el presupuesto de CPU (piloto) deja margen; con tope de peso de clase
+  `min(N_neg/N_pos, 10)` y combinación `L = L_reg + 0.5·L_cls`.
+- **Split por `inchikey` (grupo), estratificado por `is_hit`, separado por
+  patógeno, ~15% test.** Nunca por filas: el mismo compuesto aparece en
+  muchas filas (varios ensayos) y un split por filas lo filtraría a train y
+  test a la vez. Con el ratio real hay hits de sobra en el test (~1500 Kp /
+  ~820 Ab); assert post-split de un mínimo de hits por patógeno. Scaffold
+  split (Bemis-Murcko) se reserva como variante rigurosa para Fase 7.
+- **Ancla de contexto de organismo (campo "target" del checkpoint): GyrA
+  real, fija por patógeno, trazable por accession de UniProt.** El checkpoint
+  exige una secuencia de proteína en la entrada; para un QSAR fenotípico
+  (donde el "target" es el organismo entero, no una diana) se usa una
+  secuencia real y constante por patógeno como id de organismo:
+  - **Klebsiella pneumoniae:** UniProt **A0A0H3H0Y6** (cepa HS11286,
+    gyrA KPHS_37060, 877 aa, md5 `7dfc605d5f68774ddf990263ffb5433b`).
+  - **Acinetobacter baumannii:** UniProt **A0A0D5YFF2** (gyrA ABUW_0960,
+    904 aa, md5 `f6be4367e90b430a8843e7de8f29f7c0`).
+  Secuencia real (in-distribution para el encoder de proteínas del modelo,
+  a diferencia de un placeholder sintético que sería OOD); dos secuencias
+  distintas permiten al modelo distinguir Kp de Ab. Se descarta la
+  carbapenemasa como ancla (sobre-afirmaría binding específico al mecanismo
+  del proyecto).
+  **NOTA EXPLÍCITA — leer antes de interpretar cualquier salida:** usar GyrA
+  es un requisito de ARQUITECTURA del checkpoint (rellenar el slot de
+  target), NO una afirmación de que las predicciones sean específicas de
+  unión a GyrA ni a fluoroquinolonas (la clase de antibiótico que sí actúa
+  sobre GyrA). El nombre "GyrA" en el código o en cualquier CSV es solo el
+  ancla de organismo; el modelo predice potencia fenotípica pMIC, no
+  afinidad por la girasa.
+- **Presupuesto de CPU: piloto de timing PRIMERO.** Antes de cualquier run
+  largo, 50-100 pasos al batch real, medir s/paso, proyectar época =
+  (nº filas exactas+cota / batch) × s/paso. Si una época sale > ~4-5 h, el
+  entrenamiento se define en un nº fijo de pasos con checkpointing, no en
+  épocas. Palanca ya identificada: entrenar **encoder-only** (la predicción
+  DTI usa `forward_encoder_only`, el decoder no interviene) ≈ recorta a la
+  mitad. No se lanza nada largo sin ese número medido.
+- **LoRA: r=8, alpha=16, dropout=0.05, target `q` y `v` de la atención del
+  encoder T5** (módulos confirmados `q/k/v/o`). Cabezas
+  `scalars_prediction_head` + `encoder_head` entrenadas completas (diminutas);
+  resto congelado. Nota honesta: en CPU LoRA no acelera el forward (el base
+  de 458M corre igual); recorta parámetros entrenables y memoria de
+  optimizador. La palanca de viabilidad en CPU es tamaño de dataset +
+  encoder-only + nº de pasos, no el rank. Rank bajo igualmente por memoria y
+  regularización (dataset modesto).
+- Las 66 filas de `verification_binding_<patogeno>.csv` (Ki/Kd reales) NO
+  entran en el fine-tune bajo ningún concepto — reservadas para el chequeo
+  cualitativo de afinidad específica en Fase 7.
+
+### Entorno GPU — torch alineado con el driver (incidente y resolución)
+
+- **CPU era inviable, confirmado con números:** el piloto en CPU proyectaba
+  **~60-70 h/época** (forward de un modelo de 458M sobre secuencias de 1512
+  tokens). Por eso, y no por un bug, no se lanzó ningún run en CPU.
+- **GPU local: GTX 1070 (8 GB, Pascal cc 6.1), driver 535 → CUDA 12.2.** El
+  torch instalado era `2.13.0+cu130` (CUDA 13.0) → `torch.cuda.is_available()
+  == False`. **Vía descartada por imposible, no por preferencia:** subir el
+  driver a CUDA 13 no sirve porque CUDA 13 eliminó el soporte de Pascal — la
+  1070 no la soporta ninguna build de CUDA 13. Única vía: bajar torch a una
+  build cu12x con kernels sm_61.
+- **Resolución:** `torch==2.5.1` + `torchvision==0.20.1` desde el índice
+  `download.pytorch.org/whl/cu121`, fijados en `pyproject.toml` vía
+  `[[tool.uv.index]]` + `[tool.uv.sources]` (NO con `uv pip install` suelto:
+  `uv run` re-sincroniza el venv contra el lock y lo revertía). Ningún dep
+  fija torch (solo nuestro `torch>=2.2`), así que 2.5.1 encaja. Reversible
+  vía git. Verificado: matmul real en GPU OK, y Fases 1-2 (rdkit, inferencia
+  DTI) intactas tras el cambio.
+- **`app/foundation/dti_model.py` y `TrainConfig.device`: device autodetectado**
+  (`cuda` si disponible, si no `cpu`) en vez de `"cpu"` hardcodeado.
+- **Entrenamiento a seq 1512 hacía OOM incluso a batch 1** (~7 GB solo en
+  activaciones de atención del backward). Resuelto SIN truncar el ancla GyrA
+  (decisión delegada, tomada con los números de VRAM delante): **gradient
+  checkpointing** en el encoder T5 (recomputa activaciones en el backward) +
+  neutralizar el forward de `encoder_head` (106M params de proyección a
+  vocabulario que la loss no usa). Pico de VRAM: batch 1 → **2.12 GB**,
+  batch 4 → **3.86 GB**. `all params` 458M → 352M (stub de la cabeza).
+- **Números finales en GPU (piloto):** ~**0.75 s/fila** (fwd+bwd), constante
+  a batch 1-4 (la 1070 es compute-bound, batchear no acelera wall-clock, solo
+  mejora el gradiente). Época completa (41 882 filas) ≈ **8.6 h**. Tokenización
+  ~2 ms/fila (~1.4 min en total). El entrenamiento se define por tanto en un
+  **nº fijo de pasos** con checkpointing periódico, no en épocas.
 
 ## Fase 4 - CAG
 -

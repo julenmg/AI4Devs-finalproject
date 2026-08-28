@@ -4,7 +4,12 @@ version = "0.1.0"
 description = "Prediccion y reposicionamiento de farmacos frente a patogenos ESKAPE (AMR)"
 requires-python = ">=3.10"
 dependencies = [
-    "torch>=2.2",
+    # torch fijado a una build cu121: la GPU local (GTX 1070, Pascal cc 6.1) solo
+    # la soportan builds CUDA 12.x, y el driver local es CUDA 12.2. CUDA 13
+    # elimino el soporte de Pascal, asi que cu130 (default en PyPI) nunca usaria
+    # esta GPU. 2.5.1 es la ultima version con wheels cu121 + kernels sm_61.
+    "torch==2.5.1",
+    "torchvision==0.20.1",
     "transformers>=4.40",
     "biomed-multi-alignment",
     "peft>=0.10",
@@ -21,3 +26,14 @@ dependencies = [
     "requests>=2.34.2",
     "certifi>=2026.7.22",
 ]
+
+# torch/torchvision desde el indice cu121 de PyTorch (build CUDA 12.1, la unica
+# con soporte Pascal que casa con el driver local 12.2). Ver nota en dependencies.
+[[tool.uv.index]]
+name = "pytorch-cu121"
+url = "https://download.pytorch.org/whl/cu121"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu121" }
+torchvision = { index = "pytorch-cu121" }

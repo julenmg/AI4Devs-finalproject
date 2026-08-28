@@ -47,8 +47,12 @@ NORM_Y_MEAN = 5.79384684128215
 NORM_Y_STD = 1.33808027428196
 
 _OUTPUT_KEY = "model.out.dti_bindingdb_kd"
-_DEFAULT_DEVICE = "cpu"  # el driver NVIDIA local es demasiado viejo para esta
-# build de CUDA; la inferencia de un modelo de 458M en CPU es lenta pero viable.
+# Autodeteccion de device: usa GPU si torch la ve utilizable, si no CPU.
+# Nota de compatibilidad: la GPU local (GTX 1070, Pascal) solo funciona con una
+# build de torch para CUDA 12.x; el torch instalado (cu130) reporta
+# is_available()==False sobre el driver 12.2, asi que hoy esto resuelve a "cpu"
+# hasta que se alinee torch con el driver (ver docs/decisions.md, Fase 3).
+_DEFAULT_DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Longitudes maximas del ejemplo oficial de DTI (task.data_preprocessing).
 _TARGET_MAX_SEQ_LENGTH = 1250
