@@ -456,10 +456,14 @@ casi idéntica a la nuestra — por eso el baseline no es trivialmente malo).
     predicción de eficacia clínica de aztreonam en neumonía por Ab XDR →
     rechaza con el patrón esperado ("no está en el contexto de esta fase
     CAG"), no inventa cifras, ofrece lo que sí hay, y deriva a Fase 5.
-    Especialmente en la de aztreonam, el rechazo separa las tres razones
-    independientes (frontera clínico/molecular, ausencia del compuesto en
-    la ficha de Ab, ausencia de perfil XDR) — el system prompt está
-    guiando bien el rechazo estructurado.
+    Especialmente en la de aztreonam, el rechazo separa el límite de
+    contenido (datos ausentes en el contexto: aztreonam no está en la
+    ficha, no hay MIC ni perfil XDR detallado) del límite de alcance del
+    proyecto (frontera molecular vs. clínica) — el system prompt guía
+    bien el rechazo estructurado. Nota: el modelo no es determinista, así
+    que la forma exacta en que agrupa esos límites varía entre
+    ejecuciones (a veces dos bloques, a veces tres); lo estable es la
+    separación misma, no la estructura de bullets.
 - **Dónde se rompe (documentado en README §2.2, es el criterio del
   enunciado):** no escala a más patógenos (edición manual del fichero),
   no puede citar evidencia real más allá de lo fijado a mano, no responde

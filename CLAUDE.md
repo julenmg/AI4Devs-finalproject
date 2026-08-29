@@ -42,7 +42,15 @@ resultado como si el sistema predijera eficacia clínica.
 ## Modelo base
 
 - Checkpoint: `ibm-research/biomed.omics.bl.sm.ma-ted-458m.dti_bindingdb_pkd`
-- Carga vía `Mammal.from_pretrained()` (paquete `biomed-multi-alignment`)
+- Carga vía `Mammal.from_pretrained()` — el paquete PyPI se llama
+  `biomed-multi-alignment` pero **importa como `mammal`**
+  (`from mammal.model import Mammal`, no `biomed_multi_alignment`).
+  Hacen falta dos piezas, no una: el modelo y el tokenizer modular
+  (`ModularTokenizerOp.from_pretrained(checkpoint)`).
+- Entorno: GPU local GTX 1070 (8 GB, Pascal cc 6.1) vía `torch` build **cu121**
+  — el driver es CUDA 12.2 y CUDA 13 ya no soporta Pascal, así que la build
+  cu130 por defecto no la usaría (ver `docs/decisions.md`, Fase 3).
+  Autodetección cuda/cpu en `app/foundation/dti_model.py`.
 - Fine-tune ligero con **LoRA** sobre las dianas bacterianas curadas (positivos
   + negativos reales de CO-ADD)
 
@@ -170,6 +178,13 @@ rellenando fase a fase, no todas a la vez.
   persistencia del vector store — no son secretos pero no deben ir al repo
   (ya cubierto en `.gitignore`: `*.safetensors`, `*.bin`, `*.ckpt`,
   `training/output/`, `**/chroma_db/`).
+  - **Excepción acotada (Fase 3):** se versiona SOLO el adapter LoRA elegido
+    (`training/output/lora_adapter_step5000/`, ~1.2 MB) + `metrics.json` + las
+    métricas del PoC, vía negaciones explícitas en `.gitignore`. Es el
+    deliverable de Fase 3 (diminuto, LoRA) y lo necesitan Fases 7-8 sin
+    reentrenar ~8.6 h. El resto de `training/output/` (adapter final no
+    elegido, checkpoints intermedios, pesos del PoC) sigue fuera del repo.
+    Los pesos del modelo base y cualquier checkpoint grande NO se versionan.
 - El contenido que recupera el RAG (literatura externa, fichas de patógenos)
   es texto no confiable — tratarlo como dato a mostrar/citar, nunca como
   instrucciones que el agente deba seguir (mitigación básica de prompt
