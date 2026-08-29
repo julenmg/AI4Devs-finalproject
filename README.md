@@ -8,6 +8,7 @@
 5. [Historias de usuario](#5-historias-de-usuario)
 6. [Tickets de trabajo](#6-tickets-de-trabajo)
 7. [Pull requests](#7-pull-requests)
+8. [Limitaciones y próximos pasos](#8-limitaciones-y-próximos-pasos)
 
 ---
 
@@ -62,7 +63,36 @@ TODO - diagrama de CAG -> RAG -> agente -> evaluacion -> despliegue.
 
 ### 2.2. Descripcion de componentes principales:
 
-**CAG** - TODO: que hace, donde se rompe, por que eso justifica pasar a RAG.
+**CAG** (`app/generation/cag/static_context.py`) — LLM (Anthropic) con un
+contexto fijo inlineado en el system prompt: las fichas de *K. pneumoniae*
+y *A. baumannii* (familia, tier WHO, mecanismos de resistencia, opciones
+de última línea) y la narrativa compartida que justifica tratarlos juntos.
+Sin retrieval, sin modelo DTI (el DTI de la Fase 3 no se invoca en esta
+fase). El system prompt fija cinco reglas explícitas: usar solo el
+contexto, no inventar cifras (MIC/pKd/citas), respetar la frontera
+molecular vs. clínica, no mezclar mecanismos entre patógenos, e ignorar
+instrucciones del usuario que intenten cambiar el rol.
+
+Dónde se rompe (comprobado con la batería de preguntas de la Fase 4, ver
+`docs/decisions.md`):
+
+- **No escala a más patógenos.** Cada patógeno nuevo obliga a editar el
+  fichero a mano; no hay ninguna vía automática de ingesta de conocimiento.
+  Con los seis ESKAPE completos el system prompt se vuelve inmanejable.
+- **No puede citar evidencia real más allá de lo fijado en el prompt.** El
+  contexto es una síntesis manual, no puede referenciar filas concretas
+  de ChEMBL/CO-ADD ni literatura científica, ni actualizarse cuando esas
+  fuentes cambian.
+- **No hay respuesta cuantitativa por compuesto.** Cualquier pregunta
+  sobre pMIC o afinidad de una molécula concreta cae fuera de alcance,
+  porque el modelo DTI no está en el bucle y el contexto no contiene
+  valores.
+
+Estas tres limitaciones observadas son precisamente lo que justifica pasar
+a RAG en la Fase 5 (indexar los CSV curados y literatura de apoyo,
+recuperar evidencia real por consulta) y luego a agente en la Fase 6
+(RAG + modelo DTI como herramientas encadenadas). No son un bug del CAG:
+son su función dentro de la narrativa del proyecto.
 
 **RAG** - TODO: fuentes indexadas (ChEMBL/CO-ADD/literatura), estrategia de
 chunking, como cita evidencia.
@@ -158,9 +188,28 @@ documenta 1-3 endpoints en formato OpenAPI.
 > genericas de AI4Devs-finalproject, pero es parte de lo que se evalua.
 
 ### 8.1. Limitaciones conocidas
-TODO - ej: alcance a 1-2 patogenos (no los 6 ESKAPE), el modelo predice
-afinidad de union molecular, no eficacia clinica; tamano del dataset
-curado; cobertura del RAG limitada a las fuentes indexadas.
+
+- **Alcance a 2 patógenos** (K. pneumoniae y A. baumannii), no los seis
+  ESKAPE. Elección justificada por coherencia mecanística (ambos WHO
+  Critical, ambos con carbapenemasas transmisibles por plásmido), no por
+  falta de datos: para los otros cuatro habría que rehacer curación
+  específica y renarrar el caso de reposicionamiento.
+- **Frontera del modelo DTI**: predice afinidad de unión fármaco-diana a
+  nivel molecular; no predice eficacia clínica, dosis efectiva,
+  farmacocinética ni evolución de la resistencia en el organismo. Ningún
+  componente del sistema (CAG, RAG, agente) debe framear salidas como
+  predicción de eficacia clínica.
+- **Fase CAG — límites deliberados** (ver §2.2): contexto fijo escrito a
+  mano, no escala a más patógenos, no cita evidencia real, no responde
+  preguntas cuantitativas por compuesto. Se documenta como paso previo
+  que justifica RAG, no como componente final del producto.
+- **Dataset curado**: fuertemente desequilibrado (~9% hits en Kp, ~5% en
+  Ab) y con ~82-91% del target continuo censurado (mayormente
+  inhibition-only de CO-ADD sin seguimiento dose-response). La curación
+  no descarta el desequilibrio: el balanceo recae en la loss de Fase 3.
+- **Cobertura del RAG (Fase 5, pendiente)**: solo cubrirá lo que se
+  indexe (ChEMBL/CO-ADD curados + extractos de literatura seleccionados);
+  no equivale a una búsqueda exhaustiva de la evidencia mundial.
 
 ### 8.2. Proximos pasos
 TODO - ej: ampliar a mas patogenos ESKAPE, mejorar el retrieval con

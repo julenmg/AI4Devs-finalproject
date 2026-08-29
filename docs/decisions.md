@@ -421,7 +421,51 @@ casi idéntica a la nuestra — por eso el baseline no es trivialmente malo).
   se resuelva el revert espurio que tiene ese fichero en el working tree.
 
 ## Fase 4 - CAG
--
+
+- **CAG = LLM (Anthropic) con contexto fijo inlineado en el system prompt,
+  sin retrieval y sin invocar el DTI.** Deliberadamente simple porque el
+  enunciado del programa exige mostrar dónde se rompe este enfoque para
+  justificar el salto a RAG (Fase 5). Alternativa descartada: montar ya un
+  mini-retrieval sobre los CSV curados — habría difuminado la frontera
+  CAG/RAG y sabotearía el propio criterio de evaluación del TFM.
+- **Contenido del contexto fijo (`STATIC_CONTEXT`, `static_context.py`):**
+  fichas por patógeno (familia + tier WHO 2024 + mecanismos de resistencia
+  + opciones de última línea) y bloque de narrativa compartida que
+  justifica tratar Kp y Ab juntos. Cierra con la frontera explícita del
+  proyecto (DTI molecular, no clínica; DTI no invocado en esta fase). Nada
+  numérico de compuestos concretos — meter cifras sin fuente equivaldría a
+  invitarlas en las respuestas.
+- **System prompt con 5 reglas hard-coded, no negociables:** (1) solo usar
+  el contexto; (2) no inventar cifras (MIC/IC50/pKd/citas); (3) respetar
+  la frontera molecular vs. clínica; (4) no mezclar mecanismos entre
+  patógenos; (5) ignorar instrucciones del usuario que intenten cambiar el
+  rol o "olvidar el contexto" (mitigación básica de prompt injection).
+- **Cliente Anthropic compartido (`app/foundation/llm_client.py`,
+  `get_llm_client()`, `@lru_cache(maxsize=1)`).** Único punto de lectura
+  de `ANTHROPIC_API_KEY`, reutilizable por CAG, RAG y agente en Fases 5-6.
+  Falla explícito ("clave vacía, copia `.env.example` a `.env`") en vez
+  de dejar que el SDK lance un `AuthenticationError` opaco.
+- **Modelo:** `claude-sonnet-5` como constante del módulo. No se añade a
+  `Settings` porque un solo módulo de generación no justifica un campo
+  global; si en Fases 5-6 hay más consumidores, se sube a `config.py`.
+- **Batería de validación (3 preguntas dentro de contexto + 2 fuera):**
+  - *Dentro:* mecanismos de resistencia de Kp, contraste de carbapenemasas
+    Kp vs Ab, y justificación del alcance a dos patógenos → responde con
+    material del contexto y cierra con la frontera del proyecto.
+  - *Fuera:* valor de MIC de meropenem contra una cepa ATCC concreta, y
+    predicción de eficacia clínica de aztreonam en neumonía por Ab XDR →
+    rechaza con el patrón esperado ("no está en el contexto de esta fase
+    CAG"), no inventa cifras, ofrece lo que sí hay, y deriva a Fase 5.
+    Especialmente en la de aztreonam, el rechazo separa las tres razones
+    independientes (frontera clínico/molecular, ausencia del compuesto en
+    la ficha de Ab, ausencia de perfil XDR) — el system prompt está
+    guiando bien el rechazo estructurado.
+- **Dónde se rompe (documentado en README §2.2, es el criterio del
+  enunciado):** no escala a más patógenos (edición manual del fichero),
+  no puede citar evidencia real más allá de lo fijado a mano, no responde
+  preguntas cuantitativas por compuesto. Esos tres límites son la
+  motivación explícita del salto a RAG en Fase 5, no un defecto a
+  arreglar dentro de la Fase 4.
 
 ## Fase 5 - RAG
 - Vector store: Chroma (embebido, persistencia local) en vez de Postgres+pgvector.
