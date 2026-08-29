@@ -14,9 +14,10 @@ Esas limitaciones son precisamente lo que justifica pasar a RAG en Fase 5;
 no son un bug del CAG, son su razon de ser dentro de la narrativa del TFM.
 """
 
+from app.config import settings
 from app.foundation.llm_client import get_llm_client
 
-MODEL = "claude-sonnet-5"
+MODEL = settings.llm_model
 MAX_TOKENS = 1024
 
 STATIC_CONTEXT = """\

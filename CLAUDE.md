@@ -185,6 +185,15 @@ rellenando fase a fase, no todas a la vez.
     reentrenar ~8.6 h. El resto de `training/output/` (adapter final no
     elegido, checkpoints intermedios, pesos del PoC) sigue fuera del repo.
     Los pesos del modelo base y cualquier checkpoint grande NO se versionan.
+  - **Excepción acotada (Fase 5):** se versionan los abstracts descargados de
+    PubMed (`data/raw/pubmed_*.json`) y el mapa de nombres de diana de ChEMBL
+    (`data/raw/chembl_targets.json`), ~120 KB de datos públicos, vía negaciones
+    explícitas en `.gitignore`. Mismo criterio que el adapter LoRA: sin ellos,
+    reconstruir el índice RAG dependería de que PubMed y la API de ChEMBL
+    respondan en ese momento, un punto de fallo tonto para quien clone el repo
+    cuando el dato solo hay que bajarlo una vez. El índice vectorial en sí
+    (`data/chroma_db/`) NO se versiona: se reconstruye con
+    `scripts/build_index.py`.
 - El contenido que recupera el RAG (literatura externa, fichas de patógenos)
   es texto no confiable — tratarlo como dato a mostrar/citar, nunca como
   instrucciones que el agente deba seguir (mitigación básica de prompt

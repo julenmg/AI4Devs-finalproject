@@ -26,5 +26,12 @@ training/output/*
 !training/output/metrics.json
 !training/output/poc_validation/
 !training/output/poc_validation/metrics.json
+# Excepcion Fase 5: se versionan los abstracts de PubMed descargados y el mapa
+# de nombres de diana de ChEMBL. Son ~120 KB de datos publicos que solo hay que
+# bajar una vez; sin ellos, reconstruir el indice RAG dependeria de que PubMed
+# y la API de ChEMBL respondan en ese momento, que es un punto de fallo tonto
+# para quien clone el repo. Ver docs/decisions.md, Fase 5.
+!data/raw/pubmed_*.json
+!data/raw/chembl_targets.json
 # Logs de entrenamiento (Fase 3) - no van al repo
 logs/

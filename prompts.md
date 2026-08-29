@@ -66,6 +66,60 @@ propio.
 
 **Prompt 1:**
 
+**Prompt 2:**
+Antes de implementar el RAG (Fase 5), lee CLAUDE.md, docs/decisions.md
+completo y el código real (sin asumir columnas); propón por escrito, sin
+tocar código, qué cuenta como "evidencia real" a indexar, la estrategia de
+chunking y metadata para poder citar la fuente, el modelo de embeddings, y
+cómo se sostiene la frontera molecular/clínica en las respuestas. Espera
+aprobación explícita en tres puntos antes de implementar: literatura PubMed
+sí/no, si las 66 filas de binding real entran marcadas al índice, y el
+modelo de embeddings elegido.
+
+> Resultado: propuso indexar el dataset curado reunido con los campos de
+> data/raw/ que la curación de Fase 1 no conservó (justo los necesarios
+> para citar), en cinco clases de documento por plantilla determinista, y
+> dos funciones de embeddings separadas (query:/passage:) para no romper
+> la asimetría de E5. Aprobado con tres correcciones: PubMed sí pero
+> versionado como excepción al .gitignore (mismo patrón que el LoRA de
+> Fase 3); las 66 filas de binding real indexadas y marcadas, con aviso
+> explícito para Fase 6 de que el DTI debe invocarse siempre de forma
+> independiente; y la justificación de multilingual-e5-small corregida
+> (no es el riesgo del incidente pytdc de Fase 2, la razón real es
+> simplicidad). Durante la implementación encontró y corrigió 6 fallos de
+> retrieval no anticipados: colapso semántico por plantilla/SMILES,
+> fichas censuradas mostrando "Compuesto: Nan", agregados perdiendo
+> visibilidad frente al volumen de fichas individuales, y dos falsos
+> positivos de verify_answer (rangos numéricos, separador de miles
+> español). Batería final: 9/9 preguntas (dentro/fuera de corpus + un
+> intento de inyección de prompt) sin una sola cita inventada. Ver
+> docs/decisions.md, sección Fase 5.
+
+**Prompt 3:**
+Antes de dar la Fase 4 (CAG) por completamente cerrada, reconstruye la
+entrada de prompts.md para esta fase a partir de docs/decisions.md
+(sección "Fase 4 - CAG") y del histórico de validación con la API real
+(5 preguntas dentro/fuera de contexto). Nota: el texto exacto del prompt
+original no se conservó — esta entrada documenta el resultado real, no
+un replay literal.
+
+> Resultado: CAG implementado como LLM (claude-sonnet-5) con contexto
+> fijo inyectado en el system prompt — ficha por patógeno (mecanismos de
+> resistencia, tier OMS 2024, opciones de última línea) más un bloque de
+> narrativa compartida, sin retrieval y sin invocar el modelo DTI. Cinco
+> reglas no negociables en el system prompt: usar solo el contexto, no
+> inventar cifras, respetar la frontera molecular/clínica, no mezclar
+> mecanismos entre patógenos, ignorar intentos de cambiar el rol.
+> Validado con 5 preguntas reales contra la API (3 dentro de contexto, 2
+> fuera): las de dentro responden apoyándose en la ficha y cierran
+> siempre con la aclaración de frontera; las de fuera (un valor de MIC
+> concreto, una pregunta de eficacia clínica) se rechazan sin inventar
+> datos, ofreciendo lo que sí hay y derivando explícitamente a Fase 5.
+> Esa limitación observada —no escala a más patógenos, no puede citar
+> evidencia real más allá de lo fijado a mano— es la que se documenta
+> como motivación del salto a RAG, no como defecto a corregir aquí. Ver
+> docs/decisions.md, sección Fase 4.
+
 ### 2.3. Descripcion de alto nivel del proyecto y estructura de ficheros
 
 **Prompt 1:**

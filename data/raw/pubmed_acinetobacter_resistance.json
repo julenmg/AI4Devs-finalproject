@@ -1,0 +1,272 @@
+[
+  {
+    "pmid": "31724045",
+    "title": "Epidemiology and Diagnostics of Carbapenem Resistance in Gram-negative Bacteria.",
+    "abstract": "Carbapenem resistance in gram-negative bacteria has caused a global epidemic that continues to grow. Although carbapenemase-producing Enterobacteriaceae have received the most attention because resistance was first reported in these pathogens in the early 1990s, there is increased awareness of the impact of carbapenem-resistant nonfermenting gram-negative bacteria, such as Acinetobacter baumannii, Pseudomonas aeruginosa, and Stenotrophomonas maltophilia. Moreover, evaluating the problem of carbapenem resistance requires the consideration of both carbapenemase-producing bacteria as well as bacteria with other carbapenem resistance mechanisms. Advances in rapid diagnostic tests to improve the detection of carbapenem resistance and the use of large, population-based datasets to capture a greater proportion of carbapenem-resistant organisms can help us gain a better understanding of this urgent threat and enable physicians to select the most appropriate antibiotics.",
+    "journal": "Clin Infect Dis",
+    "year": "2019",
+    "doi": "10.1093/cid/ciz824",
+    "first_author": "Nordmann"
+  },
+  {
+    "pmid": "39545731",
+    "title": "Laboratory detection of carbapenemases among Gram-negative organisms.",
+    "abstract": "SUMMARYThe carbapenems remain some of the most effective options available for treating patients with serious infections due to Gram-negative bacteria. Carbapenemases are enzymes that hydrolyze carbapenems and are the primary method driving carbapenem resistance globally. Detection of carbapenemases is required for patient management, the rapid implementation of infection prevention and control (IP&C) protocols, and for epidemiologic purposes. Therefore, clinical and public health microbiology laboratories must be able to detect and report carbapenemases among predominant Gram-negative organisms from both cultured isolates and direct from clinical specimens for treatment and surveillance purposes. There is not a \"one size fits all\" laboratory approach for the detection of bacteria with carbapenemases, and institutions need to determine what fits best with the goals of their antimicrobial stewardship and IP&C programs. Luckily, there are several options and approaches available for clinical laboratories to choose methods that best suits their individual needs. A laboratory approach to detect carbapenemases among bacterial isolates consists of two steps, namely a screening process (e.g., not susceptible to ertapenem, meropenem, and/or imipenem), followed by a confirmation test (i.e., phenotypic, genotypic or proteomic methods) for the presence of a carbapenemase. Direct from specimen testing for the most common carbapenemases generally involves detection via rapid, molecular approaches. The aim of this article is to provide brief overviews on Gram-negative bacteria carbapenem-resistant definitions, types of carbapenemases, global epidemiology, and then describe in detail the laboratory methods for the detection of carbapenemases among Gram-negative bacteria. We will specifically focus on the Enterobacterales, Pseudomonas aeruginosa, and Acinetobacter baumannii complex.",
+    "journal": "Clin Microbiol Rev",
+    "year": "2024",
+    "doi": "10.1128/cmr.00054-22",
+    "first_author": "Simner"
+  },
+  {
+    "pmid": "40735512",
+    "title": "The global epidemiology of carbapenem-resistant Acinetobacter baumannii.",
+    "abstract": "Carbapenem-resistant Acinetobacter baumannii (CRAb) is a challenging, environmentally hardy organism with a propensity to spread within hospitals and a predilection to infect critically ill, vulnerable patients. With its potential for rapid transmission, limited treatment options, and substantial mortality, CRAb is recognized as a critical, top-priority pathogen. Since its initial discovery in 1985, CRAb has disseminated globally, presenting a significant public health threat. CRAb is now endemic in many regions in Europe, South America, Asia, and Africa and globally contributes to over 50 000 deaths each year. Its ability to adhere to hospital surfaces, withstand desiccation, and form biofilms leads to widespread outbreaks. At-risk populations include those hospitalized and ventilated, and the most frequent presentations are respiratory and bloodstream infections. Carbapenem resistance in CRAb is primarily mediated by plasmid-borne carbapenemase genes, especially bla OXA-23. These genes, carried by several epidemic international clones, including IC1 and IC2, have facilitated the global dissemination of CRAb through horizontal gene transfer in healthcare settings. Mortality rates are >20% and vary substantially by region and by type of infection, with bloodstream infections carrying >40% mortality. Despite its significant impact, the development of treatments for CRAb remains inadequate. The novel agent sulbactam-durlobactam holds promise for improved patient outcomes, but ongoing therapeutic development, infection prevention, and antimicrobial stewardship are critical to combat this formidable pathogen. Here, we review the emergence and dissemination of CRAb, its molecular epidemiology and resistance mechanisms, summarize contemporary global clinical epidemiology and patient outcomes, and briefly describe existing and future therapeutics.",
+    "journal": "JAC Antimicrob Resist",
+    "year": "2025",
+    "doi": "10.1093/jacamr/dlaf134",
+    "first_author": "Boutzoukas"
+  },
+  {
+    "pmid": "40185559",
+    "title": "Management of Severe Infections: Multidrug-Resistant and Carbapenem-Resistant Gram-Negative Bacteria.",
+    "abstract": "This article provides an overview of the mechanisms behind carbapenem resistance and the antibiotic management for severe infections caused by key carbapenem-resistant gram-negative bacteria, specifically Enterobacterales, Acinetobacter baumannii, and Pseudomonas aeruginosa. For Enterobacterales, it highlights the relative advantages of meropenem-vaborbactam and imipenem-relebactam in treating Klebsiella pneumoniae carbapenemase (KPC)-producing strains with resistance to ceftazidime-avibactam, the preference for ceftazidime-avibactam in addressing oxacillin-hydrolyzing carpapenemase (OXA)-48-like -producing organisms, and the combination of ceftazidime-avibactam with aztreonam for metallo-β-lactamase (MBL)-producing Enterobacterales. Regarding A baumannii, sulbactam-durlobactam is identified as the preferred treatment, while ceftolozane-tazobactam, ceftazidime-avibactam, and imipenem-relebactam are viable options for P aeruginosa. Additionally, cefiderocol is presented as an alternative for MBL-producing carbapenem-resistant gram-negative bacteria.",
+    "journal": "Med Clin North Am",
+    "year": "2025",
+    "doi": "10.1016/j.mcna.2025.01.003",
+    "first_author": "Perez"
+  },
+  {
+    "pmid": "37882512",
+    "title": "A global view on carbapenem-resistant Acinetobacter baumannii.",
+    "abstract": "Carbapenem-resistant Acinetobacter baumannii are of increasing public health importance, as they are resistant to last-line antibiotics. International clones with well-characterized resistance genes dominate globally; however, locally, other lineages with different properties may be of importance to consider. This study investigated isolates from a broad geographic origin from 114 hospitals in 47 countries and from five world regions ensuring the greatest possible diversity in an organism known for its propensity for clonal epidemic spread and reflecting the current global epidemiology of carbapenem-resistant A. baumannii. In Latin America, a lineage different from other geographic regions circulates, with a different resistance gene profile. This knowledge is important to adjust local infection prevention measures. In a global world with migration and increasing use of antimicrobials, multidrug-resistant bacteria will continue to adapt and challenge our healthcare systems worldwide.",
+    "journal": "mBio",
+    "year": "2023",
+    "doi": "10.1128/mbio.02260-23",
+    "first_author": "Müller"
+  },
+  {
+    "pmid": "40732008",
+    "title": "Carbapenem Resistance in Acinetobacter baumannii: Mechanisms, Therapeutics, and Innovations.",
+    "abstract": "The global rise of carbapenem-resistant Acinetobacter baumannii (CRAB) strains poses a critical challenge to healthcare systems due to limited therapeutic options and high mortality rates, especially in intensive care settings. This review explores the epidemiological landscape and molecular mechanisms driving carbapenem resistance, including the production of diverse beta-lactamases (particularly OXA-type enzymes), porin loss, efflux pump overexpression, and mutations in antibiotic targets. Emerging treatment strategies are discussed, such as the use of new beta-lactam-beta-lactamase inhibitor combinations (e.g., sulbactam-durlobactam), siderophore cephalosporins, next-generation polymyxins, as well as novel agents like zosurabalpin and rifabutin (BV100). Alternative approaches-including phage therapy, antimicrobial peptides, CRISPR-based gene editing, and nanoparticle-based delivery systems-are also evaluated for their potential to bypass traditional resistance mechanisms. Furthermore, advances in artificial intelligence and multi-omics integration are highlighted as tools for identifying novel drug targets and predicting resistance profiles. Together, these innovations represent a multifaceted strategy to overcome CRAB infections, yet their successful implementation requires further clinical validation and coordinated surveillance efforts. This analysis highlights the urgent need for continued investment in innovative treatments and effective resistance monitoring to limit the spread of CRAB and protect the effectiveness of last-line antibiotics.",
+    "journal": "Microorganisms",
+    "year": "2025",
+    "doi": "10.3390/microorganisms13071501",
+    "first_author": "de Souza"
+  },
+  {
+    "pmid": "39957800",
+    "title": "World Health Organization priority antimicrobial resistance in Enterobacterales, Acinetobacter baumannii, Pseudomonas aeruginosa, Staphylococcus aureus and Enterococcus faecium healthcare-associated bloodstream infections in Brazil (ASCENSION): a prospective, multicentre, observational study.",
+    "abstract": "BACKGROUND: Carbapenem-resistant Enterobacterales (CRE), Acinetobacter baumannii (CRAB), Pseudomonas aeruginosa (CRPA), methicillin-resistant Staphylococcus aureus (MRSA) and vancomycin-resistant Enterococcus faecium (VRE) are listed by World Health Organization (WHO) as priority antimicrobial-resistant bacteria. Data on WHO Priority Antimicrobial resistance Phenotype (WPAP) bacteria from low- and middle-income countries are scarce. In this study, we investigated the occurrence of WPAP in healthcare-associated bloodstream infections (BSI) in Brazil, an upper-middle-income country in South America.\nMETHODS: ASCENSION was a prospective, multicentre, observational study conducted in 14 hospitals from four of five Brazilian regions. Enterobacterales, A. baumannii, P. aeruginosa, S. aureus and E. faecium BSIs in hospitalised patients were analysed. The primary outcome was the frequency of WPAP among all bacteria of interest. Secondary outcomes were incidence-density of bacteria isolates in hospitalised patients, WPAP proportions within bacterial species, and 28-day mortality. PCR for carbapenemase genes was performed in carbapenem-resistant Gram-negative bacteria.\nFINDINGS: Between August 15, 2022, and August 14, 2023, 1350 isolates (1220 BSI episodes) were included. WPAP accounted for 38.8% (n = 524; 95% Confidence Interval 32.0-46.1) of all isolates, with CRE (19.3%) as the most frequent, followed by CRAB (9.6%), MRSA (4.9%), VRE (2.7%), and CRPA (2.4%). Incidence-density of all and WPAP isolates were 1.91 and 0.77/1000 patients-day, respectively. Carbapenem-resistant Klebsiella pneumoniae (CRKP) was the most common CRE, corresponding to 14.2% of all BSIs. A. baumannii isolates presented the highest proportion of WPAP (87.8%). Mortality rates were higher in patients with BSIs by WPAP than non-WPAP isolates. KPC (64.4%) was the predominant carbapenemase in CRE, followed by NDM (28.4%) and KPC + NDM co-production (7.1%). OXA-23 was the most frequent in CRAB.\nINTERPRETATION: A high frequency of WPAP bacteria, particularly CRKP and CRAB, were found in healthcare-associated BSIs in Brazil, posing them as a major public health problem in this country.\nFUNDING: National Council for Scientific and Technological Development, Brazil.",
+    "journal": "Lancet Reg Health Am",
+    "year": "2025",
+    "doi": "10.1016/j.lana.2025.101004",
+    "first_author": "Antochevis"
+  },
+  {
+    "pmid": "38608936",
+    "title": "Global trends in carbapenem- and difficult-to-treat-resistance among World Health Organization priority bacterial pathogens: ATLAS surveillance program 2018-2022.",
+    "abstract": "OBJECTIVES: To report trends in carbapenem resistance and difficult-to-treat resistance (DTR) among clinical isolates of Gram-negative priority pathogens collected by the ATLAS global surveillance program from 2018 to 2022.\nMETHODS: Reference broth microdilution testing was performed in a central laboratory for 79,214 Enterobacterales, 30,504 Pseudomonas aeruginosa, and 13,500 Acinetobacter baumannii-calcoaceticus complex isolates collected by a constant set of 157 medical centres in 49 countries in Asia Pacific (APAC), Europe (EUR), Latin America (LATAM), Middle East-Africa (MEA), and North America (NA) regions. MICs were interpreted by 2023 CLSI M100 breakpoints. β-lactamase genes were identified for meropenem-nonsusceptible (MIC ≥2 mg/L) Enterobacterales isolates.\nRESULTS: Carbapenem-resistant Enterobacterales (CRE) detection increased (P < 0.05) in APAC, EUR, LATAM, and MEA regions and decreased in NA, while annual DTR percentages increased in all five regions. Carbapenem-resistant P. aeruginosa (CRPA; decreased in MEA region) and carbapenem-resistant A. baumannii-calcoaceticus complex (CRAB; decreased in MEA region and increased in EUR) remained relatively stable over time in all regions, although notably, annual percentages of CRAB and DTR A. baumannii-calcoaceticus complex isolates were consistently >25 percentage points lower in NA than in other regions. For all regions except NA, the majority of changes in CRE percentages could be attributed to hospital-acquired infections. Among meropenem-nonsusceptible Enterobacterales, KPC was the most frequent carbapenemase in NA and EUR each year. NDM was the most prevalent carbapenemase detected in 2022 in other global regions.\nCONCLUSION: CRE, CRPA, CRAB, and DTR rates vary among global regions over time highlighting the need for continuing surveillance to inform treatment strategies and antimicrobial stewardship.",
+    "journal": "J Glob Antimicrob Resist",
+    "year": "2024",
+    "doi": "10.1016/j.jgar.2024.03.020",
+    "first_author": "Wise"
+  },
+  {
+    "pmid": "35730377",
+    "title": "Epidemiological and genetic characteristics of clinical carbapenem-resistant Acinetobacter baumannii strains collected countrywide from hospital intensive care units (ICUs) in China.",
+    "abstract": "Acinetobacter baumannii is one of the key Gram-negative pathogens that can cause serious nosocomial infections. In China, a large proportion of clinical A. baumannii strains are multidrug resistant, among which strains resistant to carbapenems are particularly worrisome, as infections caused by such strains may limit the choice of existing antibiotics. We conducted a nationwide and genome-based surveillance on the prevalence and antibiotic susceptibility profile of carbapenem-resistant A. baumannii (CRAB) strains collected from intensive care units (ICUs) in hospitals in different provinces and investigated the routes of transmission and mechanism of resistance by whole-genome sequencing and phylogenetic analysis. We found that CRAB strains were prevalent in 71.4% (55/77) of the ICUs surveyed. Clonal spread of CRAB was found in 37.6% (29/77) of ICUs and a total of 22 different clones were identified. Most clones were transmissible within one ICU, but up to six clones could be detected in at least three hospitals. In addition, carbapenem-hydrolysing class D β-lactamases (CHDL) were found to be mainly responsible for carbapenem-resistance in A. baumannii and the ST2 global-clone is the predominant type of CRAB in China. Importantly, we found that CRAB isolates currently exhibited an extremely low rate of resistance to colistin (0.4%) and tigecycline (2.5%), but a high rate of resistance to ceftazidime-avibactam (70.2%). Findings in this work shall facilitate development of appropriate antimicrobial regimens for treatment of CRAB infections. Further surveillance and research on the evolutionary and epidemiological features of clinical CRAB strains are necessary.",
+    "journal": "Emerg Microbes Infect",
+    "year": "2022",
+    "doi": "10.1080/22221751.2022.2093134",
+    "first_author": "Liu"
+  },
+  {
+    "pmid": "33250491",
+    "title": "One Outbreak Could Hide Another.",
+    "abstract": "Severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) is currently a major worldwide concern. Guidelines have been issued regarding precautions for healthcare workers caring for SARS-CoV-2-infected patients. Despite accurate observance of infection control measures, including contact precautions, we encountered an OXA-23-producing Acinetobacter baumannii outbreak in 5 intensive care units of 10 beds each in our tertiary care teaching hospital.",
+    "journal": "Jpn J Infect Dis",
+    "year": "2021",
+    "doi": "10.7883/yoken.JJID.2020.705",
+    "first_author": "Duployez"
+  },
+  {
+    "pmid": "29267233",
+    "title": "Carbapenem Resistance: A Review.",
+    "abstract": "Carbapenem resistance is a major and an on-going public health problem globally. It occurs mainly among Gram-negative pathogens such as Klebsiella pneumoniae, Pseudomonas aeruginosa and Acinetobacter baumannii, and may be intrinsic or mediated by transferable carbapenemase-encoding genes. This type of resistance genes are already widespread in certain parts of the world, particularly Europe, Asia and South America, while the situation in other places such as sub-Saharan Africa is not well documented. In this paper, we provide an in-depth review of carbapenem resistance providing up-to-date information on the subject.",
+    "journal": "Med Sci (Basel)",
+    "year": "2017",
+    "doi": "10.3390/medsci6010001",
+    "first_author": "Codjoe"
+  },
+  {
+    "pmid": "39488505",
+    "title": "Longitudinal genomics reveals carbapenem-resistant Acinetobacter baumannii population changes with emergence of highly resistant ST164 clone.",
+    "abstract": "Carbapenem-resistant Acinetobacter baumannii (CRAB) is a persistent nosocomial pathogen that poses a significant threat to global public health, particularly in intensive care units (ICUs). Here we report a three-month longitudinal genomic surveillance study conducted in a Hangzhou ICU in 2021. This followed a three-month study conducted in the same ICU in 2019, and infection prevention and control (IPC) interventions targeting patients, staff and the ICU environment. Most A. baumannii isolated in this ICU in 2021 were CRAB (80.9%; 419/518) with higher-level resistance to carbapenems. This was accompanied by the proportion of global clone 2 (GC2) isolates falling from 99.5% in 2019 to 50.8% (213/419) in 2021. The phylogenetic diversity of GC2 increased, apparently driven by regular introductions of distinct clusters in association with patients. The remaining CRAB (40.2%; 206/419) were a highly clonal population of ST164. Isolates of ST164 carried blaNDM-1 and blaOXA-23 carbapenemase genes, and exhibited higher carbapenem MIC50/MIC90 values than GC2. Comparative analysis of publicly available genomes from 26 countries (five continents) revealed that ST164 has evolved towards carbapenem resistance on multiple independent occasions. Its success in this ICU and global capacity for acquiring resistance determinants indicate that ST164 CRAB is an emerging high-risk lineage of global concern.",
+    "journal": "Nat Commun",
+    "year": "2024",
+    "doi": "10.1038/s41467-024-53817-x",
+    "first_author": "Liu"
+  },
+  {
+    "pmid": "31193498",
+    "title": "adeABC efflux gene in Acinetobacter baumannii.",
+    "abstract": "The antimicrobial resistance to Acinetobacter baumannii is significantly high and continues to grow; it has become a global health issue, particularly in regards to carbapenem resistance. The expression of efflux pumps is one of the major mechanisms of antibiotic resistance in A. baumannii by, most prevalently, adeABC of the resistance/nodulation/division family. The detection rate of adeB was the highest in clinical isolates compared to others (adeFGH, adeIJk), although it varied among other strains. In this minireview, we explain the adeABC efflux gene in A. baumannii causing antibiotic resistance and compare adeABC with other efflux genes in order to discern the function of adeABC in A. baumannii resistance, which may help in the discovery of new antibacterial agents.",
+    "journal": "New Microbes New Infect",
+    "year": "2019",
+    "doi": "10.1016/j.nmni.2019.100549",
+    "first_author": "Xu"
+  },
+  {
+    "pmid": "40493197",
+    "title": "Repurposing a drug to punish carbapenem-resistant Acinetobacter baumannii.",
+    "abstract": "The OXA β-lactamases in Acinetobacter baumannii represent a primary mechanism for resistance to the carbapenems, a class of antibiotics that represent a last line for treatment. In a screen of an U.S. Food and Drug Administration (FDA)-approved drug library, we identified fendiline, a calcium channel blocker, had significantly more antimicrobial activity against OXA-23 expressing cells. Genetic and proteomic studies revealed that fendiline inhibited the essential lipoprotein trafficking pathway (Lol) in both A. baumannii (LolFD) and Escherichia coli (LolCDE). We demonstrate that OXA-23 is an outer membrane lipoprotein and its overexpression resulted in increased lethality in lolFD-depleted A. baumannii. Our results indicate that overexpression of the OXA-23 β-lactamase in A. baumannii stresses normal lipoprotein trafficking, which makes these cells more susceptible to fendiline. Overall, our data reveal a link between carbapenem resistance and the Lol pathway, which can be leveraged for new drug development.",
+    "journal": "Proc Natl Acad Sci U S A",
+    "year": "2025",
+    "doi": "10.1073/pnas.2423650122",
+    "first_author": "Colquhoun"
+  },
+  {
+    "pmid": "35630295",
+    "title": "Multidrug-Resistant Acinetobacter baumannii in Jordan.",
+    "abstract": "Background: Acinetobacter baumannii is a common cause of multi-drug (MDR)-resistant infections worldwide. The epidemiological and molecular characteristics of MDR-A. baumannii in Jordan is not known. Methods: A. baumannii isolates were collected from 2010 to 2020 from three tertiary hospitals in Jordan. Demographic and clinical data, isolates information, antibiotic susceptibility patterns, phenotypic, and molecular characterization of carbapenem resistance genes were performed. Results: A total of 622 A. baumannii isolates were collected during the study period. Most isolates were from males, aged 18−60 years, Jordanian, from infected wounds, and were patients in surgery or critical care units. Among patients from whom A. baumannii was isolated, associated risk factors for MDR were adults over 60, males, critically ill patients and infected wounds (OR 4.14, 2.45, 10, 7, respectively, p < 0.0001). Incidence rates from 2010 to 2015 showed a slight increase in MDR (3.75/1000 to 4.46/1000). Resistance patterns indicated high resistance for most cephalosporins, carbapenems, and fluoroquinolones, moderate resistance for trimethoprim/sulfamethoxazole and ampicillin/sulbactam, low resistance for aminoglycosides and tetracyclines, while colistin and tigecycline, have the lowest resistance rates. 76.8% of A. baumannii isolates were MDR and 99.2% were carbapenem-resistant. All isolates were positive for the OXA-51 gene (100%), 98.5% were positive for the OXA-23 gene, 26.6% for the VIM gene, while KPC and IMP genes were almost not detected (0% and 0.8% respectively). Conclusions: This is the first large, multicentric, prolonged study that provides insights into A. baumannii infections in Jordan. Attention to patients at higher risk is important for early identification. Colistin and tigecycline were the most effective antimicrobials.",
+    "journal": "Microorganisms",
+    "year": "2022",
+    "doi": "10.3390/microorganisms10050849",
+    "first_author": "Al-Tamimi"
+  },
+  {
+    "pmid": "37909743",
+    "title": "Genomic epidemiology of Acinetobacter baumannii goes global.",
+    "abstract": "Acinetobacter baumannii is a major public health concern, for which many genomic epidemiology studies have been conducted in the last decade. However, the vast majority of these are local studies focusing on hospitals from one or a few countries. Proper global genomic epidemiology studies are needed if we are to understand the worldwide dissemination of A. baumannii clones. In this regard, a recent study published in mBio is a good step forward. Müller et al. (mBio e2260-23, 2023, https://doi.org/10.1128/mbio.02260-23) sequenced the genomes of 313 carbapenem-resistant A. baumannii isolates from over 100 hospitals in almost 50 countries from Africa, Asia, Europe, and The Americas. With this data set the authors provide an updated view of the global distribution of the major international clones and their carbapenemase genes. Future global genomic epidemiology studies can be enhanced by considering not only human but also non-human isolates, and by considering isolates despite their antibiotic resistance profile.",
+    "journal": "mBio",
+    "year": "2023",
+    "doi": "10.1128/mbio.02520-23",
+    "first_author": "Castillo-Ramírez"
+  },
+  {
+    "pmid": "33270079",
+    "title": "Molecular epidemiology of carbapenem-resistant Acinetobacter baumannii in Italy.",
+    "abstract": "CONCLUSIONS: Our data reinforces the need to monitor the molecular epidemiology of CR A. baumannii and its associated antimicrobial resistance genes at national level.\nBACKGROUND: Carbapenem-resistant (CR) Acinetobacter baumannii has been increasingly recognized as a major cause of health care-associated infections in critically ill patients and hospital outbreaks.\nRESULTS: CR A. baumannii isolates assigned to international clonal lineage II (ICL II) and to ST78 clonal lineages were responsible for several epidemics in Italian hospitals during 2002-2018. Molecular analysis of carbapenem resistance showed the presence of OXA-58 CHDL in A. baumannii isolates assigned to ICL II and ST78 clonal lineage, which was replaced by OXA-23 CHDL in A. baumannii isolates assigned to ICL II since 2007 in several hospitals. CR A. baumannii was mainly responsible for respiratory tract infections and at a lesser extent for sepsis in intensive care unit patients.\nMETHODS: A narrative review of literature was conducted, searching PubMed database for articles on CR Acinetobacter spp. isolates from Italy published between January 2010 and December 2019.",
+    "journal": "Ann Ig",
+    "year": "2021",
+    "doi": "10.7416/ai.2020.2395",
+    "first_author": "Zarrilli"
+  },
+  {
+    "pmid": "37600441",
+    "title": "Acinetobacter baumannii Carbapenemase Producers in Morocco: Genetic Diversity.",
+    "abstract": "INTRODUCTION: Carbapenem resistance in Acinetobacter baumannii (A. baumannii) is a public health problem worldwide. Although carbapenem resistance is emerging in Morocco, few studies have shown the epidemiological profile of carbapenemase genes in Moroccan healthcare facilities. The aim of this study was to characterize the molecular profile of the carbapenemase enzyme in Acinetobacter baumannii from clinical isolates.\nMETHODS: Clinical strains isolated in the laboratory from various samples were subjected to several phenotypic tests. Antibiotic susceptibility and identification were tested using Phoenix 100 (Becton Dickinson Co., Sparks, MD, USA) and Api 20 (bioMérieux, Marcy-l'Etoile, France). Simple phenotypic assays were used to detect carbapenemase oxacillinase (OXA) and metallo-β-lactamase (MBL) production, including the modified Hodge test (MHT) and ethylenediaminetetraacetic acid (EDTA) test. The detection of carbapenemase genes was performed by multiplex and simple polymerase chain reaction (PCR).\nRESULTS: A total of 140 strains or 100% of isolates contained OXA-51 and ISbA1 sequences, 89% contained OXA-23 and OXA-58 sequences, and 1% contained OXA-24 sequence. The MBL genes were predominated by Verona integron-encoded metallo-β-lactamase (VIM) (56%), followed by Seoul imipenemase (SIM) (39%), German imipenemase (GIM) (37%), São Paulo metallo-β-lactamase (SPM) (13%), imipenemase (IMP) (11%), and New Delhi metallo-β-lactamase (NDM) (4%). Guyana extended-spectrum β-lactamase (GES) was not found in any isolation.\nCONCLUSION: Our study shows a high frequency of carbapenem resistance in Acinetobacter baumannii, as it reports a high molecular diversity of carbapenemase-encoding genes, mainly dominated by the carbapenemase ISaba1/OXA-23, which represents an emerging threat in our hospital.",
+    "journal": "Cureus",
+    "year": "2023",
+    "doi": "10.7759/cureus.43629",
+    "first_author": "Massik"
+  },
+  {
+    "pmid": "34934945",
+    "title": "Genomic characterization of triple-carbapenemase-producing Acinetobacter baumannii.",
+    "abstract": "OBJECTIVES: To characterize Acinetobacter baumannii OCU_Ac16a, a clinical isolate co-harbouring three acquired carbapenemase genes, bla NDM-1, bla TMB-1, and bla OXA-58, and assess the clinical significance of so-called multiple-carbapenemase producers.\nMETHODS: OCU_Ac16a and its close relative, OCU_Ac16b, which lacks the bla NDM-1, were isolated from sputum cultures of a patient at Osaka City University Hospital. We subjected these strains to whole-genome analysis, particularly focusing on the genetic context of each carbapenemase gene. The transmissibility and functionality of each carbapenemase gene were analysed by conjugation and transformation experiments and antimicrobial susceptibility tests.\nRESULTS: bla TMB-1 was located in a class 1 integron on the chromosome, whereas bla NDM-1 and bla OXA-58 were found on plasmids named pOCU_Ac16a_2 and pOCU_Ac16a_3, respectively. pOCU_Ac16a_2 (which exhibited highly efficient self-transmissibility) and pOCU_Ac16a_3 (which did not show transmissibility but could be introduced into another A. baumannii strain via electroporation) could both confer carbapenem resistance (MICs ≥512 and ≥32 mg/L, respectively) on the recipient strain. The functionality of bla TMB-1 was evident from the high resistance of OCU_Ac16b to ceftazidime and cefepime (MICs ≥256 and 48 mg/L, respectively), and the high resistance of OCU_Ac16a to cefiderocol (MIC 32 mg/L) could be explained by the additive effect of bla NDM-1 and bla TMB-1.\nCONCLUSIONS: Our data revealed the genomic organization of OCU_Ac16a and demonstrated that all the carbapenemase genes are functional, each contributing to the extremely high broad-spectrum resistance of OCU_Ac16a to β-lactams. As multiple-carbapenemase producers can be serious health threats as drug-resistant pathogens and disseminators of carbapenemase genes, close attention should be paid to their emergence.",
+    "journal": "JAC Antimicrob Resist",
+    "year": "2021",
+    "doi": "10.1093/jacamr/dlab191",
+    "first_author": "Oinuma"
+  },
+  {
+    "pmid": "39518977",
+    "title": "Insights into Acinetobacter baumannii AMA205's Unprecedented Antibiotic Resistance.",
+    "abstract": "The rise of antibiotic-resistant bacteria in clinical settings has become a significant global concern. Among these bacteria, Acinetobacter baumannii stands out due to its remarkable ability to acquire resistance genes and persist in hospital environments, leading to some of the most challenging infections. Horizontal gene transfer (HGT) plays a crucial role in the evolution of this pathogen. The A. baumannii AMA205 strain, belonging to sequence type ST79, was isolated from a COVID-19 patient in Argentina in 2021. This strain's antimicrobial resistance profile is notable as it harbors multiple resistance genes, some of which had not been previously described in this species. The AmpC family β-lactamase blaCMY-6, commonly found in Enterobacterales, had never been detected in A. baumannii before. Furthermore, this is the first ST79 strain known to carry the carbapenemase blaNDM-1 gene. Other acquired resistance genes include the carbapenemase blaOXA-23, further complicating treatment. Susceptibility testing revealed high resistance to most antibiotic families, including cefiderocol, with significant contributions from blaCMY-6 and blaNDM-1 genes to the cephalosporin and carbapenem resistance profiles. The A. baumannii AMA205 genome also contains genetic traits coding for 111 potential virulence factors, such as the iron-uptake system and biofilm-associated proteins. This study underscores A. baumannii's ability to acquire multiple resistance genes and highlights the need for alternative therapies and effective antimicrobial stewardship to control the spread of these highly resistant strains.",
+    "journal": "Int J Mol Sci",
+    "year": "2024",
+    "doi": "10.3390/ijms252111424",
+    "first_author": "Traglia"
+  },
+  {
+    "pmid": "37796014",
+    "title": "NDM-1- and OXA-23-producing Acinetobacter baumannii in wastewater of a Nigerian hospital.",
+    "abstract": "Acinetobacter baumannii is a leading cause of hospital-associated infections globally. A. baumannii reservoirs outside hospital settings are still unknown, and their occurrence in the environment is linked to clinical and anthropogenic activities. Although the risk of transmission of A. baumannii from environmental sources to humans is not fully understood, these sources pose significant risks for the continued dissemination of A. baumannii and their resistance traits. This study provides evidence that diverse and clinically relevant A. baumannii strains, many of which are resistant to carbapenems, are constantly being discharged into the environment through inadequately treated hospital wastewater. We further elucidate potential transmission routes between the environment and clinical infections and demonstrate the high prevalence of carbapenem resistance genes on highly mobile transposons among these strains. Our findings highlight the pressing need to address hospital wastewater as a crucial factor in curtailing the spread of carbapenem-resistant A. baumannii.",
+    "journal": "Microbiol Spectr",
+    "year": "2023",
+    "doi": "10.1128/spectrum.02381-23",
+    "first_author": "Odih"
+  },
+  {
+    "pmid": "38678219",
+    "title": "Seasonal meropenem resistance in Acinetobacter baumannii and influence of temperature-driven adaptation.",
+    "abstract": "BACKGROUND: Recognition of seasonal trends in bacterial infection and drug resistance rates may enhance diagnosis, direct therapeutic strategies, and inform preventive measures. Limited data exist on the seasonal variability of Acinetobacter baumannii. We investigated the seasonality of A. baumannii, the correlation between temperature and meropenem resistance, and the impact of temperature on this bacterium.\nRESULTS: Meropenem resistance rates increased with lower temperatures, peaking in winter/colder months. Nonresistant strain detection exhibited temperature-dependent seasonality, rising in summer/warmer months and declining in winter/colder months. In contrast, resistant strains showed no seasonality. Variations in meropenem-resistant and nonresistant bacterial resilience to temperature changes were observed. Nonresistant strains displayed growth advantages at temperatures ≥ 25 °C, whereas meropenem-resistant A. baumannii with β-lactamase OXA-23 exhibited greater resistance to low-temperature (4 °C) stress. Furthermore, at 4 °C, A. baumannii upregulated carbapenem resistance-related genes (adeJ, oxa-51, and oxa-23) and increased meropenem stress tolerance.\nCONCLUSIONS: Meropenem resistance rates in A. baumannii display seasonality and are negatively correlated with local temperature, with rates peaking in winter, possibly linked to the differential adaptation of resistant and nonresistant isolates to temperature fluctuations. Furthermore, due to significant resistance rate variations between quarters, compiling monthly or quarterly reports might enhance comprehension of antibiotic resistance trends. Consequently, this could assist in formulating strategies to control and prevent resistance within healthcare facilities.",
+    "journal": "BMC Microbiol",
+    "year": "2024",
+    "doi": "10.1186/s12866-024-03271-y",
+    "first_author": "Liu"
+  },
+  {
+    "pmid": "39626376",
+    "title": "Activity and resistance mechanisms of the third generation tetracyclines tigecycline, eravacycline and omadacycline against nationwide Spanish collections of carbapenemase-producing Enterobacterales and Acinetobacter baumannii.",
+    "abstract": "INTRODUCTION: The rise in multidrug-resistant bacteria challenges clinical microbiology. Tigecycline, eravacycline, and omadacycline show promise against carbapenem-resistant Enterobacterales and Acinetobacter baumannii. This study evaluates their activity and resistance mechanisms.\nMETHODS: Two Spanish multicentre collections of WGS-characterized carbapenemase-producing Enterobacterales (n=399) and A. baumannii (n=118) were tested. The MICs of tigecycline, eravacycline, omadacycline and classic tetracyclines were determined. WGS-guided resistome analysis, expression studies, efflux pump inhibition and cloning assays identified potential mechanisms of resistance.\nRESULTS: Tigecycline and eravacycline exhibited the highest activity against the whole set of Enterobacterales (MIC50/MIC90 0.5/1 mg/L and 1/2 mg/L, respectively), and A. baumannii (MIC50/MIC90 1/2 mg/L and ≤0.25/1 mg/L, respectively). Omadacycline showed no improvement relative to classic tetracyclines (MIC50/MIC90 values of 8/32 mg/L and 8/16 mg/L for Enterobacterales and A. baumannii, respectively). Resistance mechanisms in Enterobacterales included efflux pumps (AcrAB-TolC, OqxAB) and mutation in their regulatory genes. In A. baumannii, adeS gene mutations and adeABC upregulation decreased tigecycline activity. The prevalent sequence types with reduced susceptibility to eravacycline and tigecycline were ST307 in K. pneumoniae and ST2 in A. baumannii.\nCONCLUSION: Eravacycline remains a key agent for the treatment of bacterial infections exhibiting promising efficacy against multidrug-resistant pathogens. As an empirical antibiotic it could be a good alternative for severe infections caused by CPE or CRAB, however, its clinical use is limited by the absence of standardized breakpoints. Resistance mechanisms, including efflux pumps and gene mutations, vary among isolates. High-risk clones like K. pneumoniae ST307 and A. baumannii ST2 underscore the necessity of prudent antibiotic use.",
+    "journal": "Biomed Pharmacother",
+    "year": "2024",
+    "doi": "10.1016/j.biopha.2024.117666",
+    "first_author": "García"
+  },
+  {
+    "pmid": "27270503",
+    "title": "Acinetobacter baumannii: biology and drug resistance - role of carbapenemases.",
+    "abstract": "Acinetobacter baumannii is a Gram-negative, glucose-non-fermenting, oxidase-negative coccobacillus, most commonly associated with the hospital settings. The ability to survive in adverse environmental conditions as well as high level of natural and acquired antimicrobial resistance make A. baumannii one of the most important nosocomial pathogens. While carbapenems have long been considered as antimicrobials of last-resort, the rates of clinical A. baumannii strains resistant to these antibiotics are increasing worldwide. Carbapenem resistance among A. baumannii is conferred by coexisting mechanisms including: decrease in permeability of the outer membrane, efflux pumps, production of beta-lactamases, and modification of penicillin-binding proteins. The most prevalent mechanism of carbapenem resistance among A. baumannii is associated with carbapenem-hydro-lysing enzymes that belong to Ambler class D and B beta-lactamases. In addition, there have also been reports of resistance mediated by selected Ambler class A carbapenemases among A. baumannii strains. Resistance determinants in A. baumannii are located on chromosome and plasmids, while acquisition of new mechanisms can be mediated by insertion sequences, integrons, transposons, and plasmids. Clinical relevance of carbapen-em resistance among strains isolated from infected patients, carriers and hospital environment underlines the need for carbapenemase screening. Currently available methods vary in principle, accuracy and efficiency. The techniques that deserve particular attention belong to both easily accessible unsophisticated methods as well as advanced techniques based on mass spectrometry or molecular biology. While carbapenemases limit the therapeutic options in A. baumannii infections, studies concerning novel beta-lactamase inhibitors offer a new insight into effective therapy.",
+    "journal": "Folia Histochem Cytobiol",
+    "year": "2016",
+    "doi": "10.5603/FHC.a2016.0009",
+    "first_author": "Nowak"
+  },
+  {
+    "pmid": "41675857",
+    "title": "Global spread of drug-resistant Acinetobacter baumannii in immunocompromised and cancer patients.",
+    "abstract": "Acinetobacter baumannii poses a severe threat in healthcare due to its highly adaptive genome and rapid spread of multidrug and extensively drug-resistant traits. Carbapenem resistance exceeds 70% in ICUs, with cancer patients showing even higher rates, including 94.1% of isolates carrying multiple carbapenemase genes such as OXA-23-like, NDM, and KPC. These strains, largely from International Clone II, exhibit strong virulence and environmental persistence. Immunocompromised patients face poor outcomes, with septicemia mortality reaching 49.5% and risk amplified by prolonged hospitalization, mechanical ventilation, invasive procedures, and prior carbapenem exposure. Limited therapeutic options, including toxic last-line colistin, further complicate management. Emerging AI-designed nano-vaccines offer promising preventive strategies for vulnerable populations.",
+    "journal": "Ann Med Surg (Lond)",
+    "year": "2026",
+    "doi": "10.1097/MS9.0000000000004591",
+    "first_author": "Jamshed"
+  },
+  {
+    "pmid": "38914142",
+    "title": "ISAba1-mediated intrinsic chromosomal oxacillinase amplification confers carbapenem resistance in Acinetobacter baumannii.",
+    "abstract": "Tandem amplification of carbapenemase genes increases gene copy number and enhances carbapenem resistance. These amplifications are often heterogeneous, transient, and located on plasmids, which also contribute to heteroresistance. Amplification of encoding genes is especially important for enzymes with low hydrolysis activity, which are often overlooked. Here, we reported an intrinsic oxacillinase oxaAb amplification flanked by ISAba1. The amplification is in the chromosome and contains up to 25 repeats. We provided genomic, transcriptomic, and proteomic evidence that the amplification resulted in oxacillinase overproduction. Notably, no point mutations of oxaAb were found during the amplification process. Strains of Acinetobacter baumannii with intrinsic amplified or external transformed ISAba1-oxaAb exhibited higher meropenem hydrolysis activity. Furthermore, the number of repeats in the amplification decreased gradually over a period of 21 d cultured with carbapenem withdrawal. However, upon re-exposure to meropenem, the ISAba1 flanked oxaAb responded rapidly, with repeat numbers reaching or exceeding pre-carbapenem withdrawal levels within 24 h. Taken together, these findings suggest that ISAba1-mediated gene amplification and overproduction of intrinsic low-activity oxacillinase oxaAb resulted in carbapenem resistance.",
+    "journal": "Int J Antimicrob Agents",
+    "year": "2024",
+    "doi": "10.1016/j.ijantimicag.2024.107258",
+    "first_author": "Hu"
+  },
+  {
+    "pmid": "41028326",
+    "title": "In vitro activity of meropenem-vaborbactam combinations and eravacycline against carbapenem-resistant Acinetobacter baumannii.",
+    "abstract": "Treatment of carbapenem-resistant Acinetobacter baumannii (CRAB) presents a growing clinical challenge. This study evaluated the in vitro efficacy of eravacycline and the potential synergistic activity of meropenem-vaborbactam in combination with either gentamicin or ceftazidime against carbapenemase-producing Acinetobacter baumannii isolates. A total of 25 CRAB isolates were collected from different clinical samples. Antimicrobial susceptibility was determined via disc diffusion. Meropenem was tested by both disc diffusion and gradient strips. Polymerase chain reaction (PCR) was used to screen these isolates for the carbapenemase genes blaOXA-51, blaOXA-23, blaIMP, blaVIM, blaOXA-48, blaNDM and blaKPC. Extensively drug-resistant (XDR) CRAB isolates were selected for evaluating colistin, eravacycline and the in vitro synergy of antimicrobial combinations via gradient strips for meropenem-vaborbactam, gentamicin, and ceftazidime. All CRAB isolates were sensitive to tigecycline and were either multidrug resistant or XDR. The minimum inhibitory concentrations (MIC50s and MIC90s) of meropenem were 32 μg/mL and 256 μg/mL, respectively. Among these genes, blaOXA-23 was the most prevalent gene. The MIC50 and MIC90 of colistin were 1 and 2 μg/mL, respectively. The MIC50 and MIC90 of eravacycline were 0.125 μg/mL and 0.5 μg/mL, respectively. Meropenem-vaborbactam in combination with ceftazidime or gentamicin showed synergy in 45.5% and 36.4% of the XDR isolates and additivity/indifference in 54.5% and 63.6% of them, respectively, with no antagonism. Our findings suggest that eravacycline, as well as combination therapies involving meropenem-vaborbactam with either gentamicin or ceftazidime, may offer promising therapeutic potential for CRAB infections pending further clinical evaluation. These agents demonstrated notable in vitro activity, including potential synergistic effects, particularly against isolates harboring carbapenemase enzymes.",
+    "journal": "Sci Rep",
+    "year": "2025",
+    "doi": "10.1038/s41598-025-19642-y",
+    "first_author": "El-Ashry"
+  },
+  {
+    "pmid": "31599224",
+    "title": "Emergence, molecular mechanisms and global spread of carbapenem-resistant Acinetobacter baumannii.",
+    "abstract": "Acinetobacter baumannii is a nosocomial pathogen that has emerged as a global threat because of high levels of resistance to many antibiotics, particularly those considered to be last-resort antibiotics, such as carbapenems. Although alterations in the efflux pump and outer membrane proteins can cause carbapenem resistance, the main mechanism is the acquisition of carbapenem-hydrolyzing oxacillinase-encoding genes. Of these, oxa23 is by far the most widespread in most countries, while oxa24 and oxa58 appear to be dominant in specific regions. Historically, much of the global spread of carbapenem resistance has been due to the dissemination of two major clones, known as global clones 1 and 2, although new lineages are now common in some parts of the world. The analysis of all publicly available genome sequences performed here indicates that ST2, ST1, ST79 and ST25 account for over 71 % of all genomes sequenced to date, with ST2 by far the most dominant type and oxa23 the most widespread carbapenem resistance determinant globally, regardless of clonal type. Whilst this highlights the global spread of ST1 and ST2, and the dominance of oxa23 in both clones, it could also be a result of preferential selection of carbapenem-resistant strains, which mainly belong to the two major clones. Furthermore, ~70 % of the sequenced strains have been isolated from five countries, namely the USA, PR China, Australia, Thailand and Pakistan, with only a limited number from other countries. These genomes are a vital resource, but it is currently difficult to draw an accurate global picture of this important superbug, highlighting the need for more comprehensive genome sequence data and genomic analysis.",
+    "journal": "Microb Genom",
+    "year": "2019",
+    "doi": "10.1099/mgen.0.000306",
+    "first_author": "Hamidian"
+  },
+  {
+    "pmid": "41594040",
+    "title": "Multidrug-Resistant Acinetobacter baumannii: Resistance Mechanisms, Emerging Therapies, and Prevention-A Narrative Review.",
+    "abstract": "Acinetobacter baumannii is a leading intensive care unit (ICU) pathogen associated with high rates of carbapenem resistance and poor clinical outcomes. This narrative review synthesizes recent clinical, microbiological, and pharmacokinetic/pharmacodynamic (PK/PD) evidence regarding resistance mechanisms and therapeutic strategies. A literature review was performed in PubMed, Scopus, and Web of Science (January 2015-August 2025), focusing on multidrug-resistant (MDR) and extensively drug-resistant (XDR) strains, ICU-acquired infections, and pivotal trials involving cefiderocol and sulbactam-durlobactam. Resistance is driven by OXA-type carbapenemases (notably OXA-23/24/58), efflux systems (AdeABC/IJK/FGH), porin alterations (CarO, Omp33-36), and lipopolysaccharide (LPS) modifications conferring colistin resistance. Management options include polymyxins, optimized tigecycline dosing, β-lactam/β-lactamase inhibitors, and newer agents such as cefiderocol and sulbactam-durlobactam, though mortality and safety outcomes vary across trials. A comparative table is included, summarizing antimicrobial mechanism coverage, PK/PD parameters, and adverse effects to support regimen selection in ventilator-associated pneumonia (VAP) and bacteremia. Optimized, multimodal approaches integrating timely diagnostics, targeted combination therapies, infection prevention, and antimicrobial stewardship are essential to improve outcomes and limit the spread of MDR and XDR A. baumannii.",
+    "journal": "Antibiotics (Basel)",
+    "year": "2025",
+    "doi": "10.3390/antibiotics15010002",
+    "first_author": "Stoian"
+  },
+  {
+    "pmid": "33718283",
+    "title": "Molecular Epidemiology and Clone Transmission of Carbapenem-Resistant Acinetobacter baumannii in ICU Rooms.",
+    "abstract": "Carbapenem-resistant Acinetobacter baumannii (CRAB) is a major cause of nosocomial infections and hospital outbreaks worldwide, remaining a critical clinical concern. Here we characterized and investigated the phylogenetic relationships of 105 CRAB isolates from an intensive care unit from one hospital in China collected over six years. All strains carried blaOXA-23 , blaOXA-66 genes for carbapenem resistance, also had high resistance gene, virulence factor, and insertion sequence burdens. Whole-genome sequencing revealed all strains belonged to ST2, the global clone CC2. The phylogenetic analysis based on the core genome showed all isolates were dominated by a single lineage of three clusters and eight different clones. Two clones were popular during the collection time. Using chi-square test to identify the epidemiologically meaningful groupings, we found the significant difference in community structure only existed in strains from separation time. The haplotype and median-joining network analysis revealed genetic differences appeared among clusters and changes occurred overtime in the dominating cluster. Our results highlighted substantial multidrug-resistant CRAB burden in the hospital ICU environment demonstrating potential clone outbreak in the hospital.",
+    "journal": "Front Cell Infect Microbiol",
+    "year": "2021",
+    "doi": "10.3389/fcimb.2021.633817",
+    "first_author": "Zhang"
+  }
+]

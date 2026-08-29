@@ -1,0 +1,317 @@
+[
+  {
+    "pmid": "40185559",
+    "title": "Management of Severe Infections: Multidrug-Resistant and Carbapenem-Resistant Gram-Negative Bacteria.",
+    "abstract": "This article provides an overview of the mechanisms behind carbapenem resistance and the antibiotic management for severe infections caused by key carbapenem-resistant gram-negative bacteria, specifically Enterobacterales, Acinetobacter baumannii, and Pseudomonas aeruginosa. For Enterobacterales, it highlights the relative advantages of meropenem-vaborbactam and imipenem-relebactam in treating Klebsiella pneumoniae carbapenemase (KPC)-producing strains with resistance to ceftazidime-avibactam, the preference for ceftazidime-avibactam in addressing oxacillin-hydrolyzing carpapenemase (OXA)-48-like -producing organisms, and the combination of ceftazidime-avibactam with aztreonam for metallo-β-lactamase (MBL)-producing Enterobacterales. Regarding A baumannii, sulbactam-durlobactam is identified as the preferred treatment, while ceftolozane-tazobactam, ceftazidime-avibactam, and imipenem-relebactam are viable options for P aeruginosa. Additionally, cefiderocol is presented as an alternative for MBL-producing carbapenem-resistant gram-negative bacteria.",
+    "journal": "Med Clin North Am",
+    "year": "2025",
+    "doi": "10.1016/j.mcna.2025.01.003",
+    "first_author": "Perez"
+  },
+  {
+    "pmid": "36150216",
+    "title": "Treatment strategies for OXA-48-like and NDM producing Klebsiella pneumoniae infections.",
+    "abstract": "INTRODUCTION: OXA-48 and NDM are amongst the most prevalent carbapenemase types associated with Klebsiella pneumoniae worldwide, with an increase in their prevalence in recent years. Knowledge on the treatment of carbapenem-resistant Klebsiella pneumoniae (CRKP) comes from KPC-producing CRKP with limited data available for OXA-48-like and NDM producers. Our aim is to review the literature on the treatment of OXA-48-like and NDM-producing CRKP with the goal of providing an update on the available antibiotic treatment strategies, particularly in light of changing carbapenemase epidemiology and increasing antimicrobial resistance.\nAREAS COVERED: We reviewed studies looking at the antibiotic treatment and outcome of OXA-48-like and/or NDM-producing CRKP.\nEXPERT OPINION: The best available treatment option for OXA-48 producers is ceftazidime-avibactam, where available and when the price permits its use. Colistin remains as the second-line option if in vitro susceptibility is demonstrated with an appropriate method. There is not enough evidence to support the use of meropenem-containing combination therapies for meropenem-resistant OXA-48 producers. Treatment of NDM producers is an unmet need. Ceftazidime-avibactam and aztreonam combination or cefiderocol can be used for NDM producers, where available. Higher cefiderocol MICs against NDM producers is concerning. Aztreonam-avibactam provides hope for the treatment of NDM producers.",
+    "journal": "Expert Rev Anti Infect Ther",
+    "year": "2022",
+    "doi": "10.1080/14787210.2022.2128764",
+    "first_author": "Isler"
+  },
+  {
+    "pmid": "29723841",
+    "title": "Klebsiella pneumoniae as a key trafficker of drug resistance genes from environmental to clinically important bacteria.",
+    "abstract": "Klebsiella pneumoniae is an opportunistic bacterial pathogen known for its high frequency and diversity of antimicrobial resistance (AMR) genes. In addition to being a significant clinical problem in its own right, K. pneumoniae is the species within which several new AMR genes were first discovered before spreading to other pathogens (e.g. carbapenem-resistance genes KPC, OXA-48 and NDM-1). Whilst K. pneumoniae's contribution to the overall AMR crisis is impossible to quantify, current evidence suggests it has a wider ecological distribution, significantly more varied DNA composition, greater AMR gene diversity and a higher plasmid burden than other Gram negative opportunists. Hence we propose it plays a key role in disseminating AMR genes from environmental microbes to clinically important pathogens.",
+    "journal": "Curr Opin Microbiol",
+    "year": "2018",
+    "doi": "10.1016/j.mib.2018.04.004",
+    "first_author": "Wyres"
+  },
+  {
+    "pmid": "25643272",
+    "title": "Carbapenemase-producing Enterobacteriaceae.",
+    "abstract": "Carbapenemase-producing Enterobacteriaceae (CPE) were almost nonexistent up to the 1990s, but are today encountered routinely in hospitals and other healthcare facilities in many countries including the United States. KPC-producing Klebsiella pneumoniae was the first to emerge and spread globally and is endemic in the United States, Israel, Greece, and Italy. Recently, NDM-producing Enterobacteriaceae and OXA-48-producing K. pneumoniae appear to be disseminating from South Asia and Northern Africa, respectively. They are almost always resistant to all β-lactams including carbapenems and many other classes. Mortality from invasive CPE infections reaches up to 40%. To obtain the maximal benefit from the limited options available, dosing of antimicrobial agents should be optimized based on pharmacokinetic data, especially for colistin and carbapenems. In addition, multiple observational studies have associated combination antimicrobial therapy with lower mortality compared with monotherapy for these infections. The outcomes appear to be especially favorable when patients are treated with a carbapenem and a second agent such as colistin, tigecycline, and gentamicin, but the best approach is yet to be defined.",
+    "journal": "Semin Respir Crit Care Med",
+    "year": "2015",
+    "doi": "10.1055/s-0035-1544208",
+    "first_author": "Doi"
+  },
+  {
+    "pmid": "39914938",
+    "title": "Hypervirulent Klebsiella pneumoniae: Epidemiology outside Asian countries, antibiotic resistance association, methods of detection and clinical management.",
+    "abstract": "Two main Klebsiella pneumoniae pathotypes are of public health concern, classical K. pneumoniae (cKP), with high antibiotic resistance acquisition capacity, and hypervirulent K. pneumoniae (hvKP). The emergence of hypervirulent and antibiotic-resistant K. pneumoniae, especially carbapenem resistance, is worrisome and require effective methods for detection and treatment. Different evolutionary paths contribute to the emergence of hypervirulence and antibiotic resistance, commonly via the acquisition of resistance plasmids by hvKP (CR-hvKP) or the acquisition of virulence plasmids by CRKp (hv-CRKp). ST11-KL64 together with blaKPC-2, is the most extended hv-CRKP lineage acquiring virulence plasmids with associated biomarkers, rmpA, rmpa2, iroBCDEN, iucABCDiutA, and peg344. In addition to ST11, other hv-CRKP clones have been reported in Europe such as ST101, ST147 and ST512, highlighting the association of ST147 with OXA-48 and NDM carbapenemases. Although still very rare in Spain, hvKP cases are increasing in recent years, mainly due to ST23-K1, ST380-K2 and ST86-K2. Management of hvKP infections requires active antibiotic therapy based primarily on antibiotic susceptibility patters and site of infection.",
+    "journal": "Enferm Infecc Microbiol Clin (Engl Ed)",
+    "year": "2025",
+    "doi": "10.1016/j.eimce.2024.12.008",
+    "first_author": "García-Cobos"
+  },
+  {
+    "pmid": "31911273",
+    "title": "The transferability and evolution of NDM-1 and KPC-2 co-producing Klebsiella pneumoniae from clinical settings.",
+    "abstract": "BACKGROUND: Emergence of KPC-2 and NDM-1-coproducing carbapenem-resistant Klebsiella pneumoniae (KPC-2-NDM-1-CRKP) has escalated threat of CRKP to healthcare. Currently, only 4 isolates had been reported sporadically. It remains unclear how KPC-2-NDM-1-CRKPs emerged, and whether they are stable and have transmission capacity.\nMETHODS: PCR and Sanger sequencing was used to screen carbapenemase genes for 2057 CRKP isolates, to identify KPC-2-NDM-1-CRKPs. The clinical information of the patients was collected from medical records. Antimicrobial susceptibility, plasmid stability, plasmid conjugation and growth curve were measured. The whole genomes were sequenced on PacBio and Illumina platforms. Similar plasmids were searched against public database. Phylogenetic tree was built based on related genomes which carried similar plasmids, to infer the evolutionary history of KPC-2-NDM-1-CRKP.\nFINDINGS: We identified to date the largest cohort of 7 KPC-2-NDM-1-CRKPs. An increased incidence rate was observed. Plasmid transferability assay and phylogenic analysis suggested an evolutionary pathway that KPC-2-NDM-1-CRKP emerged from a KPC-2-CRKP progenitor which acquired another highly transferable blaNDM-1 plasmid later. Further, demographics and stability test revealed that these isolates were stable and had the potential for transmission among patients.\nINTERPRETATION: Our study extends our concern on KPC-2-NDM-1-CRKP about its high stability and non-inferior fitness, sheds light on the evolution of KPC-2-NDM-1-CRKP, strengthens the importance of continued surveillance on these isolates, and would improve clinical treatment and management.\nFUNDING: This work was supported by National Natural Science Foundation for Distinguished Young Scholars of China (81625014) and NSFC-RCUK-MRC (81661138006).",
+    "journal": "EBioMedicine",
+    "year": "2020",
+    "doi": "10.1016/j.ebiom.2019.102599",
+    "first_author": "Gao"
+  },
+  {
+    "pmid": "32719751",
+    "title": "Dissemination of Carbapenemases (KPC, NDM, OXA-48, IMP, and VIM) Among Carbapenem-Resistant Enterobacteriaceae Isolated From Adult and Children Patients in China.",
+    "abstract": "This study aimed to investigate the dissemination and characteristics of blaKPC, blaNDM, blaOXA-48-like , blaIMP, and blaVIM among the carbapenem-resistant Enterobacteriaceae (CRE) strains isolated from adult and children patients. A total of 935 non-duplicate CRE strains were collected from 36 hospitals in 24 provinces or cities across China from 2016 to 2018. Antimicrobial susceptibility testing was performed by broth microdilution method and carbapenemase genes blaKPC, blaNDM, blaOXA-48-like , blaIMP, and blaVIM were screened by PCR and confirmed by DNA sequencing. Overall, carbapenemases were produced in 97.4% (911/935) of CRE strains, including KPC-2 (51.6%, 482/935), NDM (35.7%, 334/935), and OXA-48-like carbapenemases (7.3%, 68/935). Overall, the most prevalent carbapenemase gene was blaKPC-2 among Klebsiella pneumoniae (64.6%, 457/709) and the CRE strains isolated from adult patients (70.3%, 307/437), and blaNDM among Escherichia coli (96.0%, 143/149) and the CRE strains from children (49.0%, 247/498). The blaOXA-232-positive carbapenem-resistant K. pneumoniae (9.3%, 66/709) were all isolated from children. Sixteen strains were positive for blaIMP and 9 strains produced multiple carbapenemases. No strain was positive for blaVIM. Most of the CRE strains (>90%) were resistant to cephalosporins and carbapenems, more than half (>50%) were resistant to aminoglycosides and fluoroquinolones, but the majority (95.8 and 98.4%) were susceptible to polymyxin B and tigecycline. Ceftazidime-avibactam showed excellent in vitro activity against blaKPC-2 and blaOXA-48-like positive strains (100% susceptible). In China, KPC-2, NDM, and OXA-48-like carbapenemases were predominant among CRE clinical isolates. The most prevalent carbapenemase gene was blaKPC-2 among K. pneumoniae isolates from adult patients, and blaNDM among E. coli isolates from children.",
+    "journal": "Front Cell Infect Microbiol",
+    "year": "2020",
+    "doi": "10.3389/fcimb.2020.00314",
+    "first_author": "Han"
+  },
+  {
+    "pmid": "38877000",
+    "title": "International and regional spread of carbapenem-resistant Klebsiella pneumoniae in Europe.",
+    "abstract": "Carbapenem-resistant Klebsiella pneumoniae (CRKP) are of particular concern due to the spread of antibiotic resistance genes associated with mobile genetic elements. In this study, we collected 687 carbapenem-resistant strains recovered among clinical samples from 41 hospitals in nine Southern European countries (2016-2018). We identified 11 major clonal lineages, with most isolates belonging to the high-risk clones ST258/512, ST101, ST11, and ST307. blaKPC-like was the most prevalent carbapenemase-encoding gene (46%), with blaOXA-48 present in 39% of isolates. Through the combination and comparison of this EURECA collection with the previous EuSCAPE collection (2013-2014), we investigated the spread of high-risk clones circulating in Europe exhibiting regional differences. We particularly found blaKPC-like ST258/512 in Greece, Italy, and Spain, blaOXA-48 ST101 in Serbia and Romania, blaNDM ST11 in Greece, and blaOXA-48-like ST14 in Türkiye. Genomic surveillance across Europe thus provides crucial insights for local risk mapping and informs necessary adaptions for implementation of control strategies.",
+    "journal": "Nat Commun",
+    "year": "2024",
+    "doi": "10.1038/s41467-024-49349-z",
+    "first_author": "Budia-Silva"
+  },
+  {
+    "pmid": "39470196",
+    "title": "Effects of different carbapenemase and siderophore production on cefiderocol susceptibility in Klebsiella pneumoniae.",
+    "abstract": "The resistance mechanism of Gram-negative bacteria to the siderophore antibiotic cefiderocol is primarily attributed to carbapenemase and siderophore uptake pathways; however, specific factors and their relationships remain to be fully elucidated. Here, we constructed cefiderocol-resistant Klebsiella pneumoniae (CRKP) strains carrying different carbapenemases and knocked out siderophore genes to investigate the roles of various carbapenemases and siderophores in the development of cefiderocol resistance. Antimicrobial susceptibility testing revealed that both blaNDM and blaKPC significantly increased the minimum inhibitory concentration (MIC) of Klebsiella pneumoniae (KP) to cefiderocol, while blaOXA-48 showed a modest increase. Notably, KP expressing NDM exhibited a higher cefiderocol MIC compared to KP expressing KPC, although expression of NDM alone did not induce cefiderocol resistance. Laboratory evolutionary experiments demonstrated that combining pNDM with mutations in the siderophore uptake receptor gene cirA and pKPC with a mutation in the two-component system gene envZ led to KP reaching a high level of cefiderocol resistance. Although combining pOXA with mutations in the two-component system gene baeS did not induce cefiderocol resistance, it significantly reduced susceptibility. Moreover, siderophores could influence the development of cefiderocol resistance. Strains deficient in enterobactin exhibited increased susceptibility to cefiderocol, while deficiencies in yersiniabactin and salmochelin showed no significant alterations. In conclusion, carbapenemase gene expression facilitates cefiderocol resistance, but its presence alone is insufficient. Cefiderocol resistance in CRKP typically involves abnormal expression of certain genes and other factors, such as mutations in siderophore uptake receptor genes and two-component system genes. The enterobactin siderophore synthesis gene entB may also contribute to resistance.",
+    "journal": "Antimicrob Agents Chemother",
+    "year": "2024",
+    "doi": "10.1128/aac.01019-24",
+    "first_author": "Yang"
+  },
+  {
+    "pmid": "39623086",
+    "title": "Two outbreak cases involving ST65-KL2 and ST11-KL64 hypervirulent carbapenem-resistant Klebsiella pneumoniae: similarity and diversity analysis.",
+    "abstract": "The rise of the convergence of hypervirulence and carbapenem resistance in Klebsiella pneumoniae has been increasingly reported in recent years, however, there are few outbreak cases for these producing NDM carbapenemase. In this study, ST65-KL2 and ST11-KL64 hypervirulent and carbapenem-resistant K. pneumoniae (hvCRKP) were identified from two different outbreak cases: (1) clonal spreading of ST65-KL2 in five patients within transplantation wards spanning three months; and (2) clonal transmission of ST11-KL64 in ten patients across 10 months. The representative strains of ST65-KL2 and ST11-KL64 hvCRKP, K22877 and K56649, produced carbapenemase NDM-5 and dual carbapenemases KPC-2 and NDM-13, respectively, and both exhibited high-level carbapenem resistance. Moreover, virulent analysis showed that K22877 and K56649 were hypervirulent and the former possessed stronger virulence. Evolutionary pathways suggested ST65-KL2 and ST11-KL64 hvCRKP could be classified as CR-hvKP (hvKP acquiring carbapenem resistance) and hv-CRKP (CRKP acquiring hypervirulence), respectively. Unexpectedly, ST65-KL2 CR-hvKP showed resistance to ciprofloxacin mediated by plasmid acquisition as its spread, and ST11-KL64 hv-CRKP developed into enhanced virulence and macrophage resistance. Furthermore, compared to the ST65-KL2 CR-hvKP, the ST11-KL64 hv-CRKP tends to cause occult and persistent infection. Global genome analysis revealed ST11-KL64 hv-CRKP and ST65-KL2 CR-hvKP mainly carried blaKPC-2 and had significant differences in Ompk35/36, ybt, resistance and virulence. Effective surveillance should be implemented and novel therapeutic strategies are urgently needed to deal with refractory infections.",
+    "journal": "Commun Biol",
+    "year": "2024",
+    "doi": "10.1038/s42003-024-07310-2",
+    "first_author": "Zhang"
+  },
+  {
+    "pmid": "36853006",
+    "title": "Emergence of Carbapenemase-Producing Hypervirulent Klebsiella pneumoniae in Switzerland.",
+    "abstract": "Increasing occurrence of multidrug-resistant (MDR) and hypervirulent (hv) Klebsiella pneumoniae (MDR-hvKp) convergent clones is being observed. Those strains have the potential of causing difficult-to-treat infections in healthy adults with an increased capacity for mortality. It is therefore crucial to track their dissemination to prevent their further spread. The aim of our study was to investigate the occurrence of carbapenemase-producing hvKp isolates in Switzerland and to determine their genetic profile. A total of 279 MDR carbapenemase-producing K. pneumoniae from patients hospitalized all over Switzerland was investigated, and a rate of 9.0% K. pneumoniae presenting a virulence genotype was identified. Those isolates produced either KPC, NDM, or OXA-48 and had been either recovered from rectal swabs, urine, and blood. A series of previously reported K. pneumoniae clones such as ST23-K1, ST395-K2, and ST147-K20 or ST147-K64 were identified. All the isolates defined as MDR-hvKp (4.7%) possessed the aerobactin and the yersiniabactin clusters. The ST23-K1s were the only isolates presenting the colibactin cluster and achieved higher virulence scores. This study highlights the occurrence and circulation of worrisome MDR-hvKp and MDR nonhypervirulent K. pneumoniae (MDR-nhv-Kp) isolates in Switzerland. Our findings raise an alert regarding the need for active surveillance networks to track and monitor the spread of such successful hybrid clones representing a public health threat worldwide.",
+    "journal": "Antimicrob Agents Chemother",
+    "year": "2023",
+    "doi": "10.1128/aac.01424-22",
+    "first_author": "Hallal Ferreira Raro"
+  },
+  {
+    "pmid": "40503825",
+    "title": "Antimicrobial resistance and phylogenetic lineages of KPC-2-producing blood-borne Klebsiella pneumoniae subsp. pneumoniae from Kolkata, India during 2015-2024: Emergence of Klebsiella pneumoniae subsp. pneumoniae with blaKPC-2, blaNDM, and blaOXA-48-like triple carbapenemases.",
+    "abstract": "In view of insufficient data on the epidemiology and genomics of blaKPC-2 producing Klebsiella pneumoniae subsp. pneumoniae (KPC-2 Kpn) from India, this study, first of its kind, was conducted to characterize blood-borne KPC-2 Kpn isolates according to their resistome, plasmid types, and genotypes. This study included 45 blood-borne KPC-2 Kpn isolates from ICU-admitted sepsis patients in Kolkata from 2015 to 2024. These isolates were tested for antibiotic susceptibility against ≥10 antimicrobial classes. Antimicrobial resistance gene profiles, genetic environment of blaKPC-2, plasmid types, MLST genotypes, and virulence genes were determined by whole-genome shotgun sequencing (WGS). The transmissibility of blaKPC-2 genes was evaluated by conjugation experiment. Pulsed-field gel electrophoresis (PFGE) was conducted to confirm their clonality. SNP-based phylogenomic analysis was performed to compare the study isolates with global KPC-2 Kpn isolates. All 45 (100%) KPC-2 Kpn isolates showed resistance to 21 antimicrobials. In addition, 55.55% and 33.33% isolates were resistant to colistin and ceftazidime-avibactam, respectively. Presence of triple carbapenemase (blaKPC-2, blaNDM-1/5 and blaOXA-181/232) was observed in six isolates. blaKPC-2 transferable by IncFII/IncFII(pBK30683)/ColRNAI conjugative plasmids. WGS identified two distinct genetic environments of blaKPC-2 among the isolates based on presence or absence of Tn4401. PFGE identified 45 pulsotypes with a 39.3% similarity coefficient, indicating a variety of infection sources. Of the 16 MLST genotypes found in circulation, ST15 was predominant and ST7485 was novel. Hypervirulent genetic markers (iucA, iutA, and rmpA2) were identified in four isolates. Hospital infection control and surveillance programs should be strengthened to detect and combat K. pneumoniae co-harboring blaKPC-2 and/or blaNDM and/or blaOXA-48-like carbapenemase.IMPORTANCEKlebsiella pneumoniae (Kpn) is the primary etiology of ICU-related bloodstream infections in India. Multi-drug resistance, including resistance to carbapenems and colistin, along with myriad virulence factors, makes this bacterium really troublesome with respect to effective treatment. In India, blaNDM and blaOXA-48-like carbapenemases are the most prevalent types with only sporadic reports of blaKPC in Kpn. This study focuses on the emergence of blaKPC-2 in Kpn along with other carbapenemases in Kolkata, India. This study is also the first of its kind to describe the presence of triple carbapenemase (blaKPC-2, blaNDM-1/5 and blaOXA-181/232) and concurrent resistance to carbapenems, colistin, and ceftazidime-avibactam antimicrobials in Kpn. In addition, this study also highlights the diverse genotypes (sequence types) identified in KPC-2 Kpn, including the novel ST7485 identified in this study. Routine monitoring of antimicrobial resistance genes in Kpn should be encouraged to identify the emerging resistome, which will aid in determining the most effective treatment.",
+    "journal": "Microbiol Spectr",
+    "year": "2025",
+    "doi": "10.1128/spectrum.00126-25",
+    "first_author": "Halder"
+  },
+  {
+    "pmid": "36271303",
+    "title": "Klebsiella pneumoniae ST147: and then there were three carbapenemases.",
+    "abstract": "Gram-negative bacteria containing three different carbapenemases are extremely rare. Klebsiella pneumoniae (N22-925) with KPC-2, NDM-1, and OXA-48 was obtained from a Canadian patient with recent hospitalization in Romania. Short and long read whole genome sequencing showed that the blaKPC-2 was situated on a 214 kb IncFIB(K)/IncFII(K) plasmid, the blaNDM-1 on a 104 kb IncFIB (pQil)/IncFII(K) plasmid, and the blaOXA-48 on a 64 kb IncL plasmid. These plasmids were conjugated to Escherichia coli J53. N22-925 belonged to a unique ST147 cluster that is likely endemic in Romania. This case emphasizes the need for rapid carbapenemase screening in patients from endemic regions. We described the first complete genome sequence of a K. pneumoniae isolate with three different carbapenemases, providing a reference for future studies on this rarely reported occurrence.",
+    "journal": "Eur J Clin Microbiol Infect Dis",
+    "year": "2022",
+    "doi": "10.1007/s10096-022-04514-4",
+    "first_author": "Mataseje"
+  },
+  {
+    "pmid": "41112046",
+    "title": "Geographic containment and virulence-resistance trade-offs drive the evolution of hypervirulent Klebsiella pneumoniae.",
+    "abstract": "The emergence of hypervirulent carbapenem-resistant Klebsiella pneumoniae (hvCRKP) represents an alarming convergence of enhanced virulence and extensive drug resistance. Here, we present a comprehensive genomic analysis of 2563 clonal complex 23 (CC23) isolates from 62 countries spanning 1932-2024. Our findings reveal that CC23-K1, the dominant hypervirulent sublineage, emerged approximately 170 years ago and diversified into seven major clades with distinct regional dominance. We observe that carbapenem resistance in CC23-K1 exhibits notable instability, with at least 130 independent acquisitions and 20 losses of resistance genes, suggesting an evolutionary trade-off between hypervirulence and antimicrobial resistance. Experimental validation demonstrates that capsule production physically impedes plasmid conjugation, while isolates carrying bla KPC-2, bla NDM-1, or bla NDM-5 frequently exhibit substantial deletion of virulence determinants. Conversely, bla OXA-48-carrying isolates maintain virulence gene integrity, potentially due to their lower hydrolytic activity and reduced fitness costs. The geographic distribution of these resistance mechanisms correlates with regional antimicrobial usage patterns, with European countries with moderate carbapenem use favoring bla OXA-48 in CC23, while Asian countries with higher consumption show patterns favoring high-efficiency carbapenemases incompatible with complete virulence determinants. We also identified core genomic regions with significantly higher mutation rates in resistant isolates, particularly affecting pathways involved in oxidative phosphorylation and reactive oxygen species production. These findings provide additional insights into CC23 evolution and geographical spread, complementing existing knowledge of carbapenemase distribution patterns observed across K. pneumoniae lineages.",
+    "journal": "Imeta",
+    "year": "2025",
+    "doi": "10.1002/imt2.70077",
+    "first_author": "Wu"
+  },
+  {
+    "pmid": "39310949",
+    "title": "NDM-5-producing Klebsiella pneumoniae ST258 in a university hospital in Argentina.",
+    "abstract": "BACKGROUND: A drastic increase in carbapenem resistance among Klebsiella pneumoniae isolates occurred during the period 2019-22. Three epidemiological changes could be evidenced: (i) NDM became the predominant carbapenemase; (ii) NDM-5 replaced NDM-1; and (iii) the emergence of NDM-producing K. pneumoniae ST258 (NDM-KpST258).\nMATERIALS AND METHODS: Carbapenem-resistant K. pneumoniae isolates from patients on the ICU of a university hospital of Buenos Aires were studied during the period 2019-22. Identification was performed by MS and susceptibility by the Phoenix system (broth microdilution for colistin). Carbapenemase production was detected phenotypically. Molecular studies included PCR with specific primers and WGS (in some isolates).\nRESULTS: NDM-producing K. pneumoniae was statistically associated with the use of ceftazidime/avibactam between 2019 and April 2021, whereas in the period from May 2021 to December 2022, it seemed to be related to the presence of NDM-5-KpST258. A gradual increase in the number of urease-negative NDM-Kp-ST258 during 2019-22 was observed. The plasmid origin of NDM-5 was supported by its presence on the IncFII incompatibility group plasmid.\nCONCLUSIONS: Our study describes the first outbreak of NDM5-KpST258 at an ICU in Argentina, remarkably associated with considerable changes in the carbapenemase epidemiology. The intrinsic characteristics of ST258 may contribute to increased spread of NDM in hospital settings, resembling KPC-2 dissemination.",
+    "journal": "J Antimicrob Chemother",
+    "year": "2024",
+    "doi": "10.1093/jac/dkae337",
+    "first_author": "Alvarez"
+  },
+  {
+    "pmid": "27206024",
+    "title": "Molecular epidemiology of carbapenem-resistant Klebsiella pneumoniae in Greece.",
+    "abstract": "Hospital infections caused by carbapenem-resistant Klebsiella pneumoniae (CRKP) constitute a worldwide problem associated with high rates of treatment failure and mortality. In Greece, CRKP have emerged in 2002 due to VIM carbapenemase production and later due to KPC, NDM and OXA-48-like carbapenemases that have become endemic. The molecular epidemiology of CRKP strains is dynamic, as antibiotic consumption and worldwide traveling are strongly associated with global spread of CRKP isolates. Lately, porin defects, such as disruption of OmpK35 and production of OmpK36 variant, have also contributed to carbapenem resistance. In the coming years, the high prevalence of CRKP will require intense infection control measures, while novel molecular patterns may appear. To our knowledge, this is the first review analyzing the molecular epidemiology of CRKP strains in Greece.",
+    "journal": "Future Microbiol",
+    "year": "2016",
+    "doi": "10.2217/fmb-2016-0042",
+    "first_author": "Karampatakis"
+  },
+  {
+    "pmid": "39521758",
+    "title": "Molecular epidemiology of carbapenemase-producing Klebsiella pneumoniae in Gauteng South Africa.",
+    "abstract": "Klebsiella pneumoniae multidrug-resistant (MDR) high-risk clones drive the spread of antimicrobial resistance (AMR) associated infections, resulting in limited therapeutic options. This study described the genomic characteristics of K. pneumoniae MDR high-risk clones in Gauteng, South Africa. Representative carbapenem-resistant [K. pneumoniae carbapenemase (KPC)-2, New-Delhi metallo-beta (β)-lactamase (NDM)-1, oxacillinase (OXA)-181, OXA-232, OXA-48, Verona integron-encoded metallo-β-lactamase (VIM)-1] K. pneumoniae isolates (n = 22) obtained from inpatient and outpatient's urine (n = 9) and inpatients rectal carriage (n = 13) were selected for short-read whole genome sequencing. Klebsiella pneumoniae population include sequence type (ST)-307 (n = 3), ST2497 (n = 5) and ST17 (n = 4). The ST17 strains were exclusively obtained from rectal screening. Ten isolates co-harboured carbapenemase genes including β-lactamase gene encoding KPC-2 + OXA-181, NDM-1 + OXA-48 and NDM-1 + OXA-181. One ST307 isolate (UP-KT-73CKP) co-harboured three carbapenemase genes (blaNDM-1 + blaOXA-48 + blaOXA-181), while all the ST2497 strains co-harboured (blaNDM-1 + blaOXA-232). Phenotypically, hypermucoviscosity was observed in a single ST307 isolate. The ST307 isolate UP-KT-151UKP harboured colibactin genotoxins. The following mobile genetic elements were detected: plasmids [incompatibility group (Inc)-FIB(K), IncX3], and bacteriophages [e.g. Klebsi_ST16_OXA48phi5.4_NC_049450, Klebsi_3LV2017_NC_047817(36)]. The study highlights the importance of local genomic surveillance systems to characterise K. pneumoniae MDR high-risk clones. This data will aid in designing infection and prevention measures for limiting the spread of carbapenemase-producing K. pneumoniae in Gauteng, South Africa.",
+    "journal": "Sci Rep",
+    "year": "2024",
+    "doi": "10.1038/s41598-024-70910-9",
+    "first_author": "Salvador-Oke"
+  },
+  {
+    "pmid": "36705500",
+    "title": "Clonal complexes of carbapenem-resistant Klebsiella pneumoniae recovered from community sewage.",
+    "abstract": "Carbapenem-resistant Klebsiella pneumoniae (CR-Kp) are life-threatening multidrug-resistant bacteria. In this study, CR-Kp strains isolated from sewage treatment plants (STPs) (n = 12) were tested for carbapenemase genes (blaKPC, blaNDM, blaIMP, blaVIM and blaOXA-48) and had their sequence types (ST) and clonal complexes (CCs) defined. A collection of clinical CR-Kp strains recovered in local hospitals was added to phylogenetic analyses along with sewage strains in order to infer clonality among CR-Kp strains. A total of 154 CR-Kp strains were isolated from raw sewage [55.8% (86/154)], treated sewage [25.3% (39/154)] and from water body downstream from STPs [18.8% (29/154)]. No CR-Kp strain was isolated from upstream water samples. blaKPC or blaNDM were detected in 143 (92.8%) strains. The occurrence of blaKPC-or-NDM CR-Kp strains was positively associated with the number of hospitalized patients in the areas serviced by STPs. Eleven STs were detected in CR-Kp strains, most of them belonging to the clinically relevant CC11 [ST11 (n = 13-28.2%) and ST340 (n = 7-15.2%)]. CCs 11, 15, 17, 147 and 2703 are shared by clinical and sewage CR-Kp strains. In conclusion, sewage harbors clinically relevant clones of CR-Kp that resist sewage treatments, contaminating water bodies downstream from STPs.",
+    "journal": "J Water Health",
+    "year": "2023",
+    "doi": "10.2166/wh.2023.237",
+    "first_author": "Oliveira"
+  },
+  {
+    "pmid": "40639556",
+    "title": "Plasmid diversity in Klebsiella pneumoniae ST307 co-producing KPC plus NDM recovered during the COVID-19 pandemic.",
+    "abstract": "The prevalence of carbapenemase-producing Klebsiella pneumoniae increased significantly during COVID-19 in Argentina, rising from 20 % in 2019 to 30 % in 2021. Additionally, there was a notable increase of K. pneumoniae ST307 co-producing KPC and NDM. We aimed to reveal the genetic structure of the plasmids harbored in six isolates of K. pneumoniae ST307 co-producing KPC and NDM and to expression levels of both carbapenemases in a cell. The isolates were collected between November 2020 and September 2021 and were selected according to: (i) diversity of allelic variant combinations: blaKPC-2 plus blaNDM-1 (n = 2), blaKPC-2 plus blaNDM-5 (n = 2), blaKPC-3 plus blaNDM-1 (n = 2); (ii) different hospitals and jurisdictions; and (iii) differences in pulsotype by Xba-I-PFGE. The isolates were studied by whole genome sequencing (Illumina NextSeq 550 and with GridION) and with a transcriptional analysis using quantitative real time-PCR. The isolates carried between two and four plasmids with sizes from 3.7 to 250 Kb. Twenty plasmids with nine replicons were identified including three distinct hybrid replicon combinations. blaKPC-2 was found in three plasmid backbones [IncM1, IncFIB(pQil)/IncFII(K), and IncFIB/H1B] while the rest were associated with a single plasmid type: blaNDM-1 (IncC), blaNDM-5 (IncFIB/H1B) and blaKPC-3 (IncR). The basal expression level of KPC-2 was statistically higher than that of NDM-1/5. Our results show that the dissemination of NDM and KPC in K. pneumoniae ST307 was driven through diverse plasmids, highlighting the capacity of this high-risk clone to acquire, maintain and spread multiple carbapenemases.",
+    "journal": "Infect Genet Evol",
+    "year": "2025",
+    "doi": "10.1016/j.meegid.2025.105795",
+    "first_author": "Gomez"
+  },
+  {
+    "pmid": "37501706",
+    "title": "Global emergence of carbapenem-resistant Klebsiella pneumoniae co-carrying multiple carbapenemases.",
+    "abstract": "The emergence of carbapenem-resistant Klebsiella pneumoniae (CRKP) co-carrying multiple carbapenemases is complicating clinical treatment. This study aimed to investigate the global dissemination trends of CRKP strains that co-carry multiple carbapenemases. The CRKP isolate KP424 co-carrying blaNDM-1 and blaKPC-2, recovered from a stool specimen, was identified by the NG-Test Carba 5 test, and the genome sequence was further determined by using Nanopore MinION and Illumina NovaSeq 6000 technologies. The genome sequences of the CRKP strains carrying multiple carbapenemase genes were further retrieved from the NCBI GenBank database. Thirteen antimicrobial resistance genes, including blaNDM-1 and blaKPC-2, have been identified in KP424, with blaNDM-1 and blaKPC-2 located on different plasmids. In total, 832 genome sequences of CRKP strains co-carrying two carbapenemase genes were retrieved from the NCBI database. Strains carrying both blaNDM and blaOXA-48-like accounted for 665 (79.9 %) of the total strains, ranking first, and those carrying both blaKPC and blaNDM accounted for 103 (12.4 %), ranking second. The prevalence of CRKP strains co-carrying two carbapenemase genes increased significantly over time, from 0.40 % in 2010 to 9.67 % in 2021. The proportion of strains carrying both blaKPC and blaNDM has also increased, from 0.00 % in 2010 to 4.40 % in 2021. The strains carrying both blaKPC and blaNDM had the highest prevalence (66.7 %, 52/78) in China, while those carrying both blaNDM and blaOXA-48-like had the highest prevalence worldwide. Multiple-carbapenemase producers pose a great threat to public health; further research on the mechanisms underlying multiple carbapenemase gene occurrence is required to prevent their global dissemination.",
+    "journal": "Comput Struct Biotechnol J",
+    "year": "2023",
+    "doi": "10.1016/j.csbj.2023.07.013",
+    "first_author": "Guo"
+  },
+  {
+    "pmid": "41424100",
+    "title": "In vitro susceptibility of cefepime-enmetazobactam, cefepime-taniborbactam and cefepime-zidebactam towards carbapenemase-producing Enterobacterales.",
+    "abstract": "BACKGROUND AND OBJECTIVES: Carbapenemase-producing Enterobacterales (CPE) are a public health concern. Developing novel antibiotics, particularly combinations of β-lactam/β-lactamase inhibitors active against carbapenemases, is critical. Three recent combinations, cefepime-enmetazobactam, cefepime-taniborbactam and cefepime-zidebactam, are among the most promising. To assess the in vitro activity of these three combinations against a collection of recent CPE clinical isolates and to analyse resistance patterns.\nMETHODS: MICs were determined for 1600 CPE isolates collected over 6-month period in 2024 at the French National Reference Centre for Antimicrobial Resistance. All isolates were fully characterized by whole-genome sequencing.\nRESULTS: Among KPC producers, cefepime-enmetazobactam susceptibility was 54%, with higher MICs in Klebsiella pneumoniae ST-307, ST-101 and ST-258. It was active against 90% of OXA-48-like producers and resistance was primarily observed in Citrobacter freundii ST-22 and K. pneumoniae ST-2096.Cefepime-taniborbactam showed excellent activity against KPC- (100%), OXA-48-like (95%), and VIM producers (98%), but lower efficacy (76%) against NDM producers. Resistance was mainly found in NDM-5 producers, especially E. coli ST-140, ST-167, and K. pneumoniae ST-147. All resistant E. coli displayed a 4-amino-acid insertion in PBP3.Cefepime-zidebactam exhibited strong activity towards all CPE types; regarding MBLs, its low MIC values were comparable to aztreonam-avibactam and lower than cefiderocol. Resistant isolates were mostly clonal NDM-14-producing K. pneumoniae ST-147. No cross-resistance, including with aztreonam-avibactam, was observed.\nCONCLUSIONS: This study support the use of cefepime-enmetazobactam against ESBL/OXA-48-like co-producers. Cefepime-taniborbactam may be use against KPC and VIM producers and could represent a second-line option for NDM. Cefepime-zidebactam shows the most promising activity against MBLs, although already emerging resistance calls for caution.",
+    "journal": "J Antimicrob Chemother",
+    "year": "2026",
+    "doi": "10.1093/jac/dkaf440",
+    "first_author": "Dutkiewicz"
+  },
+  {
+    "pmid": "29571841",
+    "title": "Proteus mirabilis harboring carbapenemase NDM-5 and ESBL VEB-6 detected in Austria.",
+    "abstract": "We describe a case of carbapenemase-harboring Proteus mirabilis together with detection of NDM-5 in Austria accompanied by other bacterial strains with a wide range of beta-lactamases including OXA-181 and VEB-6. Isolates were obtained from a subphrenic abscess from one patient who was previously treated with broad-spectrum antibiotics in Bangladesh.",
+    "journal": "Diagn Microbiol Infect Dis",
+    "year": "2018",
+    "doi": "10.1016/j.diagmicrobio.2018.02.009",
+    "first_author": "Valentin"
+  },
+  {
+    "pmid": "31430964",
+    "title": "Present and Future of Carbapenem-resistant Enterobacteriaceae (CRE) Infections.",
+    "abstract": "Carbapenem-resistant Enterobacteriaceae (CRE) have become a public health threat worldwide. There are three major mechanisms by which Enterobacteriaceae become resistant to carbapenems: enzyme production, efflux pumps and porin mutations. Of these, enzyme production is the main resistance mechanism. There are three main groups of enzymes responsible for most of the carbapenem resistance: KPC (Klebsiella pneumoniae carbapenemase) (Ambler class A), MBLs (Metallo-ß-Lactamases) (Ambler class B) and OXA-48-like (Ambler class D). KPC-producing Enterobacteriaceae are endemic in the United States, Colombia, Argentina, Greece and Italy. On the other hand, the MBL NDM-1 is the main carbapenemase-producing resistance in India, Pakistan and Sri Lanka, while OXA-48-like enzyme-producers are endemic in Turkey, Malta, the Middle-East and North Africa. All three groups of enzymes are plasmid-mediated, which implies an easier horizontal transfer and, thus, faster spread of carbapenem resistance worldwide. As a result, there is an urgent need to develop new therapeutic guidelines to treat CRE infections. Bearing in mind the different mechanisms by which Enterobacteriaceae can become resistant to carbapenems, there are different approaches to treat infections caused by these bacteria, which include the repurposing of already existing antibiotics, dual therapies with these antibiotics, and the development of new ß-lactamase inhibitors and antibiotics.",
+    "journal": "Antibiotics (Basel)",
+    "year": "2019",
+    "doi": "10.3390/antibiotics8030122",
+    "first_author": "Suay-García"
+  },
+  {
+    "pmid": "26169401",
+    "title": "Carbapenemase-Producing Klebsiella pneumoniae, a Key Pathogen Set for Global Nosocomial Dominance.",
+    "abstract": "The management of infections due to Klebsiella pneumoniae has been complicated by the emergence of antimicrobial resistance, especially to carbapenems. Resistance to carbapenems in K. pneumoniae involves multiple mechanisms, including the production of carbapenemases (e.g., KPC, NDM, VIM, OXA-48-like), as well as alterations in outer membrane permeability mediated by the loss of porins and the upregulation of efflux systems. The latter two mechanisms are often combined with high levels of other types of β-lactamases (e.g., AmpC). K. pneumoniae sequence type 258 (ST258) emerged during the early to mid-2000s as an important human pathogen and has spread extensively throughout the world. ST258 comprises two distinct lineages, namely, clades I and II, and it seems that ST258 is a hybrid clone that was created by a large recombination event between ST11 and ST442. Incompatibility group F plasmids with blaKPC have contributed significantly to the success of ST258. The optimal treatment of infections due to carbapenemase-producing K. pneumoniae remains unknown. Some newer agents show promise for treating infections due to KPC producers; however, effective options for the treatment of NDM producers remain elusive.",
+    "journal": "Antimicrob Agents Chemother",
+    "year": "2015",
+    "doi": "10.1128/AAC.01019-15",
+    "first_author": "Pitout"
+  },
+  {
+    "pmid": "37213125",
+    "title": "Carbapenemase-producing Klebsiella pneumoniae in community settings: a cross-sectional study in Belgrade, Serbia.",
+    "abstract": "Aim: The types of carbapenemases and clonal relatedness among community isolates of carbapenemase-producing Klebsiella pneumoniae in Belgrade, Serbia, were determined. Materials & methods: During the period 2016-2020, K. pneumoniae community isolates were screened for carbapenemases, and carbapenemase production was confirmed by multiplex PCR. Clonality was determined based on genetic profiles obtained by enterobacterial repetitive intergenic consensus PCR. Results: Carbapenemase genes were detected in 114 of 4800 isolates (2.4%). The most frequent gene was blaOXA-48-like. Most isolates (70.5%) were grouped in ten clusters. Cluster 11 contained 16.4% of all blaOXA-48-like-positive isolates, and all blaKPC-positive isolates were grouped in one cluster. Conclusion: Laboratory-based detection and surveillance are highly recommended in order to control the spread of resistance in community settings.",
+    "journal": "Future Microbiol",
+    "year": "2023",
+    "doi": "10.2217/fmb-2022-0201",
+    "first_author": "Brkić"
+  },
+  {
+    "pmid": "35089123",
+    "title": "The Changing Epidemiology of Carbapenemase-Producing Enterobacterales.",
+    "abstract": "OBJECTIVE: Israeli hospitals were confronted with a major national outbreak of carbapenemase-producing Enterobacterales (CPE) starting in 2006, caused predominantly by monoclonal Klebsiella pneumoniae carbapenemase (KPC)-producing Klebsiella pneumoniae. Our hospital, Rambam Health Care Campus (RHCC), was one of the medical centers affected by this outbreak. We aimed to investigate the changing epidemiology of CPE at RHCC since 2006.\nMETHODS: This was a retrospective observational cohort study performed in Northern Israel (Haifa) at RHCC, which is a primary tertiary acute care academic hospital. The study included all patients who had acquired CPE at RHCC between January 2005 and December 2020.\nRESULTS: The proportion of patients infected with K. pneumoniae dropped from 100% of all CPE in the first years to 28% (37/134) in 2020. In 2014, the carbapenemase in 94% of all CPE patients (89/95) was KPC. This decreased to 56% in 2020, while New Delhi metallo-β-lactamase (NDM) and OXA-48 carbapenemases increased from 4% and 2% to 29% (39/134) and 12.7% (17/134) of CPE, respectively.\nCONCLUSIONS: The CPE epidemic evolved from KPC-producing K. pneumoniae to involve different Enterobacterales and carbapenemases. Our results are a microcosm of the current global epidemiology attesting to globalization in bacteriology. The results have implications for infection control and antibiotic treatment of CPE infections.",
+    "journal": "Rambam Maimonides Med J",
+    "year": "2022",
+    "doi": "10.5041/RMMJ.10461",
+    "first_author": "Hussein"
+  },
+  {
+    "pmid": "41056679",
+    "title": "Hypervirulent, dual-carbapenemase-producing Klebsiella pneumoniae isolated from a coal miner: A call for occupational AMR surveillance.",
+    "abstract": "The emergence of carbapenem-resistant hypervirulent Klebsiella pneumoniae (CR-hvKP) threatens global health. We report the first occupational case of dual-site (sputum/stool) CR-hvKP colonization in a Chinese coal miner (no prior hospitalization). The ST11-KL64-O2α strain co-produced KPC-2/NDM-5 carbapenemases, exhibited hypermucoviscosity, and resisted all tested antibiotics except colistin.Genomic analysis confirmed the presence of the virulence gene rmpA2 and carbapenemase genes blaNDM-5and blaKPC-2 located on conjugative plasmids with distinct dissemination patterns: pKP16846_NDM (globally distributed) and pKP16846_KPC (restricted to the Asia-Pacific region). This case demonstrates the convergence of virulence and resistance in an industrial setting, suggesting that miners' gastrointestinal tracts may serve as underrecognized reservoirs of antimicrobial resistance. There is an urgent need to include occupational populations in AMR surveillance programs such as the WHO GLASS.",
+    "journal": "Ecotoxicol Environ Saf",
+    "year": "2025",
+    "doi": "10.1016/j.ecoenv.2025.119154",
+    "first_author": "Yu"
+  },
+  {
+    "pmid": "31657653",
+    "title": "Carbapenemase-Producing Enterobacterales in Algeria: A Systematic Review.",
+    "abstract": "The dramatic increase in prevalence and clinical impact of infections caused by carbapenemase-producing Enterobacterales (CPE) are major and ongoing public health problems globally. The carbapenemase groups most commonly encountered include Klebsiella pneumoniae carbapenemase (KPC), New Delhi metallo-β-lactamase (NDM), and OXA-48, with OXA-48 thought to be endemic to North Africa. These enzymes are frequently found on mobile genetic elements and have the potential to be widespread over the world, while the situation in Algeria is not well documented. In this article, we provide an in-depth review of CPE in Algeria, providing up-to-date information on the subject.",
+    "journal": "Microb Drug Resist",
+    "year": "2020",
+    "doi": "10.1089/mdr.2019.0320",
+    "first_author": "Touati"
+  },
+  {
+    "pmid": "35451367",
+    "title": "Genomic Epidemiology of Global Carbapenemase-Producing Escherichia coli, 2015-2017.",
+    "abstract": "We describe the global molecular epidemiology of 229 carbapenemase-producing Escherichia coli in 36 countries during 2015-2017. Common carbapenemases were oxacillinase (OXA) 181 (23%), New Delhi metallo-β-lactamase (NDM) 5 (20%), OXA-48 (17%), Klebsiella pneumoniae carbapenemase 2 (15%), and NDM-1 (10%). We identified 5 dominant sequence types (STs); 4 were global (ST410, ST131, ST167, and ST405), and 1 (ST1284) was limited to Turkey. OXA-181 was frequent in Jordan (because of the ST410-B4/H24RxC subclade) and Turkey (because of ST1284). We found nearly identical IncX3-blaOXA-181 plasmids among 11 STs from 12 countries. NDM-5 was frequent in Egypt, Thailand (linked with ST410-B4/H24RxC and ST167-B subclades), and Vietnam (because of ST448). OXA-48 was common in Turkey (linked with ST11260). Global K. pneumoniae carbapenemases were linked with ST131 C1/H30 subclade and NDM-1 with various STs. The global carbapenemase E. coli population is dominated by diverse STs with different characteristics and varied geographic distributions, requiring ongoing genomic surveillance.",
+    "journal": "Emerg Infect Dis",
+    "year": "2022",
+    "doi": "10.3201/eid2805.212535",
+    "first_author": "Peirano"
+  },
+  {
+    "pmid": "35815675",
+    "title": "Activity of mecillinam against carbapenem-resistant Enterobacterales.",
+    "abstract": "BACKGROUND: Despite the fact that carbapenem-resistant Enterobacterales (CRE) mostly cause urinary tract infections (UTIs), only few studies have focused on the efficacity of mecillinam against these CRE.\nOBJECTIVES: To evaluate the mecillinam susceptibility of a huge collection of CRE, including carbapenemase-producing Enterobacterales (CPE) and non-CPE (ESBL and AmpC producers with decreased permeability of the outer membrane).\nMETHODS: A total of 8310 non-duplicate clinical CRE, including 4042 OXA-48-like producers, 1094 NDM producers, 411 VIM producers, 174 KPC producers, 42 IMI producers, 153 multiple-carbapenemase producers and 45 isolates producing other types of carbapenemases (such as IMP-like enzymes or GES-5), were included in the study. WGS was performed on all CPE using Illumina technology. Categorization of susceptibility to mecillinam was performed using disc diffusion (mecillinam discs at 10 μg; I2A, France) according to EUCAST recommendations. The results were interpreted according to EUCAST guidelines (S ≥15 mm).\nRESULTS: Significantly higher susceptibility rates were observed for carbapenem-resistant Proteus spp. (85%) and carbapenem-resistant Escherichia coli (84%), which are the two most common species responsible for UTIs, than for Klebsiella pneumoniae (67%), Enterobacter cloacae complex (75%), Citrobacter spp. (65%), Serratia spp. (34%) and Morganella morganii (12%). Susceptibility rates were 84%, 71% and 91% for OXA-48-like, NDM and IMI producers and 70% for non-CPE CRE. Mecillinam was less active against VIM and KPC producers (14% and 0%, respectively).\nCONCLUSIONS: Mecillinam might be an alternative for the treatment of infections due to CRE, particularly UTIs, except for VIM and KPC producers and for M. morganii and Serratia spp species.",
+    "journal": "J Antimicrob Chemother",
+    "year": "2022",
+    "doi": "10.1093/jac/dkac226",
+    "first_author": "Emeraud"
+  },
+  {
+    "pmid": "40774041",
+    "title": "Association between Type IV-A CRISPR/Cas system and plasmid-mediated transmission of carbapenemase genes in Klebsiella pneumoniae.",
+    "abstract": "The global rise of carbapenem-producing K. pneumoniae is largely attributed to plasmid-mediated transmission of carbapenemase genes. Type IV-A CRISPR/Cas system is mainly located on plasmids in K. pneumoniae and involved in plasmid competition. However, the role of Type IV-A system in the dissemination of carbapenemase genes in K. pneumoniae remains unclear. Here, we comprehensively investigated the relationship between Type IV-A system and plasmid-mediated transmission of carbapenemase genes based on 152 K. pneumoniae clinical strains and 46226 K. pneumoniae public genomes available in NCBI database. We found that the presence of Type IV-A system was positively associated with blaNDM-1, blaNDM-5, blaOXA-48, and blaVIM-1 but negatively related to blaKPC-2, blaKPC-3,blaIMP and blaOXA-181. Additionally, plasmids carrying Type IV-A system were predominantly the vehicles of blaNDM-1 gene. Protospacer search revealed that Type IV-A system frequently matched conjugation transfer region of blaKPC-2-related IncF plasmids, especially IncFIB(K)/IncFII(K), IncFII(pHN7A8)/IncR, and IncFIB(pQil)/IncFII(K) plasmids. The prevalence of self-targeting event further highlighted the interference mechanism of transcriptional repression proposed by Type IV system. Despite frequent targeting of IncF plasmids by Type IV-A system, different types of IncF plasmids displayed varying distribution between CRISPR-positive and -negative genomes, thereby suggesting a differentiated response of Type IV-A system to IncF plasmids. Our results underscore complex interactions between Type IV-A system and plasmid-mediated carbapenemase genes, revealing its significant role in shaping the transmission dynamics of carbapenemase-encoding plasmids.",
+    "journal": "Microbiol Res",
+    "year": "2025",
+    "doi": "10.1016/j.micres.2025.128297",
+    "first_author": "Long"
+  },
+  {
+    "pmid": "35453284",
+    "title": "Companion Animals-An Overlooked and Misdiagnosed Reservoir of Carbapenem Resistance.",
+    "abstract": "The dissemination of antimicrobial-resistance is a major global threat affecting both human and animal health. Carbapenems are human use β-lactams of last resort; thus. the dissemination of carbapenemase-producing (CP) bacteria creates severe limitations for the treatment of multidrug-resistant bacteria in hospitalized patients. Even though carbapenems are not routinely used in veterinary medicine, reports of infection or colonization by carbapenemase-producing Enterobacterales in companion animals are being reported. NDM-5 and OXA-48-like carbapenemases are among the most frequently reported in companion animals. Like in humans, Escherichia coli and Klebsiella pneumoniae are the most represented CP Enterobacterales found in companion animals, alongside with Acinetobacter baumannii. Considering that the detection of carbapenemase-producing Enterobacterales presents several difficulties, misdiagnosis of CP bacteria in companion animals may lead to important animal and public-health consequences. It is of the upmost importance to ensure an adequate monitoring and detection of CP bacteria in veterinary microbiology in order to safeguard animal health and minimise its dissemination to humans and the environment. This review encompasses an overview of the carbapenemase detection methods currently available, aiming to guide veterinary microbiologists on the best practices to improve its detection for clinical or research purposes.",
+    "journal": "Antibiotics (Basel)",
+    "year": "2022",
+    "doi": "10.3390/antibiotics11040533",
+    "first_author": "Silva"
+  },
+  {
+    "pmid": "40958132",
+    "title": "Coexistence of carbapenem resistance and hypervirulence in clinical Klebsiella pneumoniae isolates: a molecular and phenotypic analysis.",
+    "abstract": "BACKGROUND: Carbapenem-resistant hypervirulent Klebsiella pneumoniae (CRhvKp) is increasingly recognized as the predominant nosocomial pathogen in healthcare environments.\nOBJECTIVE: This study aims to investigate the prevalence, antibiotic resistance patterns, and molecular characteristics of CRhvKp in Egypt.\nMETHODS: Out of 150 non-duplicate clinical isolates collected from a hospital in Egypt, 63 were identified as K. pneumoniae via biochemical tests and matrix-assisted laser desorption/ionization-time-of-flight mass spectrometry (MALDI-TOF MS). The CRKp isolates were identified using the VITEK®2 system and KB disc diffusion. Subsequently, to define CRhvKp using PCR, a specific conjugation of rmpA and/or rmpA2 with iucA, iroB, or peg-344 was employed. Virulence and carbapenemase genes for CRKp isolates were screened via PCR, and the results of the carbapenemase genes were validated through Sanger sequencing.\nRESULTS: Among the 63 K. pneumoniae isolates, 30 were identified as CRKp, and all exhibited multidrug resistance (MDR). CRKp was classified as 66.7% for CRhvKp and 33.3% for CR-non-hvKp. The presence of various virulence genes in CRhvKp and CR-non-hvKp samples was observed as follows: fimH (75% and 60%), mrkD (100% and 90%), entB (80% and 90%), irp2 (85% and 90%), wabG (90% and 60%), and uge (40% and 60%). The existence of carbapenemase genes in CRhvKp and CR-non-hvKp samples was observed as follows: blaNDM (41.3% and 25.0%), blaKPC (10% and 5%), and blaOXA-48 (20.0% and 0.0%).\nCONCLUSION: Our study identified a significant percentage of MDR CRhvKp and CR-non-hvKp isolates harboring different carbapenemases, which sparked substantial concern. Herein, we highlight the concerning rapid increase of CRhvKp in Egypt. Hence, continued countrywide are surveillance is crucial to clarify the prevalence rate of these CRhvKp in Egypt.",
+    "journal": "BMC Infect Dis",
+    "year": "2025",
+    "doi": "10.1186/s12879-025-11585-z",
+    "first_author": "Ahmed"
+  },
+  {
+    "pmid": "34179032",
+    "title": "Neonatal Sepsis: The Impact of Carbapenem-Resistant and Hypervirulent Klebsiella pneumoniae.",
+    "abstract": "The convergence of a vulnerable population and a notorious pathogen is devastating, as seen in the case of sepsis occurring during the first 28 days of life (neonatal period). Sepsis leads to mortality, particularly in low-income countries (LICs) and lower-middle-income countries (LMICs). Klebsiella pneumoniae, an opportunistic pathogen is a leading cause of neonatal sepsis. The success of K. pneumoniae as a pathogen can be attributed to its multidrug-resistance and hypervirulent-pathotype. Though the WHO still recommends ampicillin and gentamicin for the treatment of neonatal sepsis, K. pneumoniae is rapidly becoming untreatable in this susceptible population. With escalating rates of cephalosporin use in health-care settings, the increasing dependency on carbapenems, a \"last resort antibiotic,\" has led to the emergence of carbapenem-resistant K. pneumoniae (CRKP). CRKP is reported from around the world causing outbreaks of neonatal infections. Carbapenem resistance in CRKP is largely mediated by highly transmissible plasmid-encoded carbapenemase enzymes, including KPC, NDM, and OXA-48-like enzymes. Further, the emergence of a more invasive and highly pathogenic hypervirulent K. pneumoniae (hvKP) pathotype in the clinical context poses an additional challenge to the clinicians. The deadly package of resistance and virulence has already limited therapeutic options in neonates with a compromised defense system. Although there are reports of CRKP infections, a review on neonatal sepsis due to CRKP/ hvKP is scarce. Here, we discuss the current understanding of neonatal sepsis with a focus on the global impact of the CRKP, provide a perspective regarding the possible acquisition and transmission of the CRKP and/or hvKP in neonates, and present strategies to effectively identify and combat these organisms.",
+    "journal": "Front Med (Lausanne)",
+    "year": "2021",
+    "doi": "10.3389/fmed.2021.634349",
+    "first_author": "Mukherjee"
+  },
+  {
+    "pmid": "38446073",
+    "title": "Carbapenemase-producing Enterobacterales strains causing infections in companion animals-Portugal.",
+    "abstract": "UNLABELLED: An increase in Klebsiella pneumoniae carbapenem-resistant human nosocomial strains is occurring in Europe, namely with the blaOXA-48-like and blaKPC-like genes. We determined the prevalence of carbapenemase-producing Enterobacterales clinical strains in companion animals in Portugal and characterized their mobile genetic elements. Susceptibility data of a consecutive collection of 977 Enterobacterales clinical strains from a Portuguese private veterinary diagnostic laboratory were evaluated (January-December 2020). Additional phenotypical and genotypical assays were performed in a subset of 261 strains with a resistant phenotype. Whole-genome sequencing was performed for carbapenemase-producing strains. The frequency of carbapenemase-producing Enterobacterales clinical strains in companion animals in Portugal was 0.51% (n = 5/977). Thus, five strains were characterized: (i) one OXA-181-producing K. pneumoniae ST273, (ii) two KPC-3-producing K. pneumoniae ST147; (iii) one KPC-3-producing K. pneumoniae ST392; and (iv) one OXA-48-producing E. coli ST127. The blaKPC-3 gene was located on transposon Tn4401d on IncFIA type plasmid for the K. pneumoniae ST147 strains and on a IncN-type plasmid for the K. pneumoniae ST392 strain, while blaOXA-181 gene was located on an IncX3 plasmid. All de novo assembled plasmids and plasmid-encoded transposons harboring carbapenemase genes were homologous to those previously described in the human healthcare. No plasmid replicons were detected on the OXA-48-producing E. coli ST127. The dissemination of carbapenem resistance is occurring horizontally via plasmid spreading from the human high burden carbapenem resistance setting to the companion animal sector. Furthermore, companion animals may act as reservoirs of carbapenem resistance. Implementation of carbapenemase detection methods in routine clinical veterinary microbiology is urgently needed.\nIMPORTANCE: This is the first study on the prevalence of carbapenemase-producing Enterobacterales (CPE) clinical strains from companion animals in Portugal. Despite the generally low prevalence of CPE in companion animals, it is imperative for veterinary diagnostic laboratories to employ diagnostic methods for carbapenemase detection. The resemblance found in the mobile genetic elements transporting carbapenemase genes between veterinary medicine and human medicine implies a potential circulation within a One Health framework.",
+    "journal": "Microbiol Spectr",
+    "year": "2024",
+    "doi": "10.1128/spectrum.03416-23",
+    "first_author": "Moreira da Silva"
+  }
+]

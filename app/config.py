@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     data_raw_dir: Path = Path("data/raw")
     data_processed_dir: Path = Path("data/processed")
     anthropic_api_key: str = ""
+    # Sube a config al aparecer el segundo consumidor (CAG en Fase 4, RAG en
+    # Fase 5), tal como se anticipo en docs/decisions.md, Fase 4.
+    llm_model: str = "claude-sonnet-5"
 
 
 settings = Settings()

@@ -94,8 +94,23 @@ recuperar evidencia real por consulta) y luego a agente en la Fase 6
 (RAG + modelo DTI como herramientas encadenadas). No son un bug del CAG:
 son su función dentro de la narrativa del proyecto.
 
-**RAG** - TODO: fuentes indexadas (ChEMBL/CO-ADD/literatura), estrategia de
-chunking, como cita evidencia.
+**RAG (Fase 5)** — Escala el CAG indexando evidencia real en un vector
+store Chroma persistente: 34.078 fragmentos derivados de cinco clases de
+documento generadas por plantilla determinista a partir del dataset
+curado de Fase 1 y los CSV originales de ChEMBL/CO-ADD — nunca redactadas
+a mano libre. Incluyen fichas de potencia fenotípica por compuesto y
+patógeno, agregados de cribado primario, las 66 filas reales de afinidad
+de unión (Ki/Kd), fichas de contexto reutilizadas del CAG, y 99 abstracts
+de PubMed cacheados localmente. Los embeddings usan multilingual-e5-small
+(español, sin dependencias nuevas), con funciones de indexado y consulta
+separadas para respetar el prefijo asimétrico de E5. Cada fragmento
+recuperado viaja con metadata que incluye una cita construida por código
+—nunca por el LLM— y una función verify_answer comprueba tras cada
+respuesta que ninguna cita ni cifra citada quede fuera de la evidencia
+recuperada. Frente al CAG, que por diseño no puede responder con datos
+concretos, el RAG cita evidencia real y trazable: en la batería de
+validación, 9 de 9 preguntas —dentro y fuera de corpus, más un intento de
+inyección de prompt— se resolvieron sin una sola cita inventada.
 
 **Agente** - TODO: que herramientas usa (RAG + modelo DTI), caso de estudio
 de reposicionamiento.
@@ -207,9 +222,22 @@ documenta 1-3 endpoints en formato OpenAPI.
   Ab) y con ~82-91% del target continuo censurado (mayormente
   inhibition-only de CO-ADD sin seguimiento dose-response). La curación
   no descarta el desequilibrio: el balanceo recae en la loss de Fase 3.
-- **Cobertura del RAG (Fase 5, pendiente)**: solo cubrirá lo que se
-  indexe (ChEMBL/CO-ADD curados + extractos de literatura seleccionados);
-  no equivale a una búsqueda exhaustiva de la evidencia mundial.
+- **Cobertura del RAG**: solo cubre lo que se indexa (ChEMBL/CO-ADD
+  curados + 99 abstracts de tres consultas fijas de PubMed); no equivale
+  a una búsqueda exhaustiva de la evidencia mundial.
+- **Compuestos sin nombre, semánticamente indistinguibles.** El vector se
+  construye a partir del mismo patrón de ficha (SMILES + medidas); dos
+  compuestos distintos sin nombre comercial pueden resultar casi
+  idénticos para la búsqueda. Es una propiedad del dato (falta de
+  metadata identificativa en ChEMBL/CO-ADD para esas filas), no algo que
+  resuelva cambiar el modelo de embeddings.
+- **El RAG solo responde agregados que ya existan como texto indexado.**
+  No calcula nada nuevo sobre la marcha — una combinación de filtros no
+  anticipada al construir el corpus se queda sin respuesta con evidencia
+  real, aunque el dato subyacente exista en los CSV curados.
+- **Sin reranker.** Con un corpus pequeño y muy estructurado, el
+  prefiltro por metadata cubre buena parte de esa necesidad; queda como
+  mejora futura si el corpus crece.
 
 ### 8.2. Proximos pasos
 TODO - ej: ampliar a mas patogenos ESKAPE, mejorar el retrieval con

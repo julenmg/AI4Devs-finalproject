@@ -1,0 +1,52 @@
+{
+  "CHEMBL1075174": {
+    "pref_name": "Beta-lactamase SHV-5",
+    "target_type": "SINGLE PROTEIN",
+    "organism": "Klebsiella pneumoniae"
+  },
+  "CHEMBL1287604": {
+    "pref_name": "Beta-lactamase OXA-48",
+    "target_type": "SINGLE PROTEIN",
+    "organism": "Klebsiella pneumoniae"
+  },
+  "CHEMBL1667695": {
+    "pref_name": "Metallo-beta-lactamase type 2",
+    "target_type": "SINGLE PROTEIN",
+    "organism": "Klebsiella pneumoniae"
+  },
+  "CHEMBL1667700": {
+    "pref_name": "Beta-lactamase ADC-33",
+    "target_type": "SINGLE PROTEIN",
+    "organism": "Acinetobacter baumannii"
+  },
+  "CHEMBL1667701": {
+    "pref_name": "ADC-11",
+    "target_type": "SINGLE PROTEIN",
+    "organism": "Acinetobacter baumannii"
+  },
+  "CHEMBL2233620": {
+    "pref_name": "Extended-spectrum beta-lactamase SHV-48",
+    "target_type": "SINGLE PROTEIN",
+    "organism": "Acinetobacter baumannii"
+  },
+  "CHEMBL3885669": {
+    "pref_name": "Beta-lactamase OXA-23",
+    "target_type": "SINGLE PROTEIN",
+    "organism": "Acinetobacter baumannii"
+  },
+  "CHEMBL5094": {
+    "pref_name": "Beta-lactamase SHV-1",
+    "target_type": "SINGLE PROTEIN",
+    "organism": "Klebsiella pneumoniae"
+  },
+  "CHEMBL5169233": {
+    "pref_name": "UDP-galactopyranose mutase",
+    "target_type": "SINGLE PROTEIN",
+    "organism": "Klebsiella pneumoniae"
+  },
+  "CHEMBL6132": {
+    "pref_name": "Carbapenem-hydrolyzing beta-lactamase KPC",
+    "target_type": "SINGLE PROTEIN",
+    "organism": "Klebsiella pneumoniae"
+  }
+}

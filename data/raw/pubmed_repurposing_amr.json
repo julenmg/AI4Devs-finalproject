@@ -1,0 +1,317 @@
+[
+  {
+    "pmid": "32084340",
+    "title": "A Deep Learning Approach to Antibiotic Discovery.",
+    "abstract": "Due to the rapid emergence of antibiotic-resistant bacteria, there is a growing need to discover new antibiotics. To address this challenge, we trained a deep neural network capable of predicting molecules with antibacterial activity. We performed predictions on multiple chemical libraries and discovered a molecule from the Drug Repurposing Hub-halicin-that is structurally divergent from conventional antibiotics and displays bactericidal activity against a wide phylogenetic spectrum of pathogens including Mycobacterium tuberculosis and carbapenem-resistant Enterobacteriaceae. Halicin also effectively treated Clostridioides difficile and pan-resistant Acinetobacter baumannii infections in murine models. Additionally, from a discrete set of 23 empirically tested predictions from >107 million molecules curated from the ZINC15 database, our model identified eight antibacterial compounds that are structurally distant from known antibiotics. This work highlights the utility of deep learning approaches to expand our antibiotic arsenal through the discovery of structurally distinct antibacterial molecules.",
+    "journal": "Cell",
+    "year": "2020",
+    "doi": "10.1016/j.cell.2020.01.021",
+    "first_author": "Stokes"
+  },
+  {
+    "pmid": "42156544",
+    "title": "Accelerating scientific discovery with Co-Scientist.",
+    "abstract": "Scientific discovery is driven by scientists generating hypotheses for complex problems that undergo rigorous experimental validation. To augment this process, we introduce Co-Scientist, a multi-agent artificial intelligence (AI) system built on Gemini for structured scientific thinking and hypothesis generation. Co-Scientist aims to help scientists discover new original knowledge. Conditioned on their research objectives and previous scientific evidence, it formulates demonstrably novel research hypotheses for experimental verification. The system's design involves agents continuously generating, critiquing and refining hypotheses accelerated by scaling test-time compute. Key contributions include (1) a multi-agent architecture with an asynchronous task execution framework for flexible compute scaling, and (2) a tournament evolution process for self-improving hypotheses generation. Automated evaluations show continued benefits of test-time compute scaling, improving hypothesis quality over time. Although this is a general-purpose system, we focus the validation in three biomedical applications: drug repurposing; novel-target discovery1; and explaining mechanisms of antimicrobial resistance2. Specifically, Co-Scientist helped to identify new drug-repurposing candidates and synergistic combination therapies for acute myeloid leukaemia that were validated through in vitro experiments. These real-world validations demonstrate the potential of Co-Scientist to accelerate scientific discovery and usher in an era of AI-empowered scientists.",
+    "journal": "Nature",
+    "year": "2026",
+    "doi": "10.1038/s41586-026-10644-y",
+    "first_author": "Gottweis"
+  },
+  {
+    "pmid": "36561763",
+    "title": "Berberine a traditional Chinese drug repurposing: Its actions in inflammation-associated ulcerative colitis and cancer therapy.",
+    "abstract": "Berberine (BBR), an isoquinoline alkaloid extracted from Coptidis Rhizoma, has a long history of treating dysentery in the clinic. Over the past two decades, the polytrophic, pharmacological, and biochemical properties of BBR have been intensively studied. The key functions of BBR, including anti-inflammation, antibacterial, antioxidant, anti-obesity, and even antitumor, have been discovered. However, the underlying mechanisms of BBR-mediated regulation still need to be explored. Given that BBR is also a natural nutrition supplement, the modulatory effects of BBR on nutritional immune responses have attracted more attention from investigators. In this mini-review, we summarized the latest achievements of BBR on inflammation, gut microbes, macrophage polarization, and immune responses associated with their possible tools in the pathogenesis and therapy of ulcerative colitis and cancer in recent 5 years. We also discuss the therapeutic efficacy and anti-inflammatory actions of BBR to benefit future clinical applications.",
+    "journal": "Front Immunol",
+    "year": "2022",
+    "doi": "10.3389/fimmu.2022.1083788",
+    "first_author": "Zhu"
+  },
+  {
+    "pmid": "41498549",
+    "title": "The power of resistance: mechanisms of antimicrobial resistance in Mycobacterium tuberculosis and its impact on tuberculosis management.",
+    "abstract": "SUMMARYThe global resurgence of drug-resistant tuberculosis (DR-TB) presents a formidable challenge to public health, driven by a complex interplay of mycobacterial evolution, dynamics and outcomes of host-pathogen interactions and systemic gaps in diagnosis and treatment strategies. This comprehensive review delineates the multifactorial basis of antimicrobial resistance (AMR) in Mycobacterium tuberculosis (Mtb), integrating molecular, immunological, and pharmacological perspectives to inform next-generation strategies for effective TB control. We reconceptualize TB as a dynamic clinical spectrum-ranging from asymptomatic infection to overt disease-shaped by granuloma biology and bacterial adaptation. This spectrum underpins both diagnostic ambiguity and therapeutic failure, particularly in the context of phenotypic drug tolerance/resistance to current anti-TB drugs. We discuss Mtb's intrinsic and extrinsic resistance mechanisms, including the lipid-rich cell envelope, efflux systems, and enzymatic drug modification, which are compounded by acquired mutations that disrupt drug activation, alter targets, and confer cross-resistance. These adaptations are further potentiated by granuloma-induced pharmacokinetic heterogeneity and host-induced metabolic quiescence. We highlight the emerging role of therapeutic drug monitoring and pharmacokinetic/pharmacodynamic modeling in optimizing individualized therapy, particularly for novel regimens incorporating bedaquiline, pretomanid, and linezolid. Moreover, we underscore the diagnostic limitations in detecting heteroresistance and early-stage disease, advocating for expanded deployment of advanced and targeted molecular diagnostic modalities. Finally, we propose a paradigm shift toward integrated, precision-based TB management, leveraging host-directed therapies, biofilm-disrupting agents, and real-time pharmacokinetics-guided dosing to preempt resistance emergence and improve clinical outcomes. This review provides a translational framework for addressing the biological and operational complexities of DR-TB in the era of AMR.",
+    "journal": "Clin Microbiol Rev",
+    "year": "2026",
+    "doi": "10.1128/cmr.00194-25",
+    "first_author": "Gopalaswamy"
+  },
+  {
+    "pmid": "39737570",
+    "title": "Machine learning-enabled virtual screening indicates the anti-tuberculosis activity of aldoxorubicin and quarfloxin with verification by molecular docking, molecular dynamics simulations, and biological evaluations.",
+    "abstract": "Drug resistance in Mycobacterium tuberculosis (Mtb) is a significant challenge in the control and treatment of tuberculosis, making efforts to combat the spread of this global health burden more difficult. To accelerate anti-tuberculosis drug discovery, repurposing clinically approved or investigational drugs for the treatment of tuberculosis by computational methods has become an attractive strategy. In this study, we developed a virtual screening workflow that combines multiple machine learning and deep learning models, and 11 576 compounds extracted from the DrugBank database were screened against Mtb. Our screening method produced satisfactory predictions on three data-splitting settings, with the top predicted bioactive compounds all known antibacterial or anti-TB drugs. To further identify and evaluate drugs with repurposing potential in TB therapy, 15 screened potential compounds were selected for subsequent computational and experimental evaluations, out of which aldoxorubicin and quarfloxin showed potent inhibition of Mtb strain H37Rv, with minimal inhibitory concentrations of 4.16 and 20.67 μM/mL, respectively. More inspiringly, these two compounds also showed antibacterial activity against multidrug-resistant TB isolates and exhibited strong antimicrobial activity against Mtb. Furthermore, molecular docking, molecular dynamics simulation, and the surface plasmon resonance experiments validated the direct binding of the two compounds to Mtb DNA gyrase. In summary, our effective comprehensive virtual screening workflow successfully repurposed two novel drugs (aldoxorubicin and quarfloxin) as promising anti-Mtb candidates. The verification results provide useful information for the further development and clinical verification of anti-TB drugs.",
+    "journal": "Brief Bioinform",
+    "year": "2024",
+    "doi": "10.1093/bib/bbae696",
+    "first_author": "Zheng"
+  },
+  {
+    "pmid": "30833727",
+    "title": "Drug repurposing for antimicrobial discovery.",
+    "abstract": "Antimicrobial resistance continues to be a public threat on a global scale. The ongoing need to develop new antimicrobial drugs that are effective against multi-drug-resistant pathogens has spurred the research community to invest in various drug discovery strategies, one of which is drug repurposing-the process of finding new uses for existing drugs. While still nascent in the antimicrobial field, the approach is gaining traction in both the public and private sector. While the approach has particular promise in fast-tracking compounds into clinical studies, it nevertheless has substantial obstacles to success. This Review covers the art of repurposing existing drugs for antimicrobial purposes. We discuss enabling screening platforms for antimicrobial discovery and present encouraging findings of novel antimicrobial therapeutic strategies. Also covered are general advantages of repurposing over de novo drug development and challenges of the strategy, including scientific, intellectual property and regulatory issues.",
+    "journal": "Nat Microbiol",
+    "year": "2019",
+    "doi": "10.1038/s41564-019-0357-1",
+    "first_author": "Farha"
+  },
+  {
+    "pmid": "35561965",
+    "title": "Drug repurposing to overcome microbial resistance.",
+    "abstract": "Infections are a growing global threat, and the number of resistant species of microbial pathogens is alarming. However, the rapid development of cross-resistant or multidrug-resistant strains and the development of so-called 'superbugs' are in stark contrast to the number of newly launched anti-infectives on the market. In this review, I summarize the causes of antimicrobial resistance, briefly discuss different approaches to the discovery and development of new anti-infective drugs, and focus on drug repurposing strategy, which is discussed from all possible perspectives. A comprehensive overview of drugs of other indications tested for their in vitro antimicrobial activity to support existing anti-infective therapeutics is provided, including several critical remarks on this strategy of repurposing non-antibiotics to antibacterial drugs.",
+    "journal": "Drug Discov Today",
+    "year": "2022",
+    "doi": "10.1016/j.drudis.2022.05.006",
+    "first_author": "Jampilek"
+  },
+  {
+    "pmid": "38942533",
+    "title": "Drug repurposing for bacterial infections.",
+    "abstract": "Repurposing pharmaceuticals is a technique used to find new, alternate clinical applications for approved drug molecules. It may include altering the drug formulation, route of administration, dose or the dosage regimen. The process of repurposing medicines starts with screening libraries of previously approved drugs for the targeted disease condition. If after an the initial in silico, in vitro or in vivo experimentation, the molecule has been found to be active against a particular target, the molecule is considered as a good candidate for clinical trials. As the safety profile of such molecules is available from the previous data, significant time and resources are saved. These advantages of drug repurposing approach make it especially helpful for finding treatments for rapidly evolving conditions including bacterial infections. An ever-increasing incidence of antimicrobial resistance, owing to the mutations in bacterial genome, leads to therapeutic failure of many approved antibiotics. Repurposing the approved drug molecules for use as antibiotics can provide an effective means for the combating life-threatening bacterial diseases. A number of drugs have been considered for drug repurposing against bacterial infections. These include, but are not limited to, Auranofin, Closantel, and Toremifene that have been repurposed for various infections. In addition, the reallocation of route of administration, redefining dosage regimen and reformulation of dosage forms have also been carried out for repurposing purpose. The current chapter addresses the drug discovery and development process with relevance to repurposing against bacterial infections.",
+    "journal": "Prog Mol Biol Transl Sci",
+    "year": "2024",
+    "doi": "10.1016/bs.pmbts.2024.03.031",
+    "first_author": "Ilyas"
+  },
+  {
+    "pmid": "39329140",
+    "title": "Antimicrobial activities of Diltiazem Hydrochloride: drug repurposing approach.",
+    "abstract": "BACKGROUND: The growing concern of antibiotic-resistant microbial strains worldwide has prompted the need for alternative methods to combat microbial resistance. Biofilm formation poses a significant challenge to antibiotic efficiency due to the difficulty of penetrating antibiotics through the sticky microbial aggregates. Drug repurposing is an innovative technique that aims to expand the use of non-antibiotic medications to address this issue. The primary objective of this study was to evaluate the antimicrobial properties of Diltiazem HCl, a 1,5-benzothiazepine Ca2 + channel blocker commonly used as an antihypertensive agent, against four pathogenic bacteria and three pathogenic yeasts, as well as its antiviral activity against the Coxsackie B4 virus (CoxB4).\nMETHODS: To assess the antifungal and antibacterial activities of Diltiazem HCl, the well diffusion method was employed, while crystal violet staining was used to determine the anti-biofilm activity. The MTT (3-(4,5-dimethylthiazol-2-yl)-2,5-diphenyltetrazolium bromide) colorimetric assay was utilized to evaluate the antiviral activity of Diltiazem HCl against the CoxB4 virus.\nRESULTS: This study revealed that Diltiazem HCl exhibited noticeable antimicrobial properties against Gram-positive bacteria, demonstrating the highest inhibition of Staphylococcus epidermidis, followed by Staphylococcus aureus. It effectively reduced the formation of biofilms by 95.1% and 90.7% for S. epidermidis, and S. aureus, respectively. Additionally, the antiviral activity of Diltiazem HCl was found to be potent against the CoxB4 virus, with an IC50 of 35.8 ± 0.54 μg mL-1 compared to the reference antiviral Acyclovir (IC50 42.71 ± 0.43 μg mL-1).\nCONCLUSION: This study suggests that Diltiazem HCl, in addition to its antihypertensive effect, may also be a potential treatment option for infections caused by Gram-positive bacteria and the CoxB4 viruses, providing an additional off-target effect for Diltiazem HCl.",
+    "journal": "PeerJ",
+    "year": "2024",
+    "doi": "10.7717/peerj.17809",
+    "first_author": "Alduaij"
+  },
+  {
+    "pmid": "36680115",
+    "title": "Drug Repositioning for Hand, Foot, and Mouth Disease.",
+    "abstract": "Hand, foot, and mouth disease (HFMD) is a highly contagious disease in children caused by a group of enteroviruses. HFMD currently presents a major threat to infants and young children because of a lack of antiviral drugs in clinical practice. Drug repositioning is an attractive drug discovery strategy aimed at identifying and developing new drugs for diseases. Notably, repositioning of well-characterized therapeutics, including either approved or investigational drugs, is becoming a potential strategy to identify new treatments for virus infections. Various types of drugs, including antibacterial, cardiovascular, and anticancer agents, have been studied in relation to their therapeutic potential to treat HFMD. In this review, we summarize the major outbreaks of HFMD and the progress in drug repositioning to treat this disease. We also discuss the structural features and mode of action of these repositioned drugs and highlight the opportunities and challenges of drug repositioning for HFMD.",
+    "journal": "Viruses",
+    "year": "2022",
+    "doi": "10.3390/v15010075",
+    "first_author": "Yan"
+  },
+  {
+    "pmid": "29984648",
+    "title": "Recent Drug-Repurposing-Driven Advances in the Discovery of Novel Antibiotics.",
+    "abstract": "Drug repurposing is a safe and successful pathway to speed up the novel drug discovery and development processes compared with de novo drug discovery approaches. Drug repurposing uses FDA-approved drugs and drugs that failed in clinical trials, which have detailed information on potential toxicity, formulation, and pharmacology. Technical advancements in the informatics, genomics, and biological sciences account for the major success of drug repurposing in identifying secondary indications of existing drugs. Drug repurposing is playing a vital role in filling the gap in the discovery of potential antibiotics. Bacterial infections emerged as an ever-increasing global public health threat by dint of multidrug resistance to existing drugs. This raises the urgent need of development of new antibiotics that can effectively fight multidrug-resistant bacterial infections (MDRBIs). The present review describes the key role of drug repurposing in the development of antibiotics during 2016-2017 and of the details of recently FDA-approved antibiotics, pipeline antibiotics, and antibacterial properties of various FDA-approved drugs of anti-cancer, anti-fungal, anti-hyperlipidemia, antiinflammatory, anti-malarial, anti-parasitic, anti-viral, genetic disorder, immune modulator, etc. Further, in view of combination therapies with the existing antibiotics, their potential for new implications for MDRBIs is discussed. The current review may provide essential data for the development of quick, safe, effective, and novel antibiotics for current needs and suggest acuity in its effective implications for inhibiting MDRBIs by repurposing existing drugs.",
+    "journal": "Curr Med Chem",
+    "year": "2019",
+    "doi": "10.2174/0929867325666180706101404",
+    "first_author": "Konreddy"
+  },
+  {
+    "pmid": "38931385",
+    "title": "Antibacterial Prodrugs to Overcome Bacterial Antimicrobial Resistance.",
+    "abstract": "Antimicrobial resistance (AMR) is an increasingly concerning phenomenon that requires urgent attention because it poses a threat to human and animal health. Bacteria undergo continuous evolution, acquiring novel resistance mechanisms in addition to their intrinsic ones. Multidrug-resistant and extensively drug-resistant bacterial strains are rapidly emerging, and it is expected that bacterial AMR will claim the lives of 10 million people annually by 2050. Consequently, the urgent need for the development of new therapeutic agents with new modes of action is evident. The antibacterial prodrug approach, a strategy that includes drug repurposing and derivatization, integration of nanotechnology, and exploration of natural products, is highlighted in this review. Thus, this publication aims at compiling the most pertinent research in the field, spanning from 2021 to 2023, offering the reader a comprehensive insight into the AMR phenomenon and new strategies to overcome it.",
+    "journal": "Pharmaceuticals (Basel)",
+    "year": "2024",
+    "doi": "10.3390/ph17060718",
+    "first_author": "Maria"
+  },
+  {
+    "pmid": "30745898",
+    "title": "Drug Repurposing for the Treatment of Bacterial and Fungal Infections.",
+    "abstract": "Multidrug-resistant (MDR) pathogens pose a well-recognized global health threat that demands effective solutions; the situation is deemed a global priority by the World Health Organization and the European Centre for Disease Prevention and Control. Therefore, the development of new antimicrobial therapeutic strategies requires immediate attention to avoid the ten million deaths predicted to occur by 2050 as a result of MDR bacteria. The repurposing of drugs as therapeutic alternatives for infections has recently gained renewed interest. As drugs approved by the United States Food and Drug Administration, information about their pharmacological characteristics in preclinical and clinical trials is available. Therefore, the time and economic costs required to evaluate these drugs for other therapeutic applications, such as the treatment of bacterial and fungal infections, are mitigated. The goal of this review is to provide an overview of the scientific evidence on potential non-antimicrobial drugs targeting bacteria and fungi. In particular, we aim to: (i) list the approved drugs identified in drug screens as potential alternative treatments for infections caused by MDR pathogens; (ii) review their mechanisms of action against bacteria and fungi; and (iii) summarize the outcome of preclinical and clinical trials investigating approved drugs that target these pathogens.",
+    "journal": "Front Microbiol",
+    "year": "2019",
+    "doi": "10.3389/fmicb.2019.00041",
+    "first_author": "Miró-Canturri"
+  },
+  {
+    "pmid": "40216902",
+    "title": "Antibacterial compounds against non-growing and intracellular bacteria.",
+    "abstract": "Slow- and non-growing bacterial populations, along with intracellular pathogens, often evade standard antibacterial treatments and are linked to persistent and recurrent infections. This necessitates the development of therapies specifically targeting nonproliferating bacteria. To identify compounds active against non-growing uropathogenic Escherichia coli (UPEC) we performed a drug-repurposing screen of 6454 approved drugs and drug candidates. Using dilution-regrowth assays, we identified 39 compounds that either kill non-growing UPEC or delay its regrowth post-treatment. The hits include fluoroquinolones, macrolides, rifamycins, biguanide disinfectants, a pleuromutilin, and anti-cancer agents. Twenty-nine of the hits have not previously been recognized as active against non-growing bacteria. The hits were further tested against non-growing Pseudomonas aeruginosa and Staphylococcus aureus. Ten compounds - solithromycin, rifabutin, mitomycin C, and seven fluoroquinolones-have strong bactericidal activity against non-growing P. aeruginosa, killing >4 log10 of bacteria at 2.5 µM. Solithromycin, valnemulin, evofosfamide, and satraplatin are unique in their ability to selectively target non-growing bacteria, exhibiting poor efficacy against growing bacteria. Finally, 31 hit compounds inhibit the growth of intracellular Shigella flexneri in a human enterocyte infection model, indicating their ability to permeate the cytoplasm of host cells. The identified compounds hold potential for treating persistent infections, warranting further comparative studies with current standard-of-care antibiotics.",
+    "journal": "NPJ Antimicrob Resist",
+    "year": "2025",
+    "doi": "10.1038/s44259-025-00097-0",
+    "first_author": "Kaldalu"
+  },
+  {
+    "pmid": "41723341",
+    "title": "A target-guided drug repurposing strategy for antibacterial discovery.",
+    "abstract": "BACKGROUND: The scarcity of effective antibiotics against drug-resistant pathogens has intensified the need for alternative antibacterial development strategies. Drug repurposing (DR) offers a practical solution; herein, we present detailed experimental workflows and in vitro results to validate the feasibility of a DR-based strategy for new antibacterial development.\nMETHODS: Using Vina-GPU, we performed molecular docking between 125 highly conserved bacterial essential proteins and 2,027 approved non-antibacterials drugs to predict drug-target interactions. As preliminary screening, 14 candidate drugs were tested for inhibitory activity against six bacterial strains (Escherichia coli MC4100, Pseudomonas aeruginosa PAO1, Acinetobacter baumannii ATCC 19606, Salmonella enterica Typhi CMCC 50071, Salmonella enterica Typhimurium ATCC 14028, and Klebsiella oxytoca ATCC 13182) at 100 μg/ml. Subsequently, lower-concentration assays (combined with Polymyxin B nonapeptide, PMBN) were conducted for preliminarily active drugs. The FLUOStar Omega was used to measure bacterial suspension optical density (OD₆₀₀) and calculate drug inhibition rates. Surface plasmon resonance (SPR), MD simulation, and folate rescue experiments were used to further validate the mechanism of the drug.\nRESULTS: Among the 2,027 non-antibacterials drugs, several exhibited antibacterial activities. Additionally, 173 existing antibacterials were clustered into two groups based on their binding affinity similarity to the 125 essential proteins, with the two groups showing distinct antibacterial activities. Notably, multiple repurposed drugs inhibited the growth of multiple bacterial species.\nCONCLUSION: Our study revealed that the combination of 8 μg/ml lifitegrast and PMBN can effectively inhibit six gram-negative bacteria. Folate rescue experiments showed that the preliminary antibacterial mechanism of lifitegrast is to inhibit the function of FolA. In addition, future research should explore the structure-activity relationship of lifitegrast and its impact on antibacterial activity.",
+    "journal": "BMC Microbiol",
+    "year": "2026",
+    "doi": "10.1186/s12866-026-04710-8",
+    "first_author": "Zhang"
+  },
+  {
+    "pmid": "36318018",
+    "title": "Pixantrone Sensitizes Gram-Negative Pathogens to Rifampin.",
+    "abstract": "The emergence of bacterial drug resistance poses a severe threat to global public health. In particular, antimicrobial-resistant pathogens lead to a high rate of treatment failure and significantly increase mortality. Repurposing FDA-approved compounds to sensitize superbugs to conventional antibiotics provides a promising strategy to alleviate such crises. Pixantrone (PIX) has been approved for treating aggressive B-cell non-Hodgkin's lymphoma. By high-throughput drug screening, we profiled the synergistic activity between PIX and rifampin (RFP) against Gram-negative extensively drug-resistant isolates by checkerboard assay. Mechanistic studies demonstrated that PIX impacted the flagellum assembly, induced irreversible intracellular reactive oxygen species accumulation and disrupted proton motive force. In addition, the combination of PIX with RFP possesses effective antimicrobial activity against multidrug-resistant strains in vivo without detected toxicity. Collectively, these results reveal the potential of PIX in combination with RFP as a therapy option for refractory infections caused by Gram-negative pathogens. IMPORTANCE Bacterial resistance has become increasingly serious because of the widespread use and abuse of antibiotics. In particular, the emergence of multidrug-resistant bacteria has posed a serious threat to human public health. Drug repurposing, the process of finding new uses for existing drugs, provide a promising pathway to solve antimicrobial resistance. Compared to the development of novel antibiotics, this strategy leverages well-characterized pharmacology and toxicology of known drugs and is more cost-effective.",
+    "journal": "Microbiol Spectr",
+    "year": "2022",
+    "doi": "10.1128/spectrum.02114-22",
+    "first_author": "She"
+  },
+  {
+    "pmid": "33895061",
+    "title": "A case to stop the use of the term 'antibiotics'.",
+    "abstract": "The word 'antibiotics' is an historical, but imprecise, term. Today, 'antibiotics' are also used for other indications and 'non-antibiotics' are repurposed for infectious diseases. This situation calls for a revision of antipathogenic drug terminology. The use of correct terms will facilitate rational antipathogenic treatment and understanding of drug repurposing.",
+    "journal": "Trends Microbiol",
+    "year": "2021",
+    "doi": "10.1016/j.tim.2021.03.017",
+    "first_author": "Seifert"
+  },
+  {
+    "pmid": "35740222",
+    "title": "Non-Antibiotic Drug Repositioning as an Alternative Antimicrobial Approach.",
+    "abstract": "The worldwide scenario of antibiotic resistance and the falling number of funds for the development of novel antibiotics have led research efforts toward the study of specific cost-effective strategies aimed at discovering drugs against microbial infections. Among the potential options, drug repositioning, which has already exhibited satisfactory results in other medical fields, came out as the most promising. It consists of finding new uses for previously approved medicines and, over the years, many \"repurposed drugs\" displayed some encouraging in vitro and in vivo results beyond their initial application. The principal theoretical justification for reusing already existing drugs is that they have known mechanisms of action and manageable side effects. Reuse of old drugs is now considered an interesting approach to overcome the drawbacks of conventional antibiotics. The purpose of this review is to offer the reader a panoramic view of the updated studies concerning the repositioning process of different classes of non-antibiotic drugs in the antimicrobial field. Several research works reported the ability of some non-steroidal anti-inflammatory drugs (NSAIDs), antidepressants, antipsychotics, and statins to counteract the growth of harmful microorganisms, demonstrating an interesting winning mode to fight infectious diseases caused by antimicrobial resistant bacteria.",
+    "journal": "Antibiotics (Basel)",
+    "year": "2022",
+    "doi": "10.3390/antibiotics11060816",
+    "first_author": "Barbarossa"
+  },
+  {
+    "pmid": "35453202",
+    "title": "A Review: Antimicrobial Therapy for Human Pythiosis.",
+    "abstract": "Human pythiosis is associated with poor prognosis with significant mortality caused by Pythium insidiosum. Antimicrobials' in vitro and in vivo results against P. insidiosum are inconsistent. Although antimicrobials are clinically useful, they are not likely to achieve therapeutic success alone without surgery and immunotherapy. New therapeutic options are therefore needed. This non-exhaustive review discusses the rationale antimicrobial therapy, minimum inhibitory concentrations, and efficacy of antibacterial and antifungal agents against P. insidiosum. This review further provides insight into the immunomodulating effects of antimicrobials that can enhance the immune response to infections. Current data support using antimicrobial combination therapy for the pharmacotherapeutic management of human pythiosis. Also, the success or failure of antimicrobial treatment in human pythiosis might depend on the immunomodulatory effects of drugs. The repurposing of existing drugs is a safe strategy for anti-P. insidiosum drug discovery. To improve patient outcomes in pythiosis, we suggest further research and a deeper understanding of P. insidiosum virulence factors, host immune response, and host immune system modification by antimicrobials.",
+    "journal": "Antibiotics (Basel)",
+    "year": "2022",
+    "doi": "10.3390/antibiotics11040450",
+    "first_author": "Medhasi"
+  },
+  {
+    "pmid": "39282166",
+    "title": "Antibiotics: From Mechanism of Action to Resistance and Beyond.",
+    "abstract": "Antibiotics are the super drugs that have revolutionized modern medicine by curing many infectious diseases caused by various microbes. They efficiently inhibit the growth and multiplication of the pathogenic microbes without causing adverse effects on the host. However, prescribing suboptimal antibiotic and overuse in agriculture and animal husbandry have led to the emergence of antimicrobial resistance, one of the most serious threats to global health at present. The efficacy of a new antibiotic is high when introduced; however, a small bacterial population attains resistance gradually and eventually survives. Understanding the mode of action of these miracle drugs, as well as their interaction with targets is very complex. However, it is necessary to fulfill the constant need for novel therapeutic alternatives to address the inevitable development of resistance. Therefore, considering the need of the hour, this article has been prepared to discuss the mode of action and recent advancements in the field of antibiotics. Efforts has also been made to highlight the current scenario of antimicrobial resistance and drug repurposing as a fast-track solution to combat the issue.",
+    "journal": "Indian J Microbiol",
+    "year": "2024",
+    "doi": "10.1007/s12088-024-01285-8",
+    "first_author": "Saikia"
+  },
+  {
+    "pmid": "34064364",
+    "title": "Strategies for the Improvement of Metal-Based Chemotherapeutic Treatments.",
+    "abstract": "This article provides an overview of the various research approaches we have explored in recent years to improve metal-based agents for cancer or infection treatments. Although cisplatin, carboplatin, and oxaliplatin remain the cornerstones in tumor chemotherapy, the discovery and approval of novel inorganic anticancer drugs is a very slow process. Analogously, although a few promising inorganic drugs have found clinical application against parasitic or bacterial infections, their use remains relatively limited. Moreover, the discovery process is often affected by small therapeutic enhancements that are not attractive for the pharmaceutical industry. However, the availability of increasing mechanistic information for the modes of action of established inorganic drugs is fueling the exploration of various approaches for developing effective inorganic chemotherapy agents. Through a series of examples, some from our own research experience, we focus our attention on a number of promising strategies, including (1) drug repurposing, (2) the simple modification of the chemical structures of approved metal-based drugs, (3) testing novel drug combinations, and (4) newly synthesized complexes coupling different anticancer drugs. Accordingly, we aim to suggest and summarize a series of reliable approaches that are exploitable for the development of improved and innovative treatments.",
+    "journal": "Biomedicines",
+    "year": "2021",
+    "doi": "10.3390/biomedicines9050504",
+    "first_author": "Cirri"
+  },
+  {
+    "pmid": "41892443",
+    "title": "Revisiting the Fight Against Acinetobacter baumannii: Emerging Non-Antibiotic Strategies.",
+    "abstract": "This review discusses emerging in vitro and in vivo strategies for the control of Acinetobacter baumannii, a critical multidrug-resistant pathogen; the increasing isolation of strains resistant to multiple drugs, including newly developed and last-resort antibiotics, has highlighted the urgent need to pursue adjunctive therapeutic technologies. The article aims to provide an overview of alternative control approaches beyond conventional antibiotics. Emphasis is placed on strategies based on the disruption of essential metabolic pathways, nanotechnology-based approaches such as antibiotic-coated nanoparticles, in vivo bacteriophage therapy, and drug repurposing, specifically compounds such as selective serotonin reuptake inhibitors (SSRIs), as a means of exploiting already approved pharmaceuticals. By synthesizing recent findings, this review highlights current advances in the development of innovative therapeutic strategies against A. baumannii infections.",
+    "journal": "Antibiotics (Basel)",
+    "year": "2026",
+    "doi": "10.3390/antibiotics15030281",
+    "first_author": "Montini"
+  },
+  {
+    "pmid": "38506448",
+    "title": "Carbonic anhydrase and bacterial metabolism: a chance for antibacterial drug discovery.",
+    "abstract": "INTRODUCTION: Carbonic anhydrases (CAs, EC 4.2.1.1) play a pivotal role in the regulation of carbon dioxide , bicarbonate, and hydrogen ions within bacterial cells, ensuring pH homeostasis and facilitating energy production. We conducted a systematic literature search (PubMed, Web of Science, and Google Scholar) to examine the intricate interplay between CAs and bacterial metabolism, revealing the potential of CA inhibitors (CAIs) as innovative therapeutic agents against pathogenic bacteria.\nAREA COVERED: Inhibition of bacterial CAs was explored in various pathogens, emphasizing the CA roles in microbial virulence, survival, and adaptability. Escherichia coli, a valid and convenient model microorganism, was recently used to investigate the effects of acetazolamide (AAZ) on the bacterial life cycle. Furthermore, the effectiveness of CAIs against pathogenic bacteria has been further substantiated for Vancomycin-Resistant Enterococci (VRE) and antibiotic-resistant Neisseria gonorrhoeae strains.\nEXPERT OPINION: CAIs target bacterial metabolic pathways, offering alternatives to conventional therapies. They hold promise against drug-resistant microorganisms such as VRE and N. gonorrhoeae strains. CAIs offer promising avenues for addressing antibiotic resistance and underscore their potential as novel antibacterial agents. Recognizing the central role of CAs in bacterial growth and pathogenicity will pave the way for innovative infection control and treatment strategies possibly also for other antibiotic resistant species.",
+    "journal": "Expert Opin Ther Pat",
+    "year": "2024",
+    "doi": "10.1080/13543776.2024.2332663",
+    "first_author": "Capasso"
+  },
+  {
+    "pmid": "38963757",
+    "title": "Antimicrobial Delivery Using Metallophore-Responsive Dynamic Nanocarriers.",
+    "abstract": "The increasing prevalence of multidrug-resistant (MDR) pathogens has promoted the development of innovative approaches, such as drug repurposing, synergy, and efficient delivery, in complement to traditional antibiotics. In this study, we present an approach based on biocompatible nanocarriers containing antimicrobial cations and known antibiotics. The matrices were prepared by coordinating GaIII or InIII to formulations of chitosan/tripolyphosphate or catechol-functionalized chitosan with or without encapsulated antibiotics, yielding particles of 100-200 nm in hydrodynamic diameter. MDR clinical isolates of Pseudomonas aeruginosa were found to be effectively inhibited by the nanocarriers under nutrient-limiting conditions. Fractional inhibitory concentration (FIC) indices revealed that cation- and antibiotic-encapsulated nanomatrices were effective against both Gram-negative and Gram-positive pathogens. Metallophores, such as deferoxamine (DFO), were probed to facilitate the sequestration and transport of the antimicrobial cations GaIII or InIII. Although the antimicrobial activities were less significant with DFO, the eradication of biofilm-associated bacteria showed promising trends against P. aeruginosa and Staphylococcus epidermidis. Interestingly, indium-containing compounds showed enhanced activity on biofilm formation and eradication, neutralizing P. aeruginosa under Fe-limiting conditions. In particular, InIII-cross-linked catechol-modified chitosan matrices were able to inhibit pathogenic growth together with DFO. The nanocarriers showed low cytotoxicity toward A549 cells and improvable CC50 values with NIH/3T3 cells.",
+    "journal": "ACS Appl Bio Mater",
+    "year": "2024",
+    "doi": "10.1021/acsabm.4c00619",
+    "first_author": "Raviranga"
+  },
+  {
+    "pmid": "39335008",
+    "title": "Innovative Strategies in Drug Repurposing to Tackle Intracellular Bacterial Pathogens.",
+    "abstract": "Intracellular bacterial pathogens pose significant public health challenges due to their ability to evade immune defenses and conventional antibiotics. Drug repurposing has recently been explored as a strategy to discover new therapeutic uses for established drugs to combat these infections. Utilizing high-throughput screening, bioinformatics, and systems biology, several existing drugs have been identified with potential efficacy against intracellular bacteria. For instance, neuroleptic agents like thioridazine and antipsychotic drugs such as chlorpromazine have shown effectiveness against Staphylococcus aureus and Listeria monocytogenes. Furthermore, anticancer drugs including tamoxifen and imatinib have been repurposed to induce autophagy and inhibit bacterial growth within host cells. Statins and anti-inflammatory drugs have also demonstrated the ability to enhance host immune responses against Mycobacterium tuberculosis. The review highlights the complex mechanisms these pathogens use to resist conventional treatments, showcases successful examples of drug repurposing, and discusses the methodologies used to identify and validate these drugs. Overall, drug repurposing offers a promising approach for developing new treatments for bacterial infections, addressing the urgent need for effective antimicrobial therapies.",
+    "journal": "Antibiotics (Basel)",
+    "year": "2024",
+    "doi": "10.3390/antibiotics13090834",
+    "first_author": "Lorente-Torres"
+  },
+  {
+    "pmid": "37692019",
+    "title": "Probing antibacterial drugs for Fusobacterium nucleatum subsp. nucleatum ATCC 25586 targeting UDP-N-acetylglucosamine 1-carboxyltransferase.",
+    "abstract": "Fusobacterium nucleatum is a Gram-negative anaerobic bacteria that is commonly found in oral cavities and is associated with connective tissue destruction in periodontitis. UDP-N-acetylglucosamine 1-carboxyltransferase with enzyme commission number 2.5.1.7 is a transferases enzyme that plays a role in bacterial pathogenesis. Inhibiting binding sites of UDP-N-acetylglucosamine 1-carboxyltransferase is needed to find potential antibiotic candidates for periodontitis treatment. Hence, the research aimed to present potential UDP-N-acetylglucosamine 1-carboxyltransferase inhibiting compounds through molecular docking simulation by in silico analysis. DrugBank database was used to obtain the antibacterial candidates, which were further screened computationally using the AutoDock Vina program on Google Colab Pro. The top nine compounds yielded binding affinity ranging from -12.1 to -12.8 kcal/mol, with conivaptan as one of the three compounds having the highest binding affinity. Molecular dynamic study revealed that the ligand-protein complex for conivaptan had root-mean-square deviation values of 0.05-1.1 nm, indicating likeliness for stable interaction. Our findings suggest that conivaptan is the potent UDP-N-acetylglucosamine 1-carboxyltransferase inhibitor, hence its efficacy against periodontitis-causing bacteria.",
+    "journal": "J Adv Pharm Technol Res",
+    "year": "2023",
+    "doi": "10.4103/JAPTR.JAPTR_129_23",
+    "first_author": "Saputri"
+  },
+  {
+    "pmid": "32126450",
+    "title": "Repurposed drug candidates for antituberculosis therapy.",
+    "abstract": "Antibiotics have been a key part of clinical treatments for more than 70 years. Long-term use of antimicrobial treatments has led to the development of severe bacterial resistance, which has become increasingly serious due to antibiotic abuse, resulting in the treatment of bacterial infections becoming challenging. The repurposing of approved drugs presents a promising strategy to address current bottlenecks in the development of novel antibacterial agents. Drug repurposing is a cost-effective emerging strategy, which aims to treat resistant infectious diseases by identifying known drugs with predicted efficacy for diseases other than the target disease. This strategy has potential in the treatment of tuberculosis (TB), particularly drug-resistant TB. In recent years, a panel of drugs approved for clinical use or clinical trials, such as linezolid, vancomycin and celecoxib, have been found to have anti-TB activities. However, the utility of drug repurposing is limited by the number of candidate compounds and their low activities. The low activities of repurposed drugs have slowed the development of a drug-repurposing strategy for anti-TB drugs. The present review discusses progress in the discovery of new anti-TB agents through drug repurposing since 2014. We also discuss the challenges faced and analyze the innovative ways that are being used to overcome these difficulties. This review may provide a useful guide for researchers in the field of drug repurposing.",
+    "journal": "Eur J Med Chem",
+    "year": "2020",
+    "doi": "10.1016/j.ejmech.2020.112175",
+    "first_author": "An"
+  },
+  {
+    "pmid": "33345466",
+    "title": "Drug repurposing: Antimicrobial and antibiofilm effects of penfluridol against Enterococcus faecalis.",
+    "abstract": "The bacterium Enterococcus faecalis has increasingly attracted global attention as an important opportunistic pathogen due to its ability to form biofilms that are known to increase drug resistance. However, there are still no effective antibiofilm drugs in clinical settings. Here, by drug repurposing, we investigated the antibacterial activity of penfluridol (PF), an oral long-acting antipsychotic approved by the FDA, against E. faecalis type strain and its clinical isolates. It was found that PF inhibited the growth of E. faecalis planktonic cells with the MIC and MBC of 7.81 µg/ml and 15.63 ~ 62.50 µg/ml, respectively. Moreover, PF could significantly prevent the biofilm formation of E. faecalis at the concentration of 1 × MIC. Furthermore, PF significantly eradicated 24 h pre-formed biofilms of E. faecalis in a dose-dependent manner, with a concentration range of 1 × MIC to 8 × MIC. Here, through the checkerboard method with other tested conventional antibiotics, we also determined that gentamycin, penicillin G, and amikacin showed partial synergistic antibacterial effects with PF. Also, PF showed almost no hemolysis on human erythrocytes. In a mouse peritonitis model, a single dose of 20 mg/kg of PF treatment could significantly reduce the bacterial colonization in the liver (~5-fold reduction) and spleen (~3-fold reduction). In conclusion, these findings indicated that after structural optimization, PF has the potential as a new antibacterial agent against E. faecalis.",
+    "journal": "Microbiologyopen",
+    "year": "2021",
+    "doi": "10.1002/mbo3.1148",
+    "first_author": "Zeng"
+  },
+  {
+    "pmid": "32776618",
+    "title": "Reprogramming of antibiotics to combat antimicrobial resistance.",
+    "abstract": "This review outlines a literature-based approach with illustrative examples of drug repurposing (one molecule, multiple targets), which will be useful in tackling the problem of antimicrobial resistance (AMR). Globally, the demands for new drugs have increased due to multidrug-resistant pathogens and emerging viruses. Keeping these facts in view, drug repurposing started for utilization of a drug in a different way from a preexisting drug, which reduces the time and cost of development of a new drug. Repurposing increases the potency of a drug and reduces its toxicity level, as it is required in lower amounts, supporting the utilization of the drug as a new therapeutic option. This will be further explored to highlight the application in AMR.",
+    "journal": "Arch Pharm (Weinheim)",
+    "year": "2020",
+    "doi": "10.1002/ardp.202000168",
+    "first_author": "Dubey"
+  },
+  {
+    "pmid": "39462601",
+    "title": "Novel and emerging therapeutics for antimicrobial resistance: A brief review.",
+    "abstract": "A pandemic known as anti-microbial resistance (AMR) poses a challenge to contemporary medicine. To stop AMR's rise and quick worldwide spread, urgent multisectoral intervention is needed. This review will provide insight on new and developing treatment approaches for AMR. Future therapy options may be made possible by the development of novel drugs that make use of developments in \"omics\" technology, artificial intelligence, and machine learning. Vaccines, immunoconjugates, antimicrobial peptides, monoclonal antibodies, and nanoparticles may also be intriguing options for treating AMR in the future. Combination therapy may potentially prove to be a successful strategy for combating AMR. To lessen the impact of AMR, ideas like drug repurposing, antibiotic stewardship, and the one health approach may be helpful.",
+    "journal": "Drug Discov Ther",
+    "year": "2024",
+    "doi": "10.5582/ddt.2024.01063",
+    "first_author": "Kuchay"
+  },
+  {
+    "pmid": "31245302",
+    "title": "Drug Repurposing to Fight Colistin and Carbapenem-Resistant Bacteria.",
+    "abstract": "The emergence of new resistance mechanisms, the failure of classical antibiotics in clinic, the decrease in the development of antibiotics in the industry are all challenges that lead us to consider new strategies for the treatment of infectious diseases. Indeed, in recent years controversy has intensified over strains resistant to carbapenem and/or colistin. Various therapeutic solutions are used to overcome administration of last line antibiotics. In this context, drug repurposing, which consists of using a non-antibiotic compound to treat multi-drug resistant bacteria (MDR), is encouraged. In this review, we first report what may have led to drug repurposing. Main definitions, advantages and drawbacks are summarized. Three major methods are described: phenotypic, computational and serendipity. In a second time we will focus on the current knowledge in drug repurposing for carbapenem and colistin-resistant bacteria with different studies describing repurposed compounds tested on Gram-negative bacteria. Furthermore, we show that drug combination therapies can increase successful by drug repurposing strategy. In conclusion, we discuss the pharmaceutical industries that have little interest in reprofiling drugs due to lack of profits. We also consider what a clinician might think of the indications of these uncommon biologists to treat MDR bacterial infections and avoid therapeutic impasses.",
+    "journal": "Front Cell Infect Microbiol",
+    "year": "2019",
+    "doi": "10.3389/fcimb.2019.00193",
+    "first_author": "Peyclit"
+  },
+  {
+    "pmid": "35695911",
+    "title": "Drug repurposing-an emerging strategy in cancer therapeutics.",
+    "abstract": "Cancer is a complex disease affecting millions of people around the world. Despite advances in surgical and radiation therapy, chemotherapy continues to be an important therapeutic option for the treatment of cancer. The current treatment is expensive and has several side effects. Also, over time, cancer cells develop resistance to chemotherapy, due to which there is a demand for new drugs. Drug repurposing is a novel approach that focuses on finding new applications for the old clinically approved drugs. Current advances in the high-dimensional multiomics landscape, especially proteomics, genomics, and computational omics-data analysis, have facilitated drug repurposing. The drug repurposing approach provides cheaper, effective, and safe drugs with fewer side effects and fastens the process of drug development. The review further delineates each repurposed drug's original indication and mechanism of action in cancer. Along with this, the article also provides insight upon artificial intelligence and its application in drug repurposing. Clinical trials are vital for determining medication safety and effectiveness, and hence the clinical studies for each repurposed medicine in cancer, including their stages, status, and National Clinical Trial (NCT) identification, are reported in this review article. Various emerging evidences imply that repurposing drugs is critical for the faster and more affordable discovery of anti-cancerous drugs, and the advent of artificial intelligence-based computational tools can accelerate the translational cancer-targeting pipeline.",
+    "journal": "Naunyn Schmiedebergs Arch Pharmacol",
+    "year": "2022",
+    "doi": "10.1007/s00210-022-02263-x",
+    "first_author": "Turabi"
+  },
+  {
+    "pmid": "41178200",
+    "title": "The Parkinson's Disease Drug Tolcapone and Analogues are Potent Glycomimetic Lectin Inhibitors of Pseudomonas aeruginosa LecA.",
+    "abstract": "The notorious pathogen Pseudomonas aeruginosa relies on the lectin LecA for host cell adhesion, invasion, and biofilm formation. Motivated by the pressing need for new anti-infective therapies caused by antimicrobial resistance, inhibitors of LecA are under investigation. Complementary to the use of carbohydrate-based inhibitors, we have previously identified catechols as weak but specific ligands of LecA, constituting a novel class of non-carbohydrate glycomimetics. By growing the initial millimolar fragment hits, we identified Tolcapone as a promising compound. To gain insight into the structure-activity relationship (SAR) of catechols as LecA binders, more than 3,200 compounds of the Roche in-house library were experimentally screened in a competitive binding assay at three concentrations. Of these, 48 compounds were chosen for further investigation, resulting in compounds equipotent to aryl galactosides, the current epitome of LecA inhibition. X-ray crystallography and saturation transfer difference (STD) NMR spectroscopy revealed conserved interactions of the catechol moiety in the glycan binding site of LecA and rationalized the observed SAR. Our findings demonstrate that it is possible to develop potent non-carbohydrate glycomimetic lectin inhibitors. This work paves the way for a new avenue of research towards innovative anti-infective drugs. In a more general perspective, such small molecules also hold potential to challenge the hegemony of antibodies for lectin inhibition in clinical use.",
+    "journal": "Angew Chem Int Ed Engl",
+    "year": "2025",
+    "doi": "10.1002/anie.202508864",
+    "first_author": "Leusmann"
+  },
+  {
+    "pmid": "38856987",
+    "title": "Management of Neisseria gonorrhoeae infection: from drug resistance to drug repurposing.",
+    "abstract": "INTRODUCTION: Neisseria gonorrhoeae is a common sexually transmitted disease connected with extensive drug resistance to many antibiotics. Presently, only expanded spectrum cephalosporins (ceftriaxone and cefixime) and azithromycin remain useful for its management.\nAREAS COVERED: New chemotypes for the classical antibiotic drug target gyrase/topoisomerase IV afforded inhibitors with potent binding to these enzymes, with an inhibition mechanism distinct from that of fluoroquinolones, and thus less prone to mutations. The α-carbonic anhydrase from the genome of this bacterium (NgCAα) was also validated as an antibacterial target.\nEXPERT OPINION: By exploiting different subunits from the gyrase/topoisomerase IV as well as new chemotypes, two new antibiotics reached Phase II/III clinical trials, zoliflodacin and gepotidacin. They possess a novel inhibition mechanism, binding in distinct parts of the enzyme compared to the fluoroquinolones. Other chemotypes with inhibitory activity in these enzymes were also reported. NgCAα inhibitors belonging to a variety of classes were obtained, with several sulfonamides showing MIC values in the range of 0.25-4 µg/mL and significant activity in animal models of this infection. Acetazolamide and similar CA inhibitors might thus be repurposed as antiinfectives. The scientific/patent literature has been searched for on PubMed, ScienceDirect, Espacenet, and PatentGuru, from 2016 to 2024.",
+    "journal": "Expert Opin Ther Pat",
+    "year": "2024",
+    "doi": "10.1080/13543776.2024.2367005",
+    "first_author": "Pisano"
+  },
+  {
+    "pmid": "41239775",
+    "title": "A computer-aided drug repurposing: the antibacterial agents targeting GroEL.",
+    "abstract": "BACKGROUND AND PURPOSE: Drug repurposing (DR) presents a compelling alternative to traditional drug discovery, offering lower risk and cost by applying approved drugs to new indications. Computational methods play a vital role in early-stage drug repurposing and the development of robust computational workflows can accelerate antibiotic discovery.\nEXPERIMENTAL APPROACH: We established a novel computational workflow comprising three key steps: target screening (based on CEG 2.0 database), drug screening (utilizing DrugBank database, antiBac-Pred database, molecular docking and molecular dynamics [MD] simulation) and in vitro antibacterial experiments.\nKEY RESULTS: Our workflow identified numerous commercially available drugs predicted to target the bacterial chaperone GroEL. Antibacterial assays revealed that both daprodustat and ezetimibe exhibited efficacy against Staphylococcus aureus and Escherichia coli ΔtolC. Notably, the efflux pump inhibitor PAβN enhanced the antibacterial efficacy of daprodustat against both S. aureus and E. coli, while potentiating the antibacterial potency of ezetimibe specifically against S. aureus. MD simulations confirmed stable binding of both drugs to S. aureus or E. coli GroEL, aligning with the antibacterial results.\nCONCLUSION AND IMPLICATIONS: This study validated our computational workflow for repurposing non-antibacterial drugs as antibacterial agents, demonstrating that cost-effective, computer-aided drug repurposing is a feasible strategy for identifying new therapeutic approaches to diseases, such as cancer, diabetes and COVID-19. Furthermore, the synergistic effect of daprodustat combined with an efflux pump inhibitor (e.g. PAβN) represents a promising therapeutic approach against both Gram-positive and Gram-negative bacterial pathogens.",
+    "journal": "Br J Pharmacol",
+    "year": "2026",
+    "doi": "10.1111/bph.70252",
+    "first_author": "Zhang"
+  }
+]
