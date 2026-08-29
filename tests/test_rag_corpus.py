@@ -7,7 +7,9 @@ bateria de preguntas de scripts/rag_demo.py.
 """
 from __future__ import annotations
 
+import json
 import re
+from pathlib import Path
 
 import pandas as pd
 import pytest
@@ -19,7 +21,12 @@ from app.generation.rag.corpus import (
     _is_missing,
     build_corpus,
 )
-from app.generation.rag.retrieval import detect_pathogen, format_evidence, verify_answer
+from app.generation.rag.retrieval import (
+    detect_pathogen,
+    format_evidence,
+    normalize_compound_name,
+    verify_answer,
+)
 
 REQUIRED_METADATA = {
     "evidence_class",
@@ -288,3 +295,76 @@ def test_is_missing_cubre_las_formas_reales_de_ausencia():
     assert not _is_missing(0.0)
     assert not _is_missing("0")
     assert not _is_missing("ATCC 700603; MDR")
+
+
+# ---------------------------------------------------------------------------
+# Normalizacion ES->EN del atajo lexico
+
+
+@pytest.mark.parametrize(
+    "espanol, ingles",
+    [
+        # el caso que motivo el fix: la consulta va en espanol, el indice
+        # guarda el nombre en ingles tal cual lo da ChEMBL
+        ("ciprofloxacino", "CIPROFLOXACIN"),
+        # vocal final distinta a cada lado (-a / -e)
+        ("cefotaxima", "CEFOTAXIME"),
+        # y->i y consonante doble: -micina / -mycin, -cilina / -cillin
+        ("vancomicina", "VANCOMYCIN"),
+        ("amoxicilina", "AMOXICILLIN"),
+        # digrafos que el espanol simplifica: ph->f, th->t
+        ("cefalexina", "CEPHALEXIN"),
+        ("azitromicina", "AZITHROMYCIN"),
+        # -ciclina / -cycline combina y->i con vocal final
+        ("tetraciclina", "TETRACYCLINE"),
+    ],
+)
+def test_la_normalizacion_une_las_formas_espanola_e_inglesa(espanol, ingles):
+    assert normalize_compound_name(espanol) == normalize_compound_name(ingles)
+
+
+def test_los_nombres_iguales_en_ambos_idiomas_siguen_funcionando():
+    """Control de no-regresion: meropenem ya coincidia por igualdad exacta antes
+    del fix y tiene que seguir coincidiendo despues."""
+    for nombre in ("meropenem", "imipenem", "aztreonam", "ertapenem"):
+        assert normalize_compound_name(nombre) == normalize_compound_name(nombre.upper())
+        assert normalize_compound_name(nombre) == nombre
+
+
+def test_la_normalizacion_no_funde_farmacos_distintos():
+    """La normalizacion pierde informacion a proposito; lo que no puede hacer es
+    juntar dos compuestos que no son el mismo."""
+    distintos = [
+        "ciprofloxacin",
+        "levofloxacin",
+        "norfloxacin",
+        "cefotaxime",
+        "cefepime",
+        "ceftazidime",
+        "meropenem",
+        "imipenem",
+        "ertapenem",
+        "tetracycline",
+        "doxycycline",
+        "minocycline",
+    ]
+    normalizados = [normalize_compound_name(n) for n in distintos]
+    assert len(set(normalizados)) == len(distintos)
+
+
+def test_la_normalizacion_es_inyectiva_sobre_el_indice_real():
+    """Barrido de los 717 nombres indexados: ninguna pareja de compuestos
+    distintos puede caer en la misma forma normalizada, o el atajo lexico
+    devolveria la ficha equivocada con distancia 0.0 (peor que no encontrarla)."""
+    ruta = Path("data/chroma_db/compound_names.json")
+    if not ruta.exists():
+        pytest.skip("indice no construido; se ejecuta build_index primero")
+    nombres = json.loads(ruta.read_text())
+    grupos: dict[str, list[str]] = {}
+    for nombre in nombres:
+        clave = normalize_compound_name(nombre)
+        if len(clave) < 5:
+            continue  # siglas cortas, excluidas tambien antes del fix
+        grupos.setdefault(clave, []).append(nombre)
+    colisiones = {k: v for k, v in grupos.items() if len(v) > 1}
+    assert not colisiones, f"formas normalizadas compartidas: {colisiones}"

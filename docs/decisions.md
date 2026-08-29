@@ -823,6 +823,72 @@ correccion 4.
   ser permisiva en esa direccion. Sigue detectando una cifra inventada escrita
   con puntos (test de regresion).
 
+### Fallo 7 - el atajo lexico solo hablaba ingles (ultimo de la fase)
+
+- **El problema.** El indice de nombres guarda lo que dan ChEMBL y CO-ADD, que
+  es **siempre ingles** (`CIPROFLOXACIN`), pero el sistema se pregunta y se
+  responde en **espanol**, que es el idioma de la demo. Para los farmacos cuya
+  forma coincide en ambos idiomas (meropenem, imipenem, aztreonam) la
+  coincidencia exacta funcionaba y la ficha entraba a distancia 0.0; para los
+  que no, fallaba **en silencio** y la ficha caia al monton semantico, que es
+  justo el modo de fallo que esta fase existe para evitar. Medido:
+
+  | consulta | antes | despues |
+  |---|---|---|
+  | "...del ciprofloxacino frente a K. pneumoniae" | **0.1102**, ficha de otro compuesto en E1 | **0.0000**, ficha de Ciprofloxacin en E1 |
+  | "...del meropenem frente a K. pneumoniae" (control) | 0.0000 | 0.0000 |
+
+  Afectaba justo al caso de uso del proyecto: los nombres de farmaco son la via
+  principal de una consulta de reposicionamiento.
+- **La correccion: normalizar los DOS lados** (nombre indexado y consulta) a una
+  forma comun que no es correcta en ningun idioma pero coincide cuando se trata
+  del mismo farmaco. **No es un traductor**: son cinco reglas ortograficas fijas,
+  elegidas contra los sufijos realmente presentes en los 717 nombres indexados
+  (`-ine` 69, `-ide` 56, `-mycin` 35, `-ate` 25, `-one` 23, `-cillin` 13,
+  `-cycline` 8, `-xime` 5):
+  1. minusculas y sin acentos;
+  2. digrafos griegos que el espanol simplifica: `ph`->`f`, `th`->`t`
+     (*cephalexin* -> *cefalexin*, *azithromycin* -> *azitromycin*);
+  3. `y`->`i` (*vancomycin* -> *vancomicin*);
+  4. consonante doble colapsada (*amoxicillin* -> *amoxicilin*, que es como el
+     espanol escribe *-cilina*);
+  5. vocal final `a`/`e`/`o` eliminada cuando el nombre supera 5 caracteres
+     (*ciprofloxacino* y *ciprofloxacin* -> `ciprofloxacin`; *cefotaxima* y
+     *cefotaxime* -> `cefotaxim`).
+- **Verificado sobre nombres reales del corpus, no inventados.** 22 de 24 formas
+  espanolas probadas resuelven a un nombre efectivamente indexado, y 8 de 8
+  comprobadas end-to-end entran por coincidencia exacta (distancia 0.0):
+  ciprofloxacino, cefotaxima, meropenem (control), doxiciclina, ceftazidima,
+  trimetoprima, tobramicina y claritromicina.
+- **Inyectividad comprobada, no asumida.** Barrido de los 717 nombres: **714
+  formas normalizadas distintas, 0 colisiones**. Los 3 restantes (`pj34`,
+  `6bio`, `dapi`) quedan fuera por el umbral de longitud minima, exactamente
+  igual que antes del cambio (los tres tienen 4 caracteres en crudo), asi que la
+  cobertura no baja. Hay un test que repite este barrido sobre el indice real:
+  una colision futura devolveria la ficha equivocada a distancia 0.0, que seria
+  peor que no encontrarla.
+- **Sin reindexar.** La normalizacion se aplica al cargar
+  `compound_names.json` en memoria, no al construir el indice: cambiar las
+  reglas no obliga a recalcular los 34 078 embeddings.
+
+#### Dos limitaciones que este fix NO cubre (caracterizadas, no ignoradas)
+
+- **Nombres indexados de varias palabras cuyo primer token es el farmaco.** La
+  comparacion exige que el nombre indexado aparezca entero en la consulta, asi
+  que preguntar por "colistina" no engancha: el corpus **no tiene una ficha
+  "colistin" a secas** para estos patogenos, solo `colistin b` y
+  `colistin methylsulphate` (y trece variantes de polimixina B). No es un fallo
+  de la normalizacion — `normalize_compound_name("colistina") == "colistin"` es
+  correcto — sino que el nombre buscado es un prefijo del indexado. Es relevante
+  porque la colistina es una de las opciones de ultima linea de la ficha de
+  patogeno. Solucion pendiente si se decide abordarla: permitir la coincidencia
+  por primer token con guarda de longitud, aceptando que devuelva todas las
+  variantes del farmaco (que es probablemente lo que se quiere).
+- **Divergencias ES/EN que van mas alla de las cinco reglas.** Por ejemplo
+  *chloramphenicol* / *cloranfenicol* (`ch`->`c` y `m`->`n` ademas de `ph`->`f`).
+  La heuristica es minima a proposito: cada regla nueva es una oportunidad de
+  crear una colision, y el barrido de inyectividad es la red que lo detectaria.
+
 ### Cuadre de cifras (documentos vs chunks)
 
 Se detecto una inconsistencia de 2 documentos al revisar las cuentas. Cuadre
@@ -872,7 +938,10 @@ exacto, verificado ejecutando el pipeline:
   `invalid_labels: []`** — ninguna cita inventada en ninguna respuesta. Los
   unicos `ungrounded_numbers` de la ultima ejecucion fueron los tres artefactos
   del separador de miles descritos arriba, ya corregidos.
-- **Tests:** 21 en `tests/test_rag_corpus.py`, sin red y sin LLM. Cubren las
+- **Tests:** 57 sin red y sin LLM — `tests/test_rag_corpus.py` (corpus,
+  plantillas, chunking, normalizacion de nombres) y
+  `tests/test_verify_answer.py` (extractor de numeros, base de la metrica de
+  Fase 7). Cubren las
   invariantes que pueden romperse en silencio al editar plantillas: todo
   documento citable, ids unicos, las 66 fichas de binding marcadas como holdout
   (y solo esas), el holdout del DTI marcado, ninguna ficha afirmando eficacia

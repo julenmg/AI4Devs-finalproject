@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import json
 import re
+import unicodedata
 from pathlib import Path
 
 from app.config import settings
@@ -36,7 +37,8 @@ DEFAULT_K = 8
 # Escrito por scripts/build_index.py: nombre de compuesto -> doc_ids.
 NAME_INDEX_PATH = Path("data/chroma_db/compound_names.json")
 MAX_LEXICAL_HITS = 4
-MIN_NAME_CHARS = 5  # evita que siglas como "ADC" o "MIC" disparen falsos positivos
+# Longitud minima del nombre YA NORMALIZADO (ver _MIN_NORMALIZED_CHARS): evita
+# que siglas como "ADC" o "MIC" disparen falsos positivos.
 # Tope de fichas de un mismo tipo en el relleno semantico. Las 33 791 fichas de
 # potencia comparten forma, asi que sin tope copan las 8 posiciones con
 # compuestos sin nombre practicamente indistinguibles entre si (medido: todas a
@@ -115,7 +117,57 @@ def detect_pathogen(question: str) -> str | None:
     return matched[0] if len(matched) == 1 else None
 
 
+# Normalizacion ES->EN para el atajo lexico.
+#
+# El indice guarda los nombres tal como vienen de ChEMBL/CO-ADD, que son
+# SIEMPRE en ingles ("CIPROFLOXACIN"), pero el sistema se pregunta en espanol.
+# Para los farmacos cuya forma coincide en ambos idiomas (meropenem, imipenem)
+# la coincidencia exacta funcionaba; para los que no ("ciprofloxacino",
+# "cefotaxima") fallaba en silencio y la ficha caia al monton semantico.
+#
+# NO es un traductor: son cinco reglas ortograficas fijas que cubren los
+# patrones de nomenclatura realmente presentes en el corpus (sufijos medidos
+# sobre los 717 nombres indexados: -ine 69, -ide 56, -mycin 35, -ate 25,
+# -one 23, -cillin 13, -cycline 8, -xime 5).
+_ACCENT_MAP = str.maketrans("", "", "\u0300\u0301\u0302\u0303\u0308\u0327")
+_DOUBLE_CONSONANT_RE = re.compile(r"([bcdfglmnprstz])\1")
+_TRAILING_VOWEL_RE = re.compile(r"[aeo]$")
+_MIN_NORMALIZED_CHARS = 5
+
+
+def _normalize_token(token: str) -> str:
+    """Una palabra normalizada a una forma comun a espanol e ingles."""
+    # 1. sin acentos y en minusculas: "ácido" -> "acido"
+    token = unicodedata.normalize("NFD", token.lower()).translate(_ACCENT_MAP)
+    token = unicodedata.normalize("NFC", token)
+    # 2. digrafos griegos que el espanol simplifica:
+    #    cephalexin -> cefalexin, azithromycin -> azitromycin
+    token = token.replace("ph", "f").replace("th", "t")
+    # 3. y/i: vancomycin -> vancomicin, tetracycline -> tetracicline
+    token = token.replace("y", "i")
+    # 4. consonante doble: amoxicillin -> amoxicilin (ES escribe -cilina)
+    token = _DOUBLE_CONSONANT_RE.sub(r"\1", token)
+    # 5. vocal final que el ingles no lleva o lleva distinta:
+    #    ciprofloxacino -> ciprofloxacin, cefotaxima/cefotaxime -> cefotaxim,
+    #    metronidazol(e) -> metronidazol, amikacina -> amikacin
+    if len(token) > _MIN_NORMALIZED_CHARS:
+        token = _TRAILING_VOWEL_RE.sub("", token)
+    return token
+
+
+def normalize_compound_name(text: str) -> str:
+    """Normaliza un nombre o una frase completa, palabra a palabra.
+
+    Se aplica a AMBOS lados (nombre indexado y consulta del usuario): la forma
+    normalizada no tiene que ser legible ni correcta en ningun idioma, solo
+    tiene que coincidir cuando se trata del mismo farmaco.
+    """
+    tokens = [t for t in re.split(r"[^0-9a-zA-Z\u00c0-\u024f]+", text) if t]
+    return " ".join(_normalize_token(t) for t in tokens)
+
+
 _name_index_cache: dict | None = None
+_normalized_index_cache: dict | None = None
 
 
 def _name_index() -> dict[str, list[str]]:
@@ -126,6 +178,23 @@ def _name_index() -> dict[str, list[str]]:
         else:
             _name_index_cache = {}
     return _name_index_cache
+
+
+def _normalized_name_index() -> dict[str, list[str]]:
+    """Nombre normalizado -> doc_ids. Se deriva en memoria del indice de nombres
+    escrito por build_index, asi que corregir la normalizacion no obliga a
+    reconstruir el indice vectorial."""
+    global _normalized_index_cache
+    if _normalized_index_cache is None:
+        normalized: dict[str, list[str]] = {}
+        for name, doc_ids in _name_index().items():
+            key = normalize_compound_name(name)
+            if len(key) < _MIN_NORMALIZED_CHARS:
+                continue
+            normalized.setdefault(key, [])
+            normalized[key].extend(d for d in doc_ids if d not in normalized[key])
+        _normalized_index_cache = normalized
+    return _normalized_index_cache
 
 
 def lexical_hits(question: str, pathogen: str | None = None) -> list[dict]:
@@ -139,13 +208,11 @@ def lexical_hits(question: str, pathogen: str | None = None) -> list[dict]:
     propio es una tarea lexica; se resuelve con una coincidencia exacta, no
     pidiendole al embedding algo que no puede dar.
     """
-    lowered = question.lower()
+    normalized_question = normalize_compound_name(question)
     matched_ids: list[str] = []
-    for name, doc_ids in _name_index().items():
-        if len(name) < MIN_NAME_CHARS:
-            continue
-        if re.search(rf"\b{re.escape(name)}\b", lowered):
-            matched_ids.extend(doc_ids)
+    for name, doc_ids in _normalized_name_index().items():
+        if re.search(rf"\b{re.escape(name)}\b", normalized_question):
+            matched_ids.extend(d for d in doc_ids if d not in matched_ids)
 
     hits = get_by_ids(matched_ids[: MAX_LEXICAL_HITS * 2])
     if pathogen:
