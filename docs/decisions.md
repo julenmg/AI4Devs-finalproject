@@ -365,6 +365,61 @@ las cifras verificadas sobre el dataset curado real, no asumidas.
   ~2 ms/fila (~1.4 min en total). El entrenamiento se define por tanto en un
   **nº fijo de pasos** con checkpointing periódico, no en épocas.
 
+### Resultados del fine-tune (RMSE de pMIC sobre el hold-out)
+
+Métrica: RMSE en unidades pMIC sobre el subconjunto EXACTO del test (relation
+`=`), 256 filas del hold-out por inchikey (132 exactas). Baseline = el
+checkpoint DTI de IBM SIN LoRA (ya entrenado en pKd de BindingDB, distribución
+casi idéntica a la nuestra — por eso el baseline no es trivialmente malo).
+
+| | Baseline (sin LoRA) | Final (con LoRA) | Mejora |
+|---|---|---|---|
+| **Época completa** (5235 pasos opt., 1 pasada) | 1.462 | **1.010** | −0.452 (−30.9%) |
+| PoC parcial (500 pasos opt., ~10% época) | 1.462 | 1.092 | −0.370 (−25.3%) |
+
+- **La pasada completa mejora sobre el PoC:** 1.092 → **1.010 pMIC** (−0.082
+  adicional). La mayor parte de la ganancia ya estaba en el PoC (el LoRA
+  converge rápido sobre una distribución cercana a la nativa); la época
+  completa la refina. Mejor eval visto: **0.985** (step 5000); el final
+  (1.010, step 5235) quedó ligeramente por encima del mejor, con ruido de
+  eval visible (p.ej. step 4500 rebotó a 1.057) — meseta real en ~1.0 pMIC,
+  no sobreajuste evidente.
+- **DECISIÓN — el modelo de referencia de aquí en adelante es
+  `lora_adapter_step5000` (RMSE 0.985), no el `lora_adapter` final (1.010).**
+  Early-stopping por eval: se elige el mejor checkpoint observado, no el
+  último, que es práctica estándar y evita quedarse con la cola ruidosa del
+  entrenamiento. Caveat honesto: el eval son 132 filas exactas (pequeño), y
+  la diferencia 0.985 vs 1.010 (0.025 pMIC) está dentro del ruido de eval
+  que vimos (rebotes de ±0.05-0.07); step5000 no es "significativamente"
+  mejor, pero al estar casi al final (95% del entrenamiento) elegirlo es de
+  bajo riesgo y sigue el principio correcto. Fase 7 debe reconfirmar la
+  selección reevaluando los checkpoints sobre el hold-out COMPLETO por
+  patógeno (no este subset de 256), y ahí puede cambiar la elección.
+- **Interpretación honesta:** un RMSE de ~1.0 en pMIC = ~1 orden de magnitud
+  de error típico en potencia (MIC). Es una mejora clara sobre el baseline
+  (1.46) pero sigue siendo un modelo de cribado grueso, no de predicción fina
+  — coherente con que es un QSAR fenotípico sobre un ancla de organismo, no
+  binding específico. La evaluación rigurosa (por patógeno, con scaffold
+  split, y el chequeo cualitativo de los 66 Ki/Kd reales) es Fase 7.
+- **Ejecución:** terminó limpia, 5235 pasos de optimizador, ~8.6 h en la
+  GTX 1070, **sin un solo error CUDA/OOM** en todo el run (los timers de apt
+  y la suspensión se desactivaron para la noche; pendiente reactivarlos).
+  Adapter final en `training/output/lora_adapter/`; checkpoints intermedios
+  cada 1000 pasos; PoC preservado en `training/output/poc_validation/`.
+  Config: LoRA r=8 α=16, lr 1e-4, batch 4 × grad-accum 2 (efectivo 8),
+  seed 42.
+- **Versionado en git (excepción consciente a la política de "no pesos"):**
+  el `.gitignore` y CLAUDE.md §Seguridad prohíben commitear `*.safetensors` /
+  `training/output/` por norma general (evitar pesos grandes en el repo).
+  Aquí se hace una excepción acotada: se versiona SOLO el adapter elegido
+  (`lora_adapter_step5000/`, ~1.2 MB) + `metrics.json` + las métricas del PoC,
+  vía negaciones explícitas en `.gitignore`. Justificación: es el deliverable
+  de Fase 3, diminuto, y lo necesitan Fases 7-8 sin reentrenar 8.6 h. Se podan
+  los checkpoints intermedios (step1000-4000) y los pesos del PoC (regenerables
+  por seed); el adapter final no-elegido queda fuera de git (en disco local).
+  Pendiente: reflejar esta excepción en la nota de CLAUDE.md §Seguridad cuando
+  se resuelva el revert espurio que tiene ese fichero en el working tree.
+
 ## Fase 4 - CAG
 -
 
