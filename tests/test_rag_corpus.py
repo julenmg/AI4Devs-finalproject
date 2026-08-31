@@ -22,8 +22,12 @@ from app.generation.rag.corpus import (
     build_corpus,
 )
 from app.generation.rag.retrieval import (
+    _MIN_NORMALIZED_CHARS,
+    _first_token_index,
+    _normalized_name_index,
     detect_pathogen,
     format_evidence,
+    lexical_hits,
     normalize_compound_name,
     verify_answer,
 )
@@ -368,3 +372,76 @@ def test_la_normalizacion_es_inyectiva_sobre_el_indice_real():
         grupos.setdefault(clave, []).append(nombre)
     colisiones = {k: v for k, v in grupos.items() if len(v) > 1}
     assert not colisiones, f"formas normalizadas compartidas: {colisiones}"
+
+
+# ---------------------------------------------------------------------------
+# Coincidencia por primer token (variantes, sales y congeneres)
+
+INDICE = Path("data/chroma_db/compound_names.json")
+
+
+def test_colistina_recupera_todas_sus_variantes():
+    """El corpus no tiene una ficha "colistin" a secas: solo `colistin b` y
+    `colistin methylsulphate`. Tienen que venir TODAS, no solo la primera."""
+    if not INDICE.exists():
+        pytest.skip("indice no construido")
+    nombres = {h["metadata"].get("compound_name", "").lower()
+               for h in lexical_hits("Que evidencia hay sobre la colistina?")}
+    assert "colistin b" in nombres
+    assert "colistin methylsulphate" in nombres
+
+
+def test_polimixina_no_arrastra_colistina():
+    """Farmacos emparentados pero distintos: comparten familia, no primer token.
+    Si se mezclaran, el atajo devolveria evidencia del compuesto equivocado a
+    distancia 0.0, que es peor que no encontrar nada."""
+    if not INDICE.exists():
+        pytest.skip("indice no construido")
+    nombres = {h["metadata"].get("compound_name", "").lower()
+               for h in lexical_hits("Que evidencia hay sobre la polimixina?")}
+    assert nombres, "deberia encontrar las variantes de polimixina B"
+    assert all("polymyxin" in x for x in nombres), nombres
+    assert not any("colistin" in x for x in nombres), nombres
+
+
+def test_la_guarda_de_longitud_excluye_los_primeros_tokens_genericos():
+    """Los unicos grupos que juntan compuestos sin relacion son los de token de
+    un caracter ("3" agrupa 3-o-methylquercetin con 3,4-dimethoxy
+    cinnamaldehyde). No hay ningun grupo de 2 a 6 caracteres, asi que el umbral
+    los elimina sin descartar ni un grupo legitimo."""
+    if not INDICE.exists():
+        pytest.skip("indice no construido")
+    claves = _first_token_index()
+    assert claves
+    assert all(len(k) >= _MIN_NORMALIZED_CHARS for k in claves)
+    for generico in ("2", "3", "4", "5", "l", "n", "o", "s", "r"):
+        assert generico not in claves
+
+
+def test_el_vocabulario_del_dominio_no_dispara_falsos_positivos():
+    """Barrido del riesgo que el chequeo de inyectividad nombre-contra-nombre no
+    cubre: lexical_hits normaliza la PREGUNTA entera palabra a palabra, asi que
+    una palabra corriente del espanol podria coincidir con un farmaco ya
+    normalizado. Se pasa el normalizador sobre el vocabulario real (contexto fijo
+    del CAG + las 9 preguntas de la bateria) y toda coincidencia tiene que ser un
+    nombre de farmaco de verdad."""
+    if not INDICE.exists():
+        pytest.skip("indice no construido")
+    from app.generation.cag.static_context import STATIC_CONTEXT
+    from scripts.rag_demo import COMPARACION, DENTRO, FUERA
+
+    esperados = {
+        "avibactam", "cefiderocol", "ceftazidima", "ciprofloxacino", "colistina",
+        "daptomicina", "durlobactam", "meropenem", "sulbactam", "tigeciclina",
+        "vaborbactam",
+    }
+    textos = [STATIC_CONTEXT] + [q for _, q in DENTRO] + [q for _, q in FUERA] + [COMPARACION]
+    vocabulario = {w.lower() for t in textos for w in re.split(r"[^0-9A-Za-z\u00c0-\u024f]+", t) if w}
+
+    indices = (_normalized_name_index(), _first_token_index())
+    encontrados = {w for w in vocabulario if any(normalize_compound_name(w) in i for i in indices)}
+    inesperados = encontrados - esperados
+    assert not inesperados, (
+        f"palabras del dominio que ahora coinciden con un farmaco y no son un "
+        f"farmaco: {sorted(inesperados)} - decidir caso a caso y documentar"
+    )

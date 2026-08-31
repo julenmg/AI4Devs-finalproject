@@ -36,6 +36,9 @@ DEFAULT_K = 8
 
 # Escrito por scripts/build_index.py: nombre de compuesto -> doc_ids.
 NAME_INDEX_PATH = Path("data/chroma_db/compound_names.json")
+# Tope de fichas que aporta el atajo lexico. Limita el PRESUPUESTO del prompt,
+# no la busqueda: la busqueda recoge todas las variantes que comparten primer
+# token y solo despues se recorta, tras filtrar por patogeno.
 MAX_LEXICAL_HITS = 4
 # Longitud minima del nombre YA NORMALIZADO (ver _MIN_NORMALIZED_CHARS): evita
 # que siglas como "ADC" o "MIC" disparen falsos positivos.
@@ -168,6 +171,7 @@ def normalize_compound_name(text: str) -> str:
 
 _name_index_cache: dict | None = None
 _normalized_index_cache: dict | None = None
+_first_token_index_cache: dict | None = None
 
 
 def _name_index() -> dict[str, list[str]]:
@@ -197,6 +201,44 @@ def _normalized_name_index() -> dict[str, list[str]]:
     return _normalized_index_cache
 
 
+def _first_token_index() -> dict[str, list[str]]:
+    """Primer token normalizado -> doc_ids de TODAS las fichas que lo comparten.
+
+    Existe porque muchos farmacos estan indexados solo con su forma salificada o
+    con un congenere concreto, nunca a secas: el corpus no tiene "colistin",
+    tiene `colistin b` y `colistin methylsulphate`. Preguntar por "colistina" no
+    enganchaba, y la colistina es una de las opciones de ultima linea de la
+    ficha de patogeno.
+
+    La agrupacion por primer token es casi siempre lo que se quiere: junta la
+    base con sus sales e hidratos (ampicillin / ampicillin sodium / ampicillin
+    trihydrate) y las series de congeneres de producto natural (moracin c/d/i/m).
+
+    GUARDA DE LONGITUD: solo se indexan primeros tokens de >= 5 caracteres
+    (_MIN_NORMALIZED_CHARS). Medido sobre los 717 nombres, los unicos grupos que
+    juntan compuestos SIN relacion son los de token de un solo caracter: "3"
+    agrupa 3-o-methylquercetin con 3,4-dimethoxy cinnamaldehyde y otros tres
+    compuestos que no tienen nada que ver, y lo mismo pasa con "2", "4", "5" y
+    "l". No existe ningun grupo de longitud 2 a 6, asi que el umbral de 5 elimina
+    exactamente esos siete casos y no descarta ni un grupo legitimo (el mas corto
+    de los buenos, "moracin", tiene 7).
+    """
+    global _first_token_index_cache
+    if _first_token_index_cache is None:
+        grouped: dict[str, list[str]] = {}
+        for name, doc_ids in _name_index().items():
+            normalized = normalize_compound_name(name)
+            if not normalized:
+                continue
+            token = normalized.split()[0]
+            if len(token) < _MIN_NORMALIZED_CHARS:
+                continue
+            grouped.setdefault(token, [])
+            grouped[token].extend(d for d in doc_ids if d not in grouped[token])
+        _first_token_index_cache = grouped
+    return _first_token_index_cache
+
+
 def lexical_hits(question: str, pathogen: str | None = None) -> list[dict]:
     """Atajo lexico: si la pregunta nombra un compuesto conocido, su ficha entra
     con certeza en la evidencia.
@@ -210,9 +252,17 @@ def lexical_hits(question: str, pathogen: str | None = None) -> list[dict]:
     """
     normalized_question = normalize_compound_name(question)
     matched_ids: list[str] = []
-    for name, doc_ids in _normalized_name_index().items():
-        if re.search(rf"\b{re.escape(name)}\b", normalized_question):
-            matched_ids.extend(d for d in doc_ids if d not in matched_ids)
+
+    def _collect(index: dict[str, list[str]]) -> None:
+        for key, doc_ids in index.items():
+            if re.search(rf"\b{re.escape(key)}\b", normalized_question):
+                matched_ids.extend(d for d in doc_ids if d not in matched_ids)
+
+    # 1. nombre completo: la coincidencia mas especifica va primero
+    _collect(_normalized_name_index())
+    # 2. primer token: recoge las variantes (sales, hidratos, congeneres) de un
+    #    farmaco que no esta indexado con su nombre a secas
+    _collect(_first_token_index())
 
     hits = get_by_ids(matched_ids[: MAX_LEXICAL_HITS * 2])
     if pathogen:

@@ -889,6 +889,109 @@ correccion 4.
   La heuristica es minima a proposito: cada regla nueva es una oportunidad de
   crear una colision, y el barrido de inyectividad es la red que lo detectaria.
 
+### Fallo 8 - coincidencia por primer token (variantes, sales y congeneres)
+
+- **El problema.** Muchos farmacos no estan indexados con su nombre a secas sino
+  solo con una sal o un congenere concreto: el corpus **no tiene "colistin"**,
+  tiene `colistin b` y `colistin methylsulphate`. La comparacion exigia que el
+  nombre indexado apareciera ENTERO en la consulta, asi que "colistina" no
+  enganchaba — y la colistina es una de las opciones de ultima linea de la ficha
+  de patogeno. No era un fallo de la normalizacion ES->EN
+  (`normalize_compound_name("colistina") == "colistin"` siempre fue correcto):
+  el nombre buscado es un PREFIJO del indexado.
+- **La correccion.** Un segundo indice, primer token normalizado -> doc_ids de
+  todas las fichas que lo comparten, consultado despues del de nombre completo
+  (la coincidencia mas especifica va primero). Devuelve **todas** las variantes,
+  no la primera.
+- **Guarda de longitud: 5 caracteres** (`_MIN_NORMALIZED_CHARS`, el mismo umbral
+  del indice de nombre completo). Elegido con los datos delante, no por defecto:
+  de los 717 nombres salen 575 primeros tokens, de los que 64 agrupan mas de un
+  nombre. **Los unicos grupos que juntan compuestos sin relacion son los de token
+  de un solo caracter.** Falso positivo real que evita: el token `"3"` agrupaba
+  `3-o-methylquercetin`, `3,4-dimethoxy cinnamaldehyde`,
+  `3,3',4',5-tetrachlorosalicylanilide`, `3-amino-3-deoxythymidine` y
+  `3-phenylindole` — cinco compuestos sin ninguna relacion entre si, que
+  cualquier pregunta con un "3" habria traido a distancia 0.0. Lo mismo con
+  `"2"`, `"4"`, `"5"` y `"l"`. **No existe ningun grupo de longitud 2 a 6**, asi
+  que el umbral de 5 elimina exactamente esos siete casos sin descartar ni un
+  grupo legitimo (el mas corto de los buenos, `moracin`, tiene 7).
+
+#### Barrido de los 64 grupos, decididos uno a uno
+
+- **22 grupos: series de congeneres del mismo producto natural** (`moracin
+  c/d/i/m/n`, `stemofuran e/f/j/k/m/p/r`, `sophenazine a-f`, `scoposide a-e`,
+  `cadiolide b-e`, `flavomannin a-d`, `hapalindole a/i/j`, `cyanocycline a/b/d`,
+  `polymyxin b2/b4/b5/nonapeptide`...). Agrupacion **correcta**: preguntar por
+  "moracina" debe devolver la serie.
+- **5 grupos: base mas sal o hidrato** (`ampicillin` + sodium/trihydrate,
+  `doxycycline` + anhydrous/hydrochloride, `berberine` + chloride, `moxalactam`
+  + disodium, `oxiconazole` + nitrate, `tosufloxacin` + tosylate,
+  `ciprofloxacin` + hydrochloride, `kanamycin` + a/sulfate, `trimethoprim` + dos
+  sales). Agrupacion **correcta**.
+- **3 grupos genuinamente discutibles, aceptados con criterio explicito:**
+  - `cinamic`: `cinnamic acid` + `cinnamic alcohol`. Son compuestos DISTINTOS
+    (acido carboxilico vs alcohol), no una sal ni un congenere.
+  - `epigalocatechin`: `epigallocatechin` + `epigalocatechin gallate`. EGCG es
+    el ester galato de EGC: emparentados, no el mismo compuesto.
+  - `penicilin`: `penicillin g` (+ sus sales) + `penicillin v`. Son dos
+    antibioticos distintos (bencilpenicilina y fenoximetilpenicilina).
+  **Se aceptan los tres.** Razon: la agrupacion NUNCA fusiona compuestos — cada
+  variante sigue siendo su propia ficha, con su nombre y su cita, y la regla 6
+  del system prompt prohibe atribuir a un compuesto evidencia obtenida de otro.
+  El coste es gastar una ranura extra de evidencia; el beneficio es no perder la
+  ficha que el usuario buscaba. El riesgo es de dilucion, no de atribucion
+  incorrecta. Si en Fase 7 se midiera precision@k, estos tres casos son los
+  primeros candidatos a revisar.
+- **El tope `MAX_LEXICAL_HITS = 4` limita el presupuesto del prompt, no la
+  busqueda**: se recogen todas las variantes y se recorta despues, tras filtrar
+  por patogeno.
+- **Verificado end-to-end.** "colistina" devuelve `Colistin B` (Kp y Ab) y
+  `Colistin Methylsulphate` (Ab), las tres a distancia 0.0. "polimixina"
+  devuelve solo las cuatro variantes de polimixina B y **no arrastra colistina**:
+  son familia emparentada pero no comparten primer token. "ciprofloxacino"
+  devuelve la base y el clorhidrato; "meropenem" (control) sigue igual.
+
+### Falsos positivos del atajo lexico contra vocabulario real (hueco del barrido anterior)
+
+El chequeo de inyectividad de la seccion anterior comparaba **nombres contra
+nombres**, y eso dejaba fuera un riesgo: `lexical_hits` normaliza la PREGUNTA
+entera palabra a palabra, asi que una palabra corriente del espanol, ya
+normalizada, podria coincidir con un nombre de farmaco normalizado y disparar
+una coincidencia exacta falsa a distancia 0.0 — el modo de fallo peor, porque
+presenta como certeza lo que es una casualidad ortografica.
+
+Comprobado sobre vocabulario real (las 275 palabras distintas del
+`STATIC_CONTEXT` del CAG mas las 9 preguntas de la bateria de validacion) contra
+los dos indices, el de nombre completo y el de primer token:
+
+- **10 coincidencias con el indice de nombre completo, las 10 son farmacos de
+  verdad**: avibactam, cefiderocol, ceftazidima, ciprofloxacino, daptomicina,
+  durlobactam, meropenem, sulbactam, tigeciclina, vaborbactam. Cero falsos
+  positivos.
+- **1 coincidencia nueva aportada por el indice de primer token: `colistina`**,
+  que es exactamente el fallo 8 funcionando. Cero regresiones.
+
+Queda como test (`test_el_vocabulario_del_dominio_no_dispara_falsos_positivos`)
+con la lista de las once palabras esperadas: si una palabra corriente empieza a
+coincidir con un farmaco, el test falla y obliga a decidir en vez de dejarlo
+pasar en silencio.
+
+**Efecto colateral que conviene saber:** "daptomicina" aparecia en la pregunta
+*fuera de corpus* de la bateria ("cual es el MIC de la daptomicina frente a
+K. pneumoniae ATCC 700603") y ahora **si** encuentra ficha. La pregunta sigue sin
+respuesta, pero por una razon mejor: la ficha real de Daptomycin existe y tiene
+**solo valores censurados** (`>50 ug/mL` de MIC en 2016, `>1e5 nM` de EC50 en
+2018), ninguno determinado ni contra esa cepa. El sistema pasa de "no encuentro
+daptomicina" a "existe esta evidencia, y es una cota, no un MIC" — que es una
+demostracion mejor de la regla de valores censurados.
+
+### Limpieza: `MIN_NAME_CHARS`
+
+La constante quedo sustituida por `_MIN_NORMALIZED_CHARS`, que se aplica sobre la
+forma ya normalizada (mas corta). Comprobado con grep sobre todo el repo (`.py`
+y `.md`): **ninguna otra referencia**, ni en codigo ni en documentacion.
+
+
 ### Cuadre de cifras (documentos vs chunks)
 
 Se detecto una inconsistencia de 2 documentos al revisar las cuentas. Cuadre
@@ -938,7 +1041,7 @@ exacto, verificado ejecutando el pipeline:
   `invalid_labels: []`** — ninguna cita inventada en ninguna respuesta. Los
   unicos `ungrounded_numbers` de la ultima ejecucion fueron los tres artefactos
   del separador de miles descritos arriba, ya corregidos.
-- **Tests:** 57 sin red y sin LLM — `tests/test_rag_corpus.py` (corpus,
+- **Tests:** 61 sin red y sin LLM — `tests/test_rag_corpus.py` (corpus,
   plantillas, chunking, normalizacion de nombres) y
   `tests/test_verify_answer.py` (extractor de numeros, base de la metrica de
   Fase 7). Cubren las
@@ -953,6 +1056,16 @@ exacto, verificado ejecutando el pipeline:
   `store.py`, `retrieval.py`, `scripts/build_index.py`, `scripts/rag_demo.py`,
   `tests/test_rag_corpus.py`. Ademas: `llm_model` sube a `config.py` y
   `static_context.py` (Fase 4) pasa a leerlo de ahi.
+
+### FASE 5 CERRADA
+
+Ocho fallos encontrados y corregidos, todos ejecutando el sistema y no
+revisando codigo. 61 tests sin red ni LLM. Indice de 34 078 chunks
+reconstruible con `uv run python -m scripts.build_index --with-literature`.
+Bateria de validacion 9/9 sin una sola cita inventada. Las limitaciones que
+quedan estan caracterizadas y escritas (compuestos sin nombre indistinguibles
+entre si, agregados solo si existen como texto indexado, sin reranker,
+divergencias ES/EN mas alla de las cinco reglas ortograficas).
 
 ### ADVERTENCIA PARA FASE 6 - no dejar que el LLM "cuadre" el DTI con el RAG
 
