@@ -77,7 +77,7 @@ prueba de criterio técnico que se evalúa, no un trámite.
 | 3 | Fine-tune LoRA | Ajuste sobre dianas bacterianas curadas |
 | 4 | Prototipo CAG | Contexto fijo, sin retrieval — ver nota arriba |
 | 5 | Escalar a RAG | Indexar extractos reales de ChEMBL/CO-ADD/literatura |
-| 6 | Agente + caso de estudio | RAG y modelo fine-tuneado como herramientas; caso de reposicionamiento con fármacos ya aprobados |
+| 6 | Agente + caso de estudio | RAG y modelo fine-tuneado como herramientas; caso de reposicionamiento con compuestos de colección clínica |
 | 7 | Evaluación objetiva | RMSE/correlación en holdout real, calidad del retrieval, verificar que el agente no inventa cifras |
 | 8 | Despliegue y documentación | App ligera (Gradio/Streamlit/FastAPI) o vídeo 2-3 min; README completo |
 

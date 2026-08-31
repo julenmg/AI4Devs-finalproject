@@ -268,6 +268,30 @@ documenta 1-3 endpoints en formato OpenAPI.
 - **Sin reranker.** Con un corpus pequeño y muy estructurado, el
   prefiltro por metadata cubre buena parte de esa necesidad; queda como
   mejora futura si el corpus crece.
+- **"Sin medida" significa sin medida *en este corpus*, no en el
+  conocimiento mundial.** El cubo `hipotesis_transferencia` del caso de
+  estudio agrupa compuestos con actividad confirmada frente a un patógeno
+  y ninguna medida frente al otro **en ChEMBL + CO-ADD**. Eso mide un hueco
+  de nuestras dos fuentes, no una novedad científica. Se ve bien en el
+  resultado: entre los primeros candidatos hacia *K. pneumoniae* aparecen
+  colistina metilsulfato y durlobactam, y la colistina se usa clínicamente
+  contra ese patógeno — de hecho figura como opción de última línea en la
+  propia ficha de contexto del sistema. El cubo dice "nuestro corpus no
+  tiene esta medición", nunca "nadie lo ha probado". Cerrar ese hueco
+  exigiría indexar más fuentes (literatura clínica, EUCAST/CLSI), no
+  cambiar el modelo.
+- **El reparto en cubos es muy desigual, y es consecuencia de la
+  compresión del modelo.** En el cribado de *K. pneumoniae*, 676 de 713
+  candidatos caen en `concordancia_negativa`. El motivo: las predicciones
+  están comprimidas hacia la media (media 4,14, desviación 0,33, máximo
+  5,53), así que casi nada supera el umbral de 5,0 —el mismo `HIT_PX_CUTOFF`
+  con el que la curación de la Fase 1 definió un *hit*— que separa
+  `desacuerdo` de `concordancia_negativa`. Es deliberado: ese umbral se
+  reutiliza en vez de elegirse ahora, y deja el cubo de desacuerdo
+  restringido a las discrepancias más fuertes. Los dos cubos que sostienen
+  afirmaciones —`recuperacion` e `hipotesis_transferencia`— **no dependen
+  del umbral en absoluto**: se deciden por la evidencia experimental
+  disponible. Análisis de sensibilidad en `docs/decisions.md`.
 
 ### 8.2. Proximos pasos
 

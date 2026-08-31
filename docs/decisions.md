@@ -1332,6 +1332,50 @@ real") menciona el valor real justo DESPUES, y mirar hacia delante descartaria
 como ambiguo el unico caso que la comprobacion existe para cazar. Dos tests de
 regresion fijan ambos comportamientos.
 
+
+### Sensibilidad al umbral de cubo (analisis, NO se cambia el umbral)
+
+El umbral que separa `desacuerdo_modelo_experimento` de
+`concordancia_negativa` es 5.0, el mismo `HIT_PX_CUTOFF` con el que la curacion
+de Fase 1 definio un hit. Pero las predicciones estan comprimidas hacia la media
+(Kp: media 4.14, sigma 0.33, maximo 5.53; Ab: media 4.15, sigma 0.29, maximo
+5.22), asi que casi nada lo supera. Conviene declarar cuanto depende de esa
+eleccion en vez de dejarlo implicito:
+
+| umbral | Kp: desacuerdo / concordancia | Ab: desacuerdo / concordancia |
+|---|---|---|
+| **5.00 (HIT_PX_CUTOFF, el usado)** | **11 / 676** | **7 / 674** |
+| 4.78 / 4.72 (percentil 95) | 31 / 656 | 25 / 656 |
+| 4.81 / 4.73 (media + 2 sigma) | 28 / 659 | 24 / 657 |
+| 4.58 / 4.55 (percentil 90) | 62 / 625 | 54 / 627 |
+
+**Que depende del umbral y que no.** Formalmente, el cubo de 687 de 713 filas en
+Kp (96.4%) y 681 de 792 en Ab (86.0%) lo decide el umbral. Pero **todas esas
+filas estan en la region "sin actividad confirmada"**, y lo unico que el umbral
+decide es como se reparten entre dos etiquetas que significan lo mismo en cuanto
+a evidencia ("no hay actividad demostrada"): una llama la atencion sobre la
+discrepancia con el modelo y la otra no. **Los dos cubos que sostienen
+afirmaciones no dependen del umbral en absoluto:**
+
+- `recuperacion` (13 Kp / 19 Ab) lo decide `is_hit_real`, evidencia experimental.
+- `hipotesis_transferencia` (13 Kp / 92 Ab) lo decide la ausencia de medida.
+
+Es decir: **el umbral no puede meter ni sacar a nadie de la lista de candidatos**;
+solo regula cuantas discrepancias se sacan a revision.
+
+**Por que se mantiene 5.0 pese a la compresion.** Un umbral derivado de la propia
+distribucion de predicciones (percentil 95, media+2sigma) triplicaria el cubo de
+desacuerdo, pero seria un umbral elegido mirando el resultado — exactamente lo
+que se evito al reutilizar el de Fase 1. Ademas cambia de significado: "el modelo
+lo predice como hit" (5.0, criterio externo y comparable entre patogenos) pasaria
+a ser "esta entre el 5% mas alto de mis propias predicciones" (criterio relativo,
+distinto en cada patogeno y que garantiza por construccion que el cubo nunca este
+vacio). Con un modelo comprimido, que el cubo de desacuerdo salga pequeno es
+informacion real: el modelo casi nunca afirma con fuerza que un compuesto
+inactivo sea potente. Los 11 y 7 casos que si lo superan son las discrepancias
+mas fuertes, que es justo lo que interesa revisar. Se deja como esta y se
+documenta el reparto en README §8.1.
+
 ### Estado de la fase
 
 79 tests sin red ni LLM (18 nuevos de Fase 6). Ficheros:
