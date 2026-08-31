@@ -33,5 +33,11 @@ training/output/*
 # para quien clone el repo. Ver docs/decisions.md, Fase 5.
 !data/raw/pubmed_*.json
 !data/raw/chembl_targets.json
+# Excepcion Fase 6: se versiona el CSV del cribado de reposicionamiento. Es el
+# deliverable del caso de estudio, pesa poco, y precomputarlo cuesta ~30 min de
+# GPU: versionarlo hace que la demo (y el video de entrega) funcionen en una
+# maquina sin GPU. Mismo patron que el adapter LoRA de Fase 3 y los JSON de
+# PubMed de Fase 5. Ver docs/decisions.md, Fase 6.
+!data/processed/repurposing_screen_*.csv
 # Logs de entrenamiento (Fase 3) - no van al repo
 logs/

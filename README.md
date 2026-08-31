@@ -112,8 +112,38 @@ concretos, el RAG cita evidencia real y trazable: en la batería de
 validación, 9 de 9 preguntas —dentro y fuera de corpus, más un intento de
 inyección de prompt— se resolvieron sin una sola cita inventada.
 
-**Agente** - TODO: que herramientas usa (RAG + modelo DTI), caso de estudio
-de reposicionamiento.
+**Agente (Fase 6)** — Orquestador que decide en cada turno qué herramientas
+invoca y en qué orden, encadenando sus resultados: `retrieve_evidence` (el
+RAG de la Fase 5), `predict_affinity` (el modelo DTI ajustado con LoRA de la
+Fase 3) y `consultar_cribado` (el cribado de reposicionamiento precomputado).
+
+*Por qué tool-calling directo y no un framework de agentes.* El sistema **sí
+es una arquitectura de agentes** —hay un orquestador que planifica llamadas a
+herramientas y compone la respuesta con sus resultados—; lo que se descarta
+es el framework (LangGraph, montajes multi-agente), y es una decisión, no un
+descuido. El grafo de decisión aquí es trivial: tres herramientas, sin estado
+que sobreviva entre turnos, sin planificación multi-paso y sin subtareas que
+puedan correr en paralelo. Un framework añadiría una dependencia y una capa
+de abstracción sobre un bucle de ~60 líneas sin aportar ninguna capacidad que
+el sistema no tenga ya; con el calendario del proyecto, es coste sin
+beneficio. Si el sistema creciera a varios patógenos con planificación
+condicional o ejecución paralela de herramientas, la decisión cambiaría.
+
+*Independencia del modelo frente a la evidencia.* El cribado se precomputa en
+un bucle donde no interviene ningún LLM, la predicción viaja sellada en el
+resultado de la herramienta (no la reescribe el texto generado), y una
+comprobación posterior verifica que todo pMIC citado en la respuesta coincida
+con el que devolvió la herramienta. Sin esto, el agente podría "cuadrar" su
+predicción con un valor real recién leído y la evaluación de la Fase 7 no
+tendría forma de detectarlo.
+
+*Caso de estudio.* Cribado de **compuestos de colección clínica** (la
+librería NIH Clinical Collection de CO-ADD, 700 compuestos que alcanzaron
+fase clínica) más los compuestos con actividad confirmada frente a un
+patógeno y sin ninguna medida frente al otro. Los candidatos se clasifican en
+cubos —recuperación, hipótesis de transferencia, desacuerdo modelo-experimento
+y concordancia negativa— en vez de en un ranking plano, para no mezclar
+recuperar lo ya conocido con proponer lo nuevo.
 
 **Evaluacion** - TODO: metricas (RMSE/correlacion, calidad de retrieval,
 verificacion anti-alucinacion).
@@ -161,8 +191,8 @@ documenta 1-3 endpoints en formato OpenAPI.
 ## 5. Historias de Usuario
 
 > Ejemplo de historia adaptada al dominio: "Como investigador de AMR quiero
-> introducir un patogeno y obtener farmacos ya aprobados candidatos a
-> reposicionamiento, con evidencia citada, para priorizar que probar en el
+> introducir un patogeno y obtener compuestos de coleccion clinica candidatos
+> a reposicionamiento, con evidencia citada, para priorizar que probar en el
 > laboratorio."
 
 **Historia de Usuario 1**
@@ -240,5 +270,23 @@ documenta 1-3 endpoints en formato OpenAPI.
   mejora futura si el corpus crece.
 
 ### 8.2. Proximos pasos
-TODO - ej: ampliar a mas patogenos ESKAPE, mejorar el retrieval con
-reranking, anadir mas fuentes a la base RAG, evaluacion mas exhaustiva.
+
+- **Filtrar el universo de cribado por `max_phase` de ChEMBL.** Hoy el caso de
+  estudio usa la librería NIH Clinical Collection, que agrupa compuestos que
+  **alcanzaron fase clínica** — no necesariamente aprobados y comercializados
+  hoy. Cruzarla con el campo `max_phase` de ChEMBL (4 = aprobado) permitiría
+  distinguir los que efectivamente están en el mercado, que es lo que de
+  verdad interesa a alguien que quiera reposicionar un fármaco. Se dejó fuera
+  porque no es "una llamada más a la API": los identificadores del cribado son
+  `COADD_ID`, y ~585 de los 700 compuestos no tienen ficha en el índice ni
+  correspondencia directa con un `molecule_chembl_id`, así que habría que
+  resolver el emparejamiento CO-ADD→ChEMBL por estructura (InChIKey) y aceptar
+  las pérdidas de ese cruce. Mientras tanto, el sistema usa siempre la
+  etiqueta "compuesto de colección clínica" y nunca "fármaco aprobado".
+- Ampliar a más patógenos ESKAPE (exige rehacer curación y renarrar el caso de
+  reposicionamiento, ver §8.1).
+- Añadir un reranker al RAG si el corpus crece (hoy el prefiltro por metadata
+  cubre buena parte de esa necesidad).
+- Ampliar las fuentes indexadas más allá de las tres consultas fijas de PubMed.
+- Evaluación más exhaustiva del retrieval (precision@k con un conjunto de
+  consultas etiquetado).
