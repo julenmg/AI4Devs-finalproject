@@ -147,3 +147,25 @@ def test_limitacion_conocida_el_decimal_de_tres_cifras_es_ambiguo():
     hits = _hits("Se analizaron 985 registros")
     result = verify_answer("El RMSE fue 0.985 [E1].", hits)
     assert result["ungrounded_numbers"] == []
+
+
+# ---------------------------------------------------------------------------
+# Artefactos observados en la bateria de Fase 7 (110 preguntas)
+
+
+def test_notacion_cientifica_reescrita_no_es_una_cifra_inventada():
+    """El modelo reescribe la evidencia en forma legible: donde la ficha dice
+    2050, la respuesta escribe "2.05x10^3". Cinco de los cinco avisos del bloque
+    RAG de Fase 7 eran de este tipo."""
+    hits = _hits("MIC medida entre 0.05 y 2050 ug/mL, pMIC 2.43 a 7.05")
+    assert verify_answer("MIC entre 0.05 y 2.05x10^3 ug/mL [E1].", hits)["ungrounded_numbers"] == []
+
+
+def test_notacion_cientifica_con_superindices():
+    hits = _hits("IC50 rango 80-3600 nM")
+    assert verify_answer("IC50 rango 80-3.6\u00d710\u00b3 nM [E1].", hits)["ungrounded_numbers"] == []
+
+
+def test_sigue_detectando_una_cifra_inventada_en_notacion_cientifica():
+    hits = _hits("MIC medida 2050 ug/mL")
+    assert verify_answer("El MIC es 9.9x10^3 ug/mL [E1].", hits)["ungrounded_numbers"] == ["9900.0"]

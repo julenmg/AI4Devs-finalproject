@@ -206,3 +206,22 @@ def test_el_prompt_fija_la_frontera_y_la_independencia_del_dti():
 def test_la_libreria_de_cribado_es_la_coleccion_clinica_del_nih():
     assert CLINICAL_LIBRARY == "NIH (USA) - Clinical Collection"
     assert EV_MIC != EV_SCREEN != EV_NONE
+
+
+def test_un_conteo_no_es_una_prediccion_alterada():
+    """Observado en la bateria de Fase 7: "top 50 por pMIC predicho" hacia que
+    el 50 se marcase como prediccion manipulada. Un pMIC esta fisicamente
+    acotado; 50 no puede serlo."""
+    calls = [{"result": {"candidatos": [{"pred_pmic": 5.8}, {"pred_pmic": 6.1}]}}]
+    r = verify_predictions("El cribado (top 50 por pMIC predicho) no lo incluye.", calls)
+    assert r["predicciones_alteradas"] == []
+
+
+def test_un_identificador_con_numeros_no_es_una_prediccion_alterada():
+    """Tambien de la bateria: "ABT-719" cerca de la palabra prediccion hacia que
+    el 719 se marcase. Es parte del nombre del compuesto."""
+    calls = [{"result": {"candidatos": [{"pred_pmic": 5.8}, {"pred_pmic": 6.1}]}}]
+    r = verify_predictions(
+        "compuestos como ABT-719, con predicciones de pMIC mas altas (5.8-6.1).", calls
+    )
+    assert r["predicciones_alteradas"] == []

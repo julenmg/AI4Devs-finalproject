@@ -1,0 +1,261 @@
+{
+  "por_checkpoint": {
+    "baseline": {
+      "global": {
+        "n": 3532,
+        "rmse": 1.5075,
+        "mae": 1.2778,
+        "sesgo": 1.0759,
+        "std_pred": 0.0659,
+        "std_real": 1.0678,
+        "spearman": 0.2631,
+        "pearson": 0.2075,
+        "pred_media_hits": 5.8572,
+        "pred_media_no_hits": 5.8305,
+        "separacion": 0.0267
+      },
+      "Klebsiella pneumoniae": {
+        "n": 2250,
+        "rmse": 1.5304,
+        "mae": 1.2939,
+        "sesgo": 1.0516,
+        "std_pred": 0.064,
+        "std_real": 1.1226,
+        "spearman": 0.2447,
+        "pearson": 0.1906,
+        "pred_media_hits": 5.8474,
+        "pred_media_no_hits": 5.8229,
+        "separacion": 0.0245
+      },
+      "Acinetobacter baumannii": {
+        "n": 1282,
+        "rmse": 1.4664,
+        "mae": 1.2494,
+        "sesgo": 1.1186,
+        "std_pred": 0.0666,
+        "std_real": 0.9639,
+        "spearman": 0.3379,
+        "pearson": 0.263,
+        "pred_media_hits": 5.8737,
+        "pred_media_no_hits": 5.844,
+        "separacion": 0.0297
+      }
+    },
+    "step5000": {
+      "global": {
+        "n": 3532,
+        "rmse": 0.8818,
+        "mae": 0.6704,
+        "sesgo": -0.1202,
+        "std_pred": 0.6194,
+        "std_real": 1.0678,
+        "spearman": 0.5693,
+        "pearson": 0.5749,
+        "pred_media_hits": 5.0167,
+        "pred_media_no_hits": 4.3777,
+        "separacion": 0.639
+      },
+      "Klebsiella pneumoniae": {
+        "n": 2250,
+        "rmse": 0.9193,
+        "mae": 0.6935,
+        "sesgo": -0.1311,
+        "std_pred": 0.6523,
+        "std_real": 1.1226,
+        "spearman": 0.5812,
+        "pearson": 0.5855,
+        "pred_media_hits": 5.0616,
+        "pred_media_no_hits": 4.3602,
+        "separacion": 0.7014
+      },
+      "Acinetobacter baumannii": {
+        "n": 1282,
+        "rmse": 0.8119,
+        "mae": 0.6299,
+        "sesgo": -0.101,
+        "std_pred": 0.5572,
+        "std_real": 0.9639,
+        "spearman": 0.5432,
+        "pearson": 0.5493,
+        "pred_media_hits": 4.9408,
+        "pred_media_no_hits": 4.4091,
+        "separacion": 0.5317
+      }
+    },
+    "final": {
+      "global": {
+        "n": 3532,
+        "rmse": 0.8867,
+        "mae": 0.6766,
+        "sesgo": 0.1129,
+        "std_pred": 0.6776,
+        "std_real": 1.0678,
+        "spearman": 0.5648,
+        "pearson": 0.5706,
+        "pred_media_hits": 5.2795,
+        "pred_media_no_hits": 4.5893,
+        "separacion": 0.6902
+      },
+      "Klebsiella pneumoniae": {
+        "n": 2250,
+        "rmse": 0.9267,
+        "mae": 0.7016,
+        "sesgo": 0.149,
+        "std_pred": 0.7062,
+        "std_real": 1.1226,
+        "spearman": 0.5761,
+        "pearson": 0.5815,
+        "pred_media_hits": 5.3725,
+        "pred_media_no_hits": 4.6186,
+        "separacion": 0.7539
+      },
+      "Acinetobacter baumannii": {
+        "n": 1282,
+        "rmse": 0.8116,
+        "mae": 0.6327,
+        "sesgo": 0.0497,
+        "std_pred": 0.614,
+        "std_real": 0.9639,
+        "spearman": 0.5441,
+        "pearson": 0.5486,
+        "pred_media_hits": 5.1222,
+        "pred_media_no_hits": 4.5366,
+        "separacion": 0.5856
+      }
+    }
+  },
+  "pareadas": [
+    {
+      "comparacion": "step5000 vs final",
+      "n_compuestos": 3532,
+      "rmse_step5000": 0.8818,
+      "rmse_final": 0.8867,
+      "diferencia_rmse": -0.0049,
+      "ic95_diferencia": [
+        -0.0135,
+        0.0039
+      ],
+      "wilcoxon_p": 0.29229,
+      "indistinguibles": true
+    },
+    {
+      "comparacion": "step5000 vs baseline",
+      "n_compuestos": 3532,
+      "rmse_step5000": 0.8818,
+      "rmse_baseline": 1.5075,
+      "diferencia_rmse": -0.6257,
+      "ic95_diferencia": [
+        -0.6594,
+        -0.5918
+      ],
+      "wilcoxon_p": 0.0,
+      "indistinguibles": false
+    },
+    {
+      "comparacion": "final vs baseline",
+      "n_compuestos": 3532,
+      "rmse_final": 0.8867,
+      "rmse_baseline": 1.5075,
+      "diferencia_rmse": -0.6208,
+      "ic95_diferencia": [
+        -0.6504,
+        -0.5912
+      ],
+      "wilcoxon_p": 0.0,
+      "indistinguibles": false
+    }
+  ],
+  "suelo_de_ruido": {
+    "compuestos_con_replicas": 780,
+    "std_intra_media": 0.4192,
+    "rango_intra_medio_log": 0.8477,
+    "rango_intra_mediano_log": 0.5292,
+    "nota": "Dispersion entre medidas del mismo compuesto en el propio dataset. Un RMSE del modelo por debajo de este valor no seria creible: significaria predecir mejor de lo que el experimento se reproduce."
+  },
+  "por_solape_de_scaffold": {
+    "baseline": {
+      "esqueleto_visto_en_train": {
+        "n": 2620,
+        "rmse": 1.521,
+        "mae": 1.28,
+        "sesgo": 1.0739,
+        "std_pred": 0.0643,
+        "std_real": 1.0877,
+        "spearman": 0.253,
+        "pearson": 0.1902,
+        "pred_media_hits": 5.8513,
+        "pred_media_no_hits": 5.8262,
+        "separacion": 0.0251
+      },
+      "esqueleto_nuevo": {
+        "n": 912,
+        "rmse": 1.4681,
+        "mae": 1.2714,
+        "sesgo": 1.0817,
+        "std_pred": 0.0686,
+        "std_real": 1.009,
+        "spearman": 0.3003,
+        "pearson": 0.2637,
+        "pred_media_hits": 5.8744,
+        "pred_media_no_hits": 5.8427,
+        "separacion": 0.0317
+      }
+    },
+    "final": {
+      "esqueleto_visto_en_train": {
+        "n": 2620,
+        "rmse": 0.8979,
+        "mae": 0.6828,
+        "sesgo": 0.1057,
+        "std_pred": 0.7056,
+        "std_real": 1.0877,
+        "spearman": 0.5665,
+        "pearson": 0.5769,
+        "pred_media_hits": 5.2934,
+        "pred_media_no_hits": 4.5596,
+        "separacion": 0.7338
+      },
+      "esqueleto_nuevo": {
+        "n": 912,
+        "rmse": 0.8536,
+        "mae": 0.6587,
+        "sesgo": 0.1338,
+        "std_pred": 0.589,
+        "std_real": 1.009,
+        "spearman": 0.5612,
+        "pearson": 0.5498,
+        "pred_media_hits": 5.2391,
+        "pred_media_no_hits": 4.6737,
+        "separacion": 0.5654
+      }
+    },
+    "step5000": {
+      "esqueleto_visto_en_train": {
+        "n": 2620,
+        "rmse": 0.896,
+        "mae": 0.6821,
+        "sesgo": -0.1242,
+        "std_pred": 0.6476,
+        "std_real": 1.0877,
+        "spearman": 0.5683,
+        "pearson": 0.5784,
+        "pred_media_hits": 5.0317,
+        "pred_media_no_hits": 4.3529,
+        "separacion": 0.6788
+      },
+      "esqueleto_nuevo": {
+        "n": 912,
+        "rmse": 0.8398,
+        "mae": 0.6368,
+        "sesgo": -0.1086,
+        "std_pred": 0.5298,
+        "std_real": 1.009,
+        "spearman": 0.5752,
+        "pearson": 0.5655,
+        "pred_media_hits": 4.973,
+        "pred_media_no_hits": 4.448,
+        "separacion": 0.525
+      }
+    }
+  }
+}

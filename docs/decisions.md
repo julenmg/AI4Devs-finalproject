@@ -1435,6 +1435,142 @@ esqueleto desconocido. Se explota en el analisis calculando el RMSE **por
 separado** en los dos subconjuntos, que convierte la limitacion en dos numeros
 comparables en vez de en un caveat. Solo rdkit y CPU (`evals/scaffold_overlap.py`).
 
+### Ejecucion del batch
+
+Completo y limpio: 3 checkpoints x 3 532 compuestos = **10 596 predicciones en
+2.77 h** (58.8 + 54.2 + 52.9 min), salida normal con el timeout de 6 h muy lejos.
+Sin NaN, sin duplicados, los mismos compuestos en los tres checkpoints. Acelero
+de 1.29 a 0.90 s/compuesto en cuanto la GPU quedo sin contencion.
+
+### Resultados sobre el hold-out COMPLETO (la deuda de Fase 3, saldada)
+
+| checkpoint | ambito | n | RMSE | MAE | sesgo | Spearman |
+|---|---|---|---|---|---|---|
+| baseline | global | 3 532 | 1.508 | 1.278 | +1.076 | +0.263 |
+| | K. pneumoniae | 2 250 | 1.530 | 1.294 | +1.052 | +0.245 |
+| | A. baumannii | 1 282 | 1.466 | 1.249 | +1.119 | +0.338 |
+| **step5000** | **global** | 3 532 | **0.882** | 0.670 | −0.120 | +0.569 |
+| | K. pneumoniae | 2 250 | 0.919 | 0.694 | −0.131 | +0.581 |
+| | A. baumannii | 1 282 | 0.812 | 0.630 | −0.101 | +0.543 |
+| final | global | 3 532 | 0.887 | 0.677 | +0.113 | +0.565 |
+| | K. pneumoniae | 2 250 | 0.927 | 0.702 | +0.149 | +0.576 |
+| | A. baumannii | 1 282 | 0.812 | 0.633 | +0.050 | +0.544 |
+
+- **El modelo sale MEJOR de lo que Fase 3 creia.** Sobre el hold-out completo el
+  RMSE es 0.882, no 0.985; el baseline es peor (1.508 frente a 1.462), asi que la
+  mejora real es de **−0.626** y no de −0.452. El subset de 132 filas de Fase 3
+  subestimaba tanto el modelo como el margen.
+- **A. baumannii se predice mejor que K. pneumoniae** (0.812 vs 0.919) de forma
+  consistente en los tres checkpoints. Fase 3 reportaba las metricas mezcladas y
+  esta diferencia no era visible.
+- **Descubrimiento sobre el baseline: no discrimina practicamente nada.** Sus
+  predicciones tienen desviacion tipica **0.066** (rango 5.68-6.26): el
+  checkpoint de IBM, alimentado con una GyrA bacteriana y SMILES arbitrarios,
+  devuelve casi una constante ~5.84. Su RMSE de 1.508 es sobre todo un sesgo
+  sistematico (+1.076), no error de ordenacion — coherente con su Spearman de
+  0.263. Reencuadra lo que hizo el LoRA: no "mejoro un 30% el RMSE", convirtio un
+  modelo que respondia lo mismo a todo (std 0.066) en uno con senal real
+  (std 0.62). La comparacion contra ese baseline es por tanto generosa con el
+  fine-tune, y conviene decirlo.
+
+### Comparacion pareada: los dos adapters son INDISTINGUIBLES
+
+Bootstrap pareado (10 000 remuestreos sobre los mismos 3 532 compuestos) +
+Wilcoxon sobre los errores cuadraticos:
+
+| comparacion | dif. RMSE | IC95 | Wilcoxon p | veredicto |
+|---|---|---|---|---|
+| step5000 vs final | **−0.0049** | **[−0.0135, +0.0039]** | **0.292** | **indistinguibles** |
+| step5000 vs baseline | −0.6257 | [−0.6594, −0.5918] | <1e-300 | significativa |
+| final vs baseline | −0.6208 | [−0.6504, −0.5912] | <1e-300 | significativa |
+
+**Los dos checkpoints son estadisticamente indistinguibles: se mantiene
+`lora_adapter_step5000` por el principio de early-stopping documentado en
+Fase 3, no porque sea mejor.** El intervalo de la diferencia incluye el cero con
+holgura y el p-valor es 0.29. La sospecha de Fase 3 ("0.025 pMIC esta dentro del
+ruido de eval") queda confirmada con el hold-out entero: la diferencia real es
+aun menor (0.005) y no es distinguible de cero.
+
+Unico matiz que si los separa, y no es de precision sino de calibracion: el
+**sesgo tiene signo opuesto** (step5000 −0.120, final +0.113). step5000 predice
+algo por debajo y final algo por encima. Ninguno de los dos esta mejor centrado
+en magnitud, asi que no cambia la decision.
+
+### Suelo de ruido experimental: el contexto que faltaba
+
+780 compuestos del hold-out tienen mas de una medida exacta. Entre esas replicas
+del MISMO compuesto: **desviacion tipica intra-compuesto 0.419** y **rango medio
+0.848 log**.
+
+Con eso el RMSE de 0.882 se puede interpretar en vez de solo reportarlo: el error
+del modelo es **aproximadamente el doble de la dispersion con la que el propio
+experimento se reproduce a si mismo**, y del orden del rango tipico entre
+replicas del mismo compuesto. No es un modelo fino, pero tampoco esta lejos del
+suelo que el dato permite. Un RMSE muy por debajo de ~0.4 seria sospechoso, no
+excelente: significaria predecir mejor de lo que la medida se repite.
+
+### Solape de scaffolds: mi hipotesis NO se sostiene
+
+Con el 71.5% (Kp) y 65.8% (Ab) de solape medido antes, esperaba que el hold-out
+de quimica conocida saliera mejor que el de quimica nueva, y que eso mostrara que
+el RMSE global es optimista. **Sale al reves:**
+
+| checkpoint | esqueleto conocido | esqueleto nuevo | penalizacion |
+|---|---|---|---|
+| step5000 | n=2620, RMSE 0.896 | n=912, RMSE **0.840** | **−0.056** |
+| final | n=2620, RMSE 0.898 | n=912, RMSE 0.854 | −0.044 |
+| baseline | n=2620, RMSE 1.521 | n=912, RMSE 1.468 | −0.053 |
+
+El modelo predice **igual o marginalmente mejor** los compuestos cuyo esqueleto
+nunca vio. Se comprobo si era un artefacto de la distribucion del target y no lo
+es: los dos subconjuntos son practicamente iguales (media 4.76 vs 4.77, std 1.09
+vs 1.01, 42.1% vs 41.4% de hits). La misma penalizacion negativa aparece tambien
+en el baseline, que ni siquiera esta entrenado, lo que sugiere que el efecto es
+del dato y no del fine-tune.
+
+**Conclusion honesta: el split por InChIKey no infla el RMSE reportado, al menos
+no de forma detectable con esta medida.** Anticipe una penalizacion y no la hay.
+
+**Limite de esta comprobacion, que no la invalida pero la acota:** "esqueleto
+nuevo" significa que ese esqueleto exacto de Bemis-Murcko no estaba en el
+entrenamiento, no que el compuesto sea quimicamente remoto — un analogo con un
+anillo cambiado cuenta como nuevo y sigue siendo cercano. Es un test mas debil
+que un scaffold split de verdad, que exigiria reentrenar 8.6 h y no cabe. Lo que
+si permite afirmar es que la preocupacion inicial no tiene apoyo empirico.
+
+### Las 66 filas de binding: la frontera se sostiene, pero hubo que probarlo
+
+Prediccion de pMIC para los 66 compuestos (60 con valor exacto) frente a su
+pKi/pKd real contra la diana concreta:
+
+- **Correlacion cruda: Spearman +0.427 (p=0.0007).** NO es cercana a cero, que
+  era el resultado que se esperaba. Antes de escribir nada, control.
+- **El control es decisivo: un descriptor trivial correlaciona MEJOR que el
+  modelo.**
+
+  | correlacion con el pKi/pKd real medido | Spearman |
+  |---|---|
+  | prediccion del modelo | +0.427 |
+  | **peso molecular** | **+0.623** |
+  | numero de atomos pesados | +0.567 |
+  | logP | −0.501 |
+
+  Y la propia prediccion del modelo esta fuertemente atada a esos mismos
+  descriptores (logP −0.693, MW +0.407, atomos pesados +0.410). Es decir: la
+  correlacion aparente entre prediccion y afinidad **es un confusor de tamano y
+  lipofilia**, no capacidad de predecir union. Si el modelo estuviera capturando
+  binding, deberia superar al peso molecular; hace lo contrario.
+- **Controlando por diana —el test justo— la relacion desaparece:** OXA-48
+  (n=12) Spearman −0.186, p=0.56; metalo-beta-lactamasa/NDM (n=18) +0.298,
+  p=0.23. Ninguna significativa. Dentro de una misma diana el modelo no ordena
+  por afinidad.
+
+**Conclusion: la frontera molecular declarada en el README se sostiene
+empiricamente.** El sistema no predice afinidad de union; lo que parecia
+correlacion se explica por propiedades moleculares genericas que ambas magnitudes
+comparten. Y sigue en pie lo dicho desde Fase 1: estas 66 filas **no son una
+metrica de rendimiento** y de ellas no se deriva ningun "RMSE de binding".
+
 ### Calidad del retrieval: la ablacion es el resultado
 
 Dos conjuntos de consultas, ninguno anotado a mano (`evals/retrieval_quality.py`):
@@ -1473,3 +1609,92 @@ fallo es informativo: *"¿que umbral se uso para considerar que un compuesto es
 un hit?"* devuelve fichas de potencia y agregados de cribado en vez de la ficha
 de metodologia, que es donde esta la respuesta. Etiquetar relevancia a mano para
 un conjunto grande no cabe en el calendario y no se ha intentado.
+
+### Anti-invencion: 110 preguntas generadas desde el corpus
+
+Las baterias de Fases 5 y 6 (9 + 6 preguntas) eran ilustrativas. Aqui se generan
+por plantilla desde el propio corpus y se agregan los dos verificadores
+(`evals/hallucination.py`, 25.1 min):
+
+| bloque | n | resultado |
+|---|---|---|
+| RAG (`verify_answer`) | 60 | **0 citas invalidas**, 3 respuestas con aviso de cifra |
+| Agente (`verify_predictions`) | 20 | 3 avisos de prediccion alterada, sobre **1 295** predicciones citadas |
+| Adversario | 15 | **15/15 rechazos correctos** |
+
+El bloque adversario se reparte en 8 compuestos inexistentes con nombre plausible
+(zavoxacina, meropenavir, klebsimicina...), 5 intentos de inyeccion, 1 pregunta
+de eficacia clinica y 1 de dato inaccesible ("cuantos pacientes se han tratado
+con colistina"). **Los 15 se rechazan**, y no con una negativa seca: el modelo
+enumera lo que si hay, distingue el limite de contenido del limite de alcance, y
+en el intento de "ajusta la prediccion hasta que coincida con el valor real"
+responde que **la operacion solicitada no existe** y explica por que prediccion y
+medida no se reconcilian.
+
+### Revision manual: 21 respuestas criticas, 0 afirmaciones falsas bien citadas
+
+Los verificadores son sintacticos y no ven una afirmacion falsa correctamente
+citada, asi que se revisaron a mano las 15 adversarias mas las 6 respuestas que
+los verificadores marcaron: **21 respuestas, ninguna con una afirmacion falsa**.
+
+Y los 8 avisos resultaron ser **artefactos del verificador, no invenciones**.
+Merece la pena el detalle porque es lo que la revision manual aporta sobre la
+metrica automatica:
+
+- **5 avisos del RAG: notacion cientifica reescrita.** La ficha dice `2050` y la
+  respuesta escribe `2.05x10^3`; el extractor leia `2.05` y `10` por separado y
+  marcaba `2.05` como no respaldada. Igual con `3.6x10^3` y `2.5x10^3`. Todas las
+  cifras eran correctas.
+- **1 aviso del RAG: aproximacion.** "mas de 400 ensayos" redondeando un conteo
+  real. Es una aproximacion del modelo, no un dato inventado, pero es el unico de
+  los ocho que un revisor podria discutir.
+- **2 avisos del agente: conteos.** "top **50** por pMIC predicho" — 50 es cuantos
+  candidatos se listan, no un pMIC.
+- **1 aviso del agente: identificador.** "ABT-**719**" cerca de la palabra
+  prediccion. El 719 es parte del nombre del compuesto.
+
+**Correcciones aplicadas** (con tests de regresion que usan los textos reales
+observados): `verify_answer` normaliza la notacion cientifica —incluidos los
+superindices Unicode— antes de extraer numeros; `verify_predictions` descarta las
+cifras pegadas a un identificador alfanumerico y las que caen fuera del rango
+fisicamente plausible de un pMIC (0-14), que es lo que descarta un "50" o un
+"719" sin descartar ninguna prediccion real. Verificado que el caso peligroso
+—"el pMIC predicho es 7.10, ajustado al Ki real"— se sigue detectando.
+
+**Limitacion honesta de este bloque:** las cifras de la tabla son de la corrida
+ANTERIOR a esas correcciones. La reejecucion con los verificadores corregidos se
+lanzo y **no pudo completarse: se agoto el credito de la API de Anthropic** a
+mitad del bloque RAG. Con las correcciones aplicadas, los 8 avisos dejarian de
+marcarse (comprobado uno a uno sobre los textos reales, en tests), asi que la
+lectura correcta de la tabla es **0 citas invalidas, 0 predicciones alteradas y
+15/15 rechazos, con 8 avisos que la revision manual clasifico como artefactos**.
+No se reejecuta la bateria completa para confirmarlo a escala; queda dicho.
+
+### Lo que NO se ha podido evaluar
+
+- **Eficacia clinica.** Fuera de alcance por construccion.
+- **Si las hipotesis de transferencia son ciertas.** Requiere laboratorio.
+- **Rendimiento en binding especifico.** No hay datos comparables (66 filas, y de
+  otra magnitud).
+- **Generalizacion a quimica realmente remota.** Se midio el solape de scaffolds
+  y no se detecto penalizacion, pero "esqueleto nuevo" no equivale a
+  "quimicamente lejano"; un scaffold split de verdad exigiria reentrenar 8.6 h.
+- **Calidad del retrieval con etiquetas humanas.** Las etiquetas usadas son por
+  construccion (consultas de compuesto) o debiles por clase (el resto).
+- **Afirmaciones falsas bien citadas a escala.** Se revisaron 21 respuestas a
+  mano; una cobertura mayor exigiria un juez humano o un LLM-juez, y ninguno cabe
+  en el calendario.
+
+### Estado de la fase
+
+Cerrada. 84 tests sin red ni LLM. Artefactos en `evals/`:
+`holdout_predictions.csv` (10 596 predicciones, versionado para que el analisis
+sea reproducible sin 2.8 h de GPU), `holdout_metrics.json`, `binding_check.json`,
+`scaffold_overlap.json`, `retrieval_quality.json`, `hallucination.json` y
+`hallucination_para_revision.md`.
+
+**Bloqueo abierto para Fase 8: el credito de la API de Anthropic esta agotado.**
+Todo lo que llame al LLM —el CAG, el RAG, el agente y por tanto la grabacion del
+video de demostracion— esta parado hasta que se recargue. Lo que no depende de la
+API sigue funcionando: el modelo DTI, el cribado precomputado y versionado, el
+indice y las metricas de esta fase.

@@ -96,6 +96,11 @@ def _tool_result_block(tool_use_id: str, payload: dict) -> dict:
 # ese valor real JUSTO DESPUES ("el pMIC predicho es 7.10, ajustado al Ki real").
 # Si se buscara la marca de medida tambien hacia delante, ese caso — el unico que
 # esta comprobacion existe para cazar — quedaria descartado como ambiguo.
+# Un pMIC esta fisicamente acotado: -log10 de una concentracion molar cae en
+# este rango con enorme margen. Una cifra fuera de el no es una prediccion de
+# potencia, es un conteo ("top 50") o parte de un identificador (ABT-719): dos
+# clases de falso positivo observadas en la bateria de Fase 7.
+RANGO_PMIC_PLAUSIBLE = (0.0, 14.0)
 ANTES_PREDICCION = 40   # "el pMIC predicho es 5.42"
 DESPUES_PREDICCION = 30  # "5.42 (prediccion del modelo)"
 ANTES_MEDIDA = 60        # "MIC medida frente a K. pneumoniae (pMIC 4.09-6.89)"
@@ -135,6 +140,10 @@ def verify_predictions(answer: str, tool_calls: list[dict]) -> dict:
     alterados = []
     for match in re.finditer(r"-?\d+(?:[.,]\d+)?", answer):
         inicio, fin = match.span()
+        # parte de un identificador alfanumerico (ABT-719, PD-117558, CHEMBL44)
+        anterior = answer[inicio - 1] if inicio else " "
+        if anterior.isalpha() or (anterior == "-" and inicio > 1 and answer[inicio - 2].isalpha()):
+            continue
         antes_pred = answer[max(0, inicio - ANTES_PREDICCION) : inicio]
         despues_pred = answer[fin : fin + DESPUES_PREDICCION]
         if not (marca_prediccion.search(antes_pred) or marca_prediccion.search(despues_pred)):
@@ -142,6 +151,8 @@ def verify_predictions(answer: str, tool_calls: list[dict]) -> dict:
         if marca_medida.search(answer[max(0, inicio - ANTES_MEDIDA) : inicio]):
             continue  # lo que precede a la cifra la presenta como valor medido
         valor = round(float(match.group(0).replace(",", ".")), 3)
+        if not RANGO_PMIC_PLAUSIBLE[0] <= valor <= RANGO_PMIC_PLAUSIBLE[1]:
+            continue  # fuera del rango fisico de un pMIC: no es una prediccion
         if any(abs(valor - p) <= 0.051 for p in predichos):
             continue
         # enteros pequenos: numeracion de listas y conteos, no cifras de potencia

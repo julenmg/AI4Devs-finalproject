@@ -409,8 +409,31 @@ _NUMBER_RE = re.compile(r"(?<![\d.])-?\d+(?:[.,]\d+)?(?:e[-+]?\d+)?", re.IGNOREC
 _THOUSANDS_RE = re.compile(r"^-?\d{1,3}(?:[.,]\d{3})+$")
 
 
+# El modelo reescribe la notacion cientifica de la evidencia en forma legible:
+# donde la ficha dice "2050" o "6.4e+04", la respuesta escribe "2.05x10^3" o
+# "6.4x10^4". Sin normalizarlo, el extractor lee "2.05" y "10" por separado y
+# marca como no respaldada una cifra que si lo esta (5 falsos positivos en la
+# bateria de Fase 7, todos de este tipo).
+_SUPERINDICES = str.maketrans("\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079\u207b", "0123456789-")
+_NOTACION_CIENTIFICA_RE = re.compile(
+    r"(\d+(?:\.\d+)?)\s*[x\u00d7*]\s*10\s*\^?\s*(-?\d+)", re.IGNORECASE
+)
+
+
+def _normalizar_notacion(text: str) -> str:
+    text = text.translate(_SUPERINDICES).replace(",", ".")
+
+    def _expandir(m: re.Match) -> str:
+        try:
+            return repr(float(m.group(1)) * (10 ** int(m.group(2))))
+        except (ValueError, OverflowError):
+            return m.group(0)
+
+    return _NOTACION_CIENTIFICA_RE.sub(_expandir, text)
+
+
 def _numbers_in(text: str) -> list[str]:
-    return _NUMBER_RE.findall(text.replace(",", "."))
+    return _NUMBER_RE.findall(_normalizar_notacion(text))
 
 
 def _number_variants(token: str) -> set[float]:

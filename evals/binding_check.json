@@ -1,0 +1,638 @@
+{
+  "n_filas": 66,
+  "por_patogeno": {
+    "Klebsiella pneumoniae": 53,
+    "Acinetobacter baumannii": 13
+  },
+  "dianas": {
+    "Metallo-beta-lactamase type 2": 18,
+    "Beta-lactamase OXA-48": 16,
+    "UDP-galactopyranose mutase": 8,
+    "Beta-lactamase SHV-5": 4,
+    "Beta-lactamase SHV-1": 4,
+    "Extended-spectrum beta-lactamase SHV-48": 4,
+    "Carbapenem-hydrolyzing beta-lactamase KPC": 3,
+    "Beta-lactamase ADC-33": 3,
+    "ADC-11": 3,
+    "Beta-lactamase OXA-23": 3
+  },
+  "p_binding_real": {
+    "media": 4.3468,
+    "std": 1.3162,
+    "rango": [
+      2.6778,
+      9.1308
+    ]
+  },
+  "pmic_predicho": {
+    "media": 4.1918,
+    "std": 0.5243,
+    "rango": [
+      3.6724,
+      5.2735
+    ]
+  },
+  "correlacion_binding_vs_prediccion": {
+    "n_exactas": 60,
+    "spearman": 0.4275,
+    "spearman_p": 0.0007,
+    "pearson": 0.3998
+  },
+  "interpretacion": "Una correlacion cercana a cero es el resultado ESPERADO Y BUENO: confirma con datos que el modelo no predice afinidad de union, solo potencia fenotipica. Estas 66 filas NO son una metrica de rendimiento del modelo y no se debe derivar de ellas ningun RMSE de binding.",
+  "detalle": [
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL777",
+      "target": "Carbapenem-hydrolyzing beta-lactamase KPC",
+      "medida": "Ki",
+      "p_binding_real": 4.9586,
+      "pmic_predicho": 4.5421,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL403",
+      "target": "Carbapenem-hydrolyzing beta-lactamase KPC",
+      "medida": "Ki",
+      "p_binding_real": 3.7773,
+      "pmic_predicho": 4.8564,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL404",
+      "target": "Carbapenem-hydrolyzing beta-lactamase KPC",
+      "medida": "Ki",
+      "p_binding_real": 4.1308,
+      "pmic_predicho": 5.0099,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL777",
+      "target": "Beta-lactamase SHV-5",
+      "medida": "Ki",
+      "p_binding_real": 4.5959,
+      "pmic_predicho": 4.5421,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL1673092",
+      "target": "Beta-lactamase SHV-5",
+      "medida": "Ki",
+      "p_binding_real": 3.9738,
+      "pmic_predicho": 4.6378,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL1673091",
+      "target": "Beta-lactamase SHV-5",
+      "medida": "Ki",
+      "p_binding_real": 4.5524,
+      "pmic_predicho": 4.9041,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL2236666",
+      "target": "Beta-lactamase SHV-5",
+      "medida": "Ki",
+      "p_binding_real": 5.8665,
+      "pmic_predicho": 5.234,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL777",
+      "target": "Beta-lactamase SHV-1",
+      "medida": "Ki",
+      "p_binding_real": 3.64,
+      "pmic_predicho": 4.5421,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL1673092",
+      "target": "Beta-lactamase SHV-1",
+      "medida": "Ki",
+      "p_binding_real": 4.1682,
+      "pmic_predicho": 4.6378,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL1673091",
+      "target": "Beta-lactamase SHV-1",
+      "medida": "Ki",
+      "p_binding_real": 3.9592,
+      "pmic_predicho": 4.9041,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL2236666",
+      "target": "Beta-lactamase SHV-1",
+      "medida": "Ki",
+      "p_binding_real": 5.3737,
+      "pmic_predicho": 5.234,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL1560",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 4.8539,
+      "pmic_predicho": 3.6984,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL127",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 4.9586,
+      "pmic_predicho": 4.997,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL1379384",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 2.6778,
+      "pmic_predicho": 3.7532,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL1327484",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 3.0947,
+      "pmic_predicho": 3.9152,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL582878",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 3.0937,
+      "pmic_predicho": 3.7377,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3278535",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 3.7423,
+      "pmic_predicho": 3.829,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3278535",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Ki",
+      "p_binding_real": 3.7305,
+      "pmic_predicho": 3.829,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL1560",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 4.85,
+      "pmic_predicho": 3.6984,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3278535",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Ki",
+      "p_binding_real": 3.73,
+      "pmic_predicho": 3.829,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3278535",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 3.74,
+      "pmic_predicho": 3.829,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL582878",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 3.1,
+      "pmic_predicho": 3.7377,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL1327484",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 3.1,
+      "pmic_predicho": 3.9152,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL1379384",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Kd",
+      "p_binding_real": 2.68,
+      "pmic_predicho": 3.7532,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3808813",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Ki",
+      "p_binding_real": 6.2007,
+      "pmic_predicho": 3.8617,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3809806",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Ki",
+      "p_binding_real": 6.3098,
+      "pmic_predicho": 4.008,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL86905",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Ki",
+      "p_binding_real": 6.2366,
+      "pmic_predicho": 3.7917,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL86905",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Ki",
+      "p_binding_real": 4.1192,
+      "pmic_predicho": 3.7917,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL127",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 6.0706,
+      "pmic_predicho": 4.997,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3913021",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.5528,
+      "pmic_predicho": 3.7441,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3896367",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.5528,
+      "pmic_predicho": 3.7316,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3967375",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.5086,
+      "pmic_predicho": 3.7324,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL582878",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.3665,
+      "pmic_predicho": 3.7377,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL2018158",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 2.8601,
+      "pmic_predicho": 3.8489,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3950623",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 2.9281,
+      "pmic_predicho": 3.7889,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3951674",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.1549,
+      "pmic_predicho": 5.2735,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL107518",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.1805,
+      "pmic_predicho": 3.7671,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL109074",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.0,
+      "pmic_predicho": 3.6724,
+      "relation": ">"
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL123234",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.4318,
+      "pmic_predicho": 3.7925,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3908259",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.4815,
+      "pmic_predicho": 3.7007,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3931620",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.0,
+      "pmic_predicho": 3.7118,
+      "relation": ">"
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL541",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.0,
+      "pmic_predicho": 3.7393,
+      "relation": ">"
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL72628",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 3.0,
+      "pmic_predicho": 3.706,
+      "relation": ">"
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3910343",
+      "target": "Beta-lactamase OXA-48",
+      "medida": "Kd",
+      "p_binding_real": 4.301,
+      "pmic_predicho": 3.81,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL4753599",
+      "target": "Metallo-beta-lactamase type 2",
+      "medida": "Ki",
+      "p_binding_real": 4.7696,
+      "pmic_predicho": 3.9696,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL3276007",
+      "target": "UDP-galactopyranose mutase",
+      "medida": "Kd",
+      "p_binding_real": 3.0,
+      "pmic_predicho": 3.7385,
+      "relation": ">"
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL5185885",
+      "target": "UDP-galactopyranose mutase",
+      "medida": "Kd",
+      "p_binding_real": 3.6364,
+      "pmic_predicho": 3.734,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL324842",
+      "target": "UDP-galactopyranose mutase",
+      "medida": "Kd",
+      "p_binding_real": 4.1612,
+      "pmic_predicho": 4.068,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL5207362",
+      "target": "UDP-galactopyranose mutase",
+      "medida": "Kd",
+      "p_binding_real": 3.8069,
+      "pmic_predicho": 3.7048,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL5197452",
+      "target": "UDP-galactopyranose mutase",
+      "medida": "Kd",
+      "p_binding_real": 4.3665,
+      "pmic_predicho": 3.7045,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL5205229",
+      "target": "UDP-galactopyranose mutase",
+      "medida": "Kd",
+      "p_binding_real": 4.2366,
+      "pmic_predicho": 3.7402,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL5179369",
+      "target": "UDP-galactopyranose mutase",
+      "medida": "Kd",
+      "p_binding_real": 4.7696,
+      "pmic_predicho": 3.7182,
+      "relation": "="
+    },
+    {
+      "pathogen": "Klebsiella pneumoniae",
+      "compound_id": "CHEMBL130266",
+      "target": "UDP-galactopyranose mutase",
+      "medida": "Kd",
+      "p_binding_real": 4.2676,
+      "pmic_predicho": 4.4955,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL158",
+      "target": "Beta-lactamase ADC-33",
+      "medida": "Ki",
+      "p_binding_real": 8.1549,
+      "pmic_predicho": 4.8931,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL158",
+      "target": "ADC-11",
+      "medida": "Ki",
+      "p_binding_real": 5.5229,
+      "pmic_predicho": 4.8931,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL1730",
+      "target": "Beta-lactamase ADC-33",
+      "medida": "Ki",
+      "p_binding_real": 6.301,
+      "pmic_predicho": 4.5465,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL1730",
+      "target": "ADC-11",
+      "medida": "Ki",
+      "p_binding_real": 5.6021,
+      "pmic_predicho": 4.5465,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL996",
+      "target": "Beta-lactamase ADC-33",
+      "medida": "Ki",
+      "p_binding_real": 7.0,
+      "pmic_predicho": 4.4257,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL996",
+      "target": "ADC-11",
+      "medida": "Ki",
+      "p_binding_real": 6.301,
+      "pmic_predicho": 4.4257,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL777",
+      "target": "Extended-spectrum beta-lactamase SHV-48",
+      "medida": "Ki",
+      "p_binding_real": 3.6433,
+      "pmic_predicho": 4.2925,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL1673092",
+      "target": "Extended-spectrum beta-lactamase SHV-48",
+      "medida": "Ki",
+      "p_binding_real": 4.46,
+      "pmic_predicho": 4.4967,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL1673091",
+      "target": "Extended-spectrum beta-lactamase SHV-48",
+      "medida": "Ki",
+      "p_binding_real": 4.2646,
+      "pmic_predicho": 4.6438,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL2236666",
+      "target": "Extended-spectrum beta-lactamase SHV-48",
+      "medida": "Ki",
+      "p_binding_real": 4.7208,
+      "pmic_predicho": 5.1917,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL4633785",
+      "target": "Beta-lactamase OXA-23",
+      "medida": "Ki",
+      "p_binding_real": 9.1308,
+      "pmic_predicho": 4.3379,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL1689063",
+      "target": "Beta-lactamase OXA-23",
+      "medida": "Ki",
+      "p_binding_real": 5.7696,
+      "pmic_predicho": 5.1831,
+      "relation": "="
+    },
+    {
+      "pathogen": "Acinetobacter baumannii",
+      "compound_id": "CHEMBL3317857",
+      "target": "Beta-lactamase OXA-23",
+      "medida": "Ki",
+      "p_binding_real": 4.3979,
+      "pmic_predicho": 4.138,
+      "relation": ">"
+    }
+  ]
+}

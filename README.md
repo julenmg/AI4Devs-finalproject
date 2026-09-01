@@ -145,10 +145,63 @@ cubos —recuperación, hipótesis de transferencia, desacuerdo modelo-experimen
 y concordancia negativa— en vez de en un ranking plano, para no mezclar
 recuperar lo ya conocido con proponer lo nuevo.
 
-**Evaluacion** - TODO: metricas (RMSE/correlacion, calidad de retrieval,
-verificacion anti-alucinacion).
+**Evaluación (Fase 7)** — Evaluación objetiva de las tres piezas sobre el
+hold-out **completo** (3 532 compuestos, 10 596 predicciones, 2,8 h de GPU),
+no sobre una muestra. Todo el detalle en `docs/decisions.md` y los ficheros
+en `evals/`.
 
-**Modelo DTI** - TODO: checkpoint base, fine-tune LoRA.
+*Modelo DTI.* RMSE **0,882** en unidades de pMIC (K. pneumoniae 0,919;
+A. baumannii 0,812), frente a **1,508** del checkpoint base sin fine-tune:
+una mejora de −0,626. Ese número solo se puede interpretar con una
+referencia, así que se midió el **suelo de ruido experimental**: entre
+réplicas del *mismo* compuesto en el propio dataset (780 compuestos) la
+desviación típica es 0,419 y el rango medio 0,848 log. El error del modelo
+es aproximadamente el doble de la dispersión con la que el experimento se
+reproduce a sí mismo — es un modelo de cribado grueso, pero no está lejos
+del suelo que el dato permite.
+
+*Elección de checkpoint.* Los dos adapters candidatos son
+**estadísticamente indistinguibles** (diferencia de RMSE −0,005, IC95
+[−0,014, +0,004], Wilcoxon p = 0,29, bootstrap pareado sobre los mismos
+compuestos). Se mantiene `lora_adapter_step5000` por el principio de
+early-stopping documentado en la Fase 3, **no porque sea mejor**.
+
+*Frontera molecular, comprobada y no solo afirmada.* Las 66 filas de
+afinidad de unión real (Ki/Kd contra KPC, OXA-48, NDM, SHV…) se apartaron
+desde la Fase 1 para esto. La predicción del modelo correlaciona con esas
+afinidades a Spearman +0,427 — pero el **peso molecular solo correlaciona
+más (+0,623)**, y controlando por diana la relación desaparece (OXA-48
+−0,186, p = 0,56; NDM +0,298, p = 0,23). Es decir: la correlación aparente
+es un confusor de tamaño y lipofilia, no capacidad de predecir unión. El
+sistema no predice afinidad de unión, y ahora hay datos que lo respaldan.
+
+*Retrieval.* 200 consultas con verdad de referencia por construcción (el
+documento correcto de una consulta sobre un compuesto es su propia ficha),
+medidas en dos condiciones. El sistema real: **P@1 0,825**, R@8 0,990,
+MRR 0,897. Solo búsqueda semántica, desactivando el atajo léxico:
+**P@1 0,030**. El embedding no desambigua entre 33 791 fichas que comparten
+plantilla; todo el acierto en búsqueda por compuesto viene del atajo
+léxico. En 12 consultas no-compuesto (mecanismos, literatura, metodología)
+sí funciona: 11 de 12 traen la clase de evidencia esperada.
+
+*Anti-invención.* `verify_answer` (RAG) y `verify_predictions` (agente) se
+agregan sobre una batería generada desde el propio corpus, más un bloque
+adversario de compuestos inexistentes e intentos de inyección. Ambos
+verificadores son **sintácticos**: detectan una cita inexistente o una
+cifra sin respaldo, pero no una afirmación falsa bien citada — por eso las
+respuestas críticas se revisaron además a mano.
+
+**Modelo DTI (Fases 2-3)** — Checkpoint base
+`ibm-research/biomed.omics.bl.sm.ma-ted-458m.dti_bindingdb_pkd` (MAMMAL,
+458M parámetros), ajustado con **LoRA** (r=8, α=16, sobre las proyecciones
+`q`/`v` de la atención del encoder) durante una época completa sobre el
+dataset curado — 8,6 h en una GTX 1070. Predice **potencia fenotípica
+(pMIC)** a partir del SMILES, usando como ancla de organismo la secuencia
+real de GyrA del patógeno; ese ancla es un **requisito de arquitectura**
+del checkpoint (rellenar el hueco de proteína), no una afirmación de unión
+a la girasa. El checkpoint base, alimentado así, devuelve prácticamente una
+constante (desviación típica 0,066): el fine-tune es lo que le da señal
+real (0,62).
 
 ### 2.3. Descripcion de alto nivel del proyecto y estructura de ficheros
 TODO - pega el arbol de app/, training/, evals/ (ver CLAUDE.md) y explica el
@@ -268,6 +321,22 @@ documenta 1-3 endpoints en formato OpenAPI.
 - **Sin reranker.** Con un corpus pequeño y muy estructurado, el
   prefiltro por metadata cubre buena parte de esa necesidad; queda como
   mejora futura si el corpus crece.
+- **La búsqueda semántica apenas contribuye en consultas por compuesto.**
+  Medido en la Fase 7: sin el atajo léxico, la precisión en el primer
+  resultado cae de 0,825 a 0,030. Las fichas de compuesto comparten
+  plantilla y el embedding no las distingue. Funciona para el resto de
+  consultas (mecanismos, literatura), pero conviene saber que la búsqueda
+  por nombre de fármaco es, en la práctica, léxica.
+- **El split de entrenamiento es por compuesto (InChIKey), no por
+  esqueleto molecular.** El 71,5 % de los compuestos del hold-out de
+  *K. pneumoniae* y el 65,8 % de los de *A. baumannii* comparten esqueleto
+  de Bemis-Murcko con algún compuesto de entrenamiento, así que buena parte
+  de la evaluación mide interpolación dentro de series químicas conocidas.
+  Se comprobó si eso infla el RMSE y **no se detectó tal efecto** (el error
+  en esqueletos nuevos es incluso marginalmente menor: 0,840 frente a
+  0,896), pero la comprobación es débil: "esqueleto nuevo" no equivale a
+  "químicamente remoto". Un split por scaffold real exigiría reentrenar
+  8,6 h y queda fuera de alcance.
 - **"Sin medida" significa sin medida *en este corpus*, no en el
   conocimiento mundial.** El cubo `hipotesis_transferencia` del caso de
   estudio agrupa compuestos con actividad confirmada frente a un patógeno
