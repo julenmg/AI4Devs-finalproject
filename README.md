@@ -30,10 +30,14 @@ OMS. **Predice potencia antibacteriana in vitro, no eficacia clínica** — esa
 frontera se sostiene en todo el sistema y está verificada con datos (§2.2).
 
 ### 0.4. URL del proyecto:
+
+**Vídeo de demostración:** _[enlace pendiente de publicación]_
+
 No hay URL pública: el sistema requiere GPU y ~2 GB de pesos, que no caben en
-las plataformas gratuitas de despliegue. La evidencia de funcionamiento es un
-**vídeo de demostración** (ver §2.4), que además permite enseñar el modelo DTI
-real en ejecución, cosa que una versión recortada en la nube no podría.
+las plataformas gratuitas de despliegue. La evidencia de funcionamiento es el
+vídeo de demostración enlazado arriba (ver §2.4), que además permite enseñar el
+modelo DTI real en ejecución, cosa que una versión recortada en la nube no
+podría.
 
 ### 0.5. URL o archivo comprimido del repositorio
 `https://github.com/julenmg/AI4Devs-finalproject`, rama `finalproject-JMG`.
@@ -106,6 +110,8 @@ No es una herramienta clínica ni pretende serlo.
 
 ### 1.3. Diseno y experiencia de usuario:
 
+**Vídeo de demostración:** _[enlace pendiente de publicación]_
+
 La interfaz (`streamlit_app.py`) es deliberadamente mínima: su función es hacer
 demostrable el sistema, no ser un producto. Tres pestañas que siguen la propia
 narrativa del proyecto:
@@ -164,6 +170,18 @@ uv run python -m scripts.screen_repurposing      # cribado (~33 min en GPU)
 TODO - diagrama de CAG -> RAG -> agente -> evaluacion -> despliegue.
 
 ### 2.2. Descripcion de componentes principales:
+
+**Modelo DTI (Fases 2-3)** — Checkpoint base
+`ibm-research/biomed.omics.bl.sm.ma-ted-458m.dti_bindingdb_pkd` (MAMMAL,
+458M parámetros), ajustado con **LoRA** (r=8, α=16, sobre las proyecciones
+`q`/`v` de la atención del encoder) durante una época completa sobre el
+dataset curado — 8,6 h en una GTX 1070. Predice **potencia fenotípica
+(pMIC)** a partir del SMILES, usando como ancla de organismo la secuencia
+real de GyrA del patógeno; ese ancla es un **requisito de arquitectura**
+del checkpoint (rellenar el hueco de proteína), no una afirmación de unión
+a la girasa. El checkpoint base, alimentado así, devuelve prácticamente una
+constante (desviación típica 0,066): el fine-tune es lo que le da señal
+real (0,62).
 
 **CAG** (`app/generation/cag/static_context.py`) — LLM (Anthropic) con un
 contexto fijo inlineado en el system prompt: las fichas de *K. pneumoniae*
@@ -292,18 +310,6 @@ adversario de compuestos inexistentes e intentos de inyección. Ambos
 verificadores son **sintácticos**: detectan una cita inexistente o una
 cifra sin respaldo, pero no una afirmación falsa bien citada — por eso las
 respuestas críticas se revisaron además a mano.
-
-**Modelo DTI (Fases 2-3)** — Checkpoint base
-`ibm-research/biomed.omics.bl.sm.ma-ted-458m.dti_bindingdb_pkd` (MAMMAL,
-458M parámetros), ajustado con **LoRA** (r=8, α=16, sobre las proyecciones
-`q`/`v` de la atención del encoder) durante una época completa sobre el
-dataset curado — 8,6 h en una GTX 1070. Predice **potencia fenotípica
-(pMIC)** a partir del SMILES, usando como ancla de organismo la secuencia
-real de GyrA del patógeno; ese ancla es un **requisito de arquitectura**
-del checkpoint (rellenar el hueco de proteína), no una afirmación de unión
-a la girasa. El checkpoint base, alimentado así, devuelve prácticamente una
-constante (desviación típica 0,066): el fine-tune es lo que le da señal
-real (0,62).
 
 ### 2.3. Descripcion de alto nivel del proyecto y estructura de ficheros
 La estructura sigue el flujo del dato, no las capas técnicas: **ingesta →
@@ -436,9 +442,6 @@ predicción alterada.
 
 ## 3. Modelo de Datos
 
-> Adaptado: en vez de un esquema de base de datos relacional, documenta el
-> esquema del dataset curado.
-
 ### 3.1. Diagrama del modelo de datos:
 El sistema no tiene base de datos relacional: el dato es de solo lectura una
 vez curado. La entidad central es el **dataset curado**, un CSV por patógeno
@@ -561,11 +564,6 @@ resultado["verification"]   # comprobación de que no se alteró ninguna predicc
 
 ## 5. Historias de Usuario
 
-> Ejemplo de historia adaptada al dominio: "Como investigador de AMR quiero
-> introducir un patogeno y obtener compuestos de coleccion clinica candidatos
-> a reposicionamiento, con evidencia citada, para priorizar que probar en el
-> laboratorio."
-
 **Historia de Usuario 1 — Priorizar qué ensayar en el laboratorio**
 
 > Como investigadora de AMR con capacidad limitada de laboratorio, quiero obtener
@@ -628,9 +626,6 @@ rechazo del intento explícito de "ajusta la predicción hasta que coincida".
 ---
 
 ## 6. Tickets de Trabajo
-
-> Adapta backend/frontend/BBDD a tu pipeline: p.ej. uno de ingesta+modelo,
-> uno de RAG+agente, uno de evaluacion+demo.
 
 **Ticket 1 — Ingesta y curación del dataset (equivale a "backend + BBDD")**
 
@@ -741,10 +736,6 @@ criterio que no depende de ningún umbral.
 ---
 
 ## 8. Limitaciones y Próximos Pasos
-
-> Sección explícitamente requerida en el documento oficial del Proyecto
-> Final (aparte de arquitectura/componentes) - no está en las secciones
-> genericas de AI4Devs-finalproject, pero es parte de lo que se evalua.
 
 ### 8.1. Limitaciones conocidas
 
