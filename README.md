@@ -206,10 +206,10 @@ flowchart TD
     RESP --> VER["Verificación<br/>verify_answer · verify_predictions"]
     VER --> EVAL["Evaluación objetiva<br/>hold-out · retrieval · anti-invención"]
 
-    style medida fill:#e8f4ea,stroke:#4a7c59
-    style pred fill:#eaf0f8,stroke:#3f6ea8
-    style RESP fill:#fff8e1,stroke:#c9a227
-    style VER fill:#fdeaea,stroke:#b3454a
+    style medida fill:#e8f4ea,stroke:#4a7c59,color:#1b4332
+    style pred fill:#eaf0f8,stroke:#3f6ea8,color:#12355b
+    style RESP fill:#fff8e1,stroke:#c9a227,color:#5c4400
+    style VER fill:#fdeaea,stroke:#b3454a,color:#7a1f24
 ```
 
 **Cómo leerlo.** Los dos datos crudos alimentan las dos vías por separado: el
@@ -224,15 +224,15 @@ alterado para cuadrarla con una medida.
 uno se justifica por el límite observado del anterior:
 
 ```mermaid
-flowchart LR
+flowchart TD
     CAG["CAG<br/>contexto fijo"] -->|"no cita evidencia real<br/>no escala a más patógenos"| RAG["RAG<br/>evidencia recuperada"]
     RAG -->|"no predice por compuesto<br/>no encadena herramientas"| AGE["Agente<br/>RAG + DTI como tools"]
     AGE -->|"¿funciona de verdad?"| EV["Evaluación<br/>objetiva"]
 
-    style CAG fill:#f2f2f2,stroke:#888
-    style RAG fill:#e8f4ea,stroke:#4a7c59
-    style AGE fill:#eaf0f8,stroke:#3f6ea8
-    style EV fill:#fdeaea,stroke:#b3454a
+    style CAG fill:#f2f2f2,stroke:#888888,color:#333333
+    style RAG fill:#e8f4ea,stroke:#4a7c59,color:#1b4332
+    style AGE fill:#eaf0f8,stroke:#3f6ea8,color:#12355b
+    style EV fill:#fdeaea,stroke:#b3454a,color:#7a1f24
 ```
 
 ### 2.2. Descripcion de componentes principales:
