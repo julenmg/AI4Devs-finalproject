@@ -15,7 +15,7 @@
 ## 0. Ficha del proyecto
 
 ### 0.1. Tu nombre completo:
-
+Julen Merino Guezala
 
 ### 0.2. Nombre del proyecto:
 EskapeGuard
