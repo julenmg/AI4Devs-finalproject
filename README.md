@@ -167,7 +167,73 @@ uv run python -m scripts.screen_repurposing      # cribado (~33 min en GPU)
 ## 2. Arquitectura del Sistema
 
 ### 2.1. Diagrama de arquitectura:
-TODO - diagrama de CAG -> RAG -> agente -> evaluacion -> despliegue.
+El sistema tiene **dos vías que nunca se mezclan**: la de la evidencia
+experimental medida y la de la predicción del modelo. El agente usa ambas a la
+vez pero las presenta por separado, y una verificación posterior comprueba que
+no se hayan cruzado. Esa separación es la decisión arquitectónica central del
+proyecto: sin ella no se podría distinguir un modelo que acierta de uno que
+copia el dato que acaba de leer.
+
+```mermaid
+flowchart TD
+    subgraph datos["Datos reales"]
+        CH["ChEMBL + CO-ADD<br/>231k medidas, positivos y negativos"]
+        CU["Dataset curado<br/>SMILES → pMIC, censura marcada"]
+        CH --> CU
+    end
+
+    CU --> IDX
+    CU --> LORA
+
+    subgraph medida["Vía de la EVIDENCIA MEDIDA"]
+        IDX["Índice RAG (Chroma)<br/>34.078 fragmentos citables<br/>+ 99 abstracts PubMed"]
+    end
+
+    subgraph pred["Vía de la PREDICCIÓN"]
+        LORA["Modelo DTI + LoRA<br/>RMSE 0,882 · error típico ~1 pMIC"]
+        SCR["Cribado precomputado<br/>1.505 candidatos por cubos"]
+        LORA --> SCR
+    end
+
+    AG{{"Agente orquestador<br/>decide qué herramientas usa y en qué orden"}}
+
+    IDX -->|"retrieve_evidence"| AG
+    LORA -->|"predict_affinity"| AG
+    SCR -->|"consultar_cribado"| AG
+
+    AG --> RESP["Respuesta<br/>· evidencia con su cita (por código)<br/>· predicción con su error<br/>· nunca reconciliadas entre sí"]
+
+    RESP --> VER["Verificación<br/>verify_answer · verify_predictions"]
+    VER --> EVAL["Evaluación objetiva<br/>hold-out · retrieval · anti-invención"]
+
+    style medida fill:#e8f4ea,stroke:#4a7c59
+    style pred fill:#eaf0f8,stroke:#3f6ea8
+    style RESP fill:#fff8e1,stroke:#c9a227
+    style VER fill:#fdeaea,stroke:#b3454a
+```
+
+**Cómo leerlo.** Los dos datos crudos alimentan las dos vías por separado: el
+mismo dataset curado se indexa como evidencia citable *y* entrena el modelo,
+pero a partir de ahí no vuelven a tocarse. El agente invoca hasta tres
+herramientas, una por cada caja de origen, y compone la respuesta manteniendo
+separadas las dos naturalezas de dato. La verificación cierra el circuito
+comprobando que ninguna cita sea inventada y que ninguna predicción se haya
+alterado para cuadrarla con una medida.
+
+**Progresión de arquitecturas.** El proyecto llegó aquí en tres saltos, y cada
+uno se justifica por el límite observado del anterior:
+
+```mermaid
+flowchart LR
+    CAG["CAG<br/>contexto fijo"] -->|"no cita evidencia real<br/>no escala a más patógenos"| RAG["RAG<br/>evidencia recuperada"]
+    RAG -->|"no predice por compuesto<br/>no encadena herramientas"| AGE["Agente<br/>RAG + DTI como tools"]
+    AGE -->|"¿funciona de verdad?"| EV["Evaluación<br/>objetiva"]
+
+    style CAG fill:#f2f2f2,stroke:#888
+    style RAG fill:#e8f4ea,stroke:#4a7c59
+    style AGE fill:#eaf0f8,stroke:#3f6ea8
+    style EV fill:#fdeaea,stroke:#b3454a
+```
 
 ### 2.2. Descripcion de componentes principales:
 
