@@ -175,6 +175,7 @@ proyecto: sin ella no se podría distinguir un modelo que acierta de uno que
 copia el dato que acaba de leer.
 
 ```mermaid
+%%{init: {'themeVariables': {'edgeLabelBackground':'#ffffff'}}}%%
 flowchart TD
     subgraph datos["Datos reales"]
         CH["ChEMBL + CO-ADD<br/>231k medidas, positivos y negativos"]
@@ -210,6 +211,8 @@ flowchart TD
     style pred fill:#eaf0f8,stroke:#3f6ea8,color:#12355b
     style RESP fill:#fff8e1,stroke:#c9a227,color:#5c4400
     style VER fill:#fdeaea,stroke:#b3454a,color:#7a1f24
+
+    linkStyle default color:#1b1b1b
 ```
 
 **Cómo leerlo.** Los dos datos crudos alimentan las dos vías por separado: el
@@ -224,6 +227,7 @@ alterado para cuadrarla con una medida.
 uno se justifica por el límite observado del anterior:
 
 ```mermaid
+%%{init: {'themeVariables': {'edgeLabelBackground':'#ffffff'}}}%%
 flowchart TD
     CAG["CAG<br/>contexto fijo"] -->|"no cita evidencia real<br/>no escala a más patógenos"| RAG["RAG<br/>evidencia recuperada"]
     RAG -->|"no predice por compuesto<br/>no encadena herramientas"| AGE["Agente<br/>RAG + DTI como tools"]
@@ -233,6 +237,8 @@ flowchart TD
     style RAG fill:#e8f4ea,stroke:#4a7c59,color:#1b4332
     style AGE fill:#eaf0f8,stroke:#3f6ea8,color:#12355b
     style EV fill:#fdeaea,stroke:#b3454a,color:#7a1f24
+
+    linkStyle default color:#1b1b1b
 ```
 
 ### 2.2. Descripcion de componentes principales:
