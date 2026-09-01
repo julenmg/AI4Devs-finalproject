@@ -1,0 +1,24 @@
+[
+  {
+    "pathogen": "Klebsiella pneumoniae",
+    "compuestos_train": 16830,
+    "compuestos_test": 4495,
+    "test_sin_scaffold_aciclicos": 114,
+    "test_con_scaffold": 4381,
+    "test_que_comparten_scaffold_con_train": 3131,
+    "fraccion_compartida": 0.7147,
+    "scaffolds_distintos_train": 6485,
+    "scaffolds_distintos_test": 2660
+  },
+  {
+    "pathogen": "Acinetobacter baumannii",
+    "compuestos_train": 9310,
+    "compuestos_test": 3155,
+    "test_sin_scaffold_aciclicos": 84,
+    "test_con_scaffold": 3071,
+    "test_que_comparten_scaffold_con_train": 2020,
+    "fraccion_compartida": 0.6578,
+    "scaffolds_distintos_train": 4231,
+    "scaffolds_distintos_test": 1884
+  }
+]

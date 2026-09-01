@@ -1,0 +1,173 @@
+{
+  "k": 8,
+  "consultas_de_compuesto": {
+    "hibrido_sistema_real": {
+      "n": 200,
+      "precision_at_1": 0.825,
+      "recall_at_8": 0.99,
+      "mrr": 0.8975
+    },
+    "semantico_sin_atajo_lexico": {
+      "n": 200,
+      "precision_at_1": 0.03,
+      "recall_at_8": 0.03,
+      "mrr": 0.03
+    }
+  },
+  "consultas_por_clase_etiqueta_debil": {
+    "n": 12,
+    "consultas_con_la_clase_esperada_en_top_k": 11,
+    "tasa": 0.9167,
+    "detalle": [
+      {
+        "consulta": "Que mecanismos de resistencia a carbapenemicos tiene Klebsiella pneumoniae?",
+        "clases_esperadas": [
+          "background",
+          "literature"
+        ],
+        "clases_recuperadas": [
+          "background",
+          "literature"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 1
+      },
+      {
+        "consulta": "Que carbapenemasas predominan en Acinetobacter baumannii?",
+        "clases_esperadas": [
+          "background",
+          "literature"
+        ],
+        "clases_recuperadas": [
+          "background",
+          "literature",
+          "phenotypic_potency"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 4
+      },
+      {
+        "consulta": "Que dice la literatura reciente sobre el tratamiento de infecciones por OXA-48?",
+        "clases_esperadas": [
+          "literature"
+        ],
+        "clases_recuperadas": [
+          "literature",
+          "phenotypic_potency"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 4
+      },
+      {
+        "consulta": "Que es el reposicionamiento de farmacos frente a la resistencia antimicrobiana?",
+        "clases_esperadas": [
+          "background",
+          "literature"
+        ],
+        "clases_recuperadas": [
+          "literature"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 1
+      },
+      {
+        "consulta": "Como se construyo el dataset curado de este proyecto?",
+        "clases_esperadas": [
+          "methodology"
+        ],
+        "clases_recuperadas": [
+          "literature",
+          "methodology",
+          "phenotypic_potency"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 4
+      },
+      {
+        "consulta": "Que umbral se uso para considerar que un compuesto es un hit?",
+        "clases_esperadas": [
+          "methodology"
+        ],
+        "clases_recuperadas": [
+          "phenotypic_potency",
+          "primary_screen_summary"
+        ],
+        "acierto": false,
+        "posicion_primera_esperada": null
+      },
+      {
+        "consulta": "Que puede y que no puede afirmar este sistema?",
+        "clases_esperadas": [
+          "methodology"
+        ],
+        "clases_recuperadas": [
+          "binding_specific",
+          "methodology",
+          "phenotypic_potency"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 4
+      },
+      {
+        "consulta": "Cuantos compuestos se cribaron en total frente a Acinetobacter baumannii?",
+        "clases_esperadas": [
+          "primary_screen_summary"
+        ],
+        "clases_recuperadas": [
+          "primary_screen_summary"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 1
+      },
+      {
+        "consulta": "Que proporcion de la quimioteca dio senal en el cribado primario?",
+        "clases_esperadas": [
+          "primary_screen_summary"
+        ],
+        "clases_recuperadas": [
+          "primary_screen_summary"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 1
+      },
+      {
+        "consulta": "Hay compuestos con afinidad de union medida contra la carbapenemasa KPC?",
+        "clases_esperadas": [
+          "binding_specific"
+        ],
+        "clases_recuperadas": [
+          "binding_specific"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 1
+      },
+      {
+        "consulta": "Que inhibidores de beta-lactamasa OXA-48 tienen Kd reportado?",
+        "clases_esperadas": [
+          "binding_specific"
+        ],
+        "clases_recuperadas": [
+          "background",
+          "binding_specific",
+          "literature",
+          "phenotypic_potency"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 7
+      },
+      {
+        "consulta": "Que bombas de eflujo participan en la resistencia de A. baumannii?",
+        "clases_esperadas": [
+          "background",
+          "literature"
+        ],
+        "clases_recuperadas": [
+          "background",
+          "literature"
+        ],
+        "acierto": true,
+        "posicion_primera_esperada": 1
+      }
+    ]
+  }
+}

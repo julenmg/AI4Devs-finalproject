@@ -1383,3 +1383,93 @@ documenta el reparto en README §8.1.
 `scripts/{screen_repurposing,agent_demo}.py`, `tests/test_agent.py`.
 Pendiente de Fase 7: metricas objetivas sobre el hold-out completo, calidad del
 retrieval, y verificacion con las 66 filas de binding.
+
+## Fase 7 - Evaluacion
+
+Evaluacion objetiva de las tres piezas: el modelo DTI sobre el hold-out completo,
+la calidad del retrieval, y la comprobacion de que el sistema no inventa cifras.
+Mismo criterio que en las fases anteriores: lo que sale mal o indistinguible se
+reporta igual de claro que lo que sale bien.
+
+### Coste y decisiones de ejecucion
+
+- **Una prediccion por COMPUESTO, no por fila.** El hold-out son 8 023 filas
+  exactas pero solo **3 532 compuestos unicos** (2.1-2.5 filas por compuesto).
+  La entrada del modelo es (SMILES, ancla) y el ancla es fija por patogeno, asi
+  que todas las filas de un compuesto dan la misma prediccion: predecir por fila
+  habria repetido el 56% del trabajo. El target por compuesto es la mediana de
+  sus medidas exactas.
+- **Sin batching, medido y descartado.** A batch 1 / 4 / 8 la GTX 1070 da
+  1.297 / 1.280 / 1.311 s por compuesto: ninguna ganancia. Es el mismo
+  comportamiento compute-bound que ya se observo entrenando en Fase 3. 76 min
+  por checkpoint es el suelo.
+- **Hold-out completo, no muestra.** 3 checkpoints x 3 532 compuestos = 10 596
+  predicciones, ~3.8 h desatendidas. Se descarta muestrear: ahorrar 1.5 h a
+  cambio de un asterisco en la seccion de metricas es mal negocio.
+- **Incidente de contencion de GPU, detectado y corregido sobre la marcha.** Al
+  lanzar la bateria anti-invencion en paralelo, el batch bajo de 1.29 a ~2.4 s
+  por compuesto: dos contextos CUDA en la misma tarjeta se reparten por
+  time-slicing, y en Pascal el cambio de contexto es caro. La bateria apenas usa
+  GPU (solo embeber consultas, ~10 ms cada una), pero el mero hecho de mantener
+  un segundo contexto abierto duplicaba el tiempo del camino critico. Se paro la
+  bateria y el batch volvio a 1.27 s. **Secuencial sale antes que paralelo**
+  cuando una sola GPU es el cuello de botella.
+
+### Solape de scaffolds: cuanto optimismo tiene el split por InChIKey
+
+Fase 3 partio el dataset por InChIKey y dejo anotado el split por scaffold de
+Bemis-Murcko como "variante rigurosa para Fase 7". Rehacerlo exige reentrenar
+8.6 h, que no cabe. Lo que si cabe es **medir** el optimismo que introduce, y
+convertir una sospecha en un numero:
+
+| | K. pneumoniae | A. baumannii |
+|---|---|---|
+| Compuestos del hold-out con esqueleto | 4 381 | 3 071 |
+| Comparten esqueleto con el entrenamiento | 3 131 | 2 020 |
+| **Fraccion** | **71.5%** | **65.8%** |
+
+Es decir: **en torno a dos de cada tres predicciones del hold-out son
+interpolacion dentro de una serie quimica ya vista**, no generalizacion a
+quimica nueva. El RMSE global es por tanto optimista para un compuesto de
+esqueleto desconocido. Se explota en el analisis calculando el RMSE **por
+separado** en los dos subconjuntos, que convierte la limitacion en dos numeros
+comparables en vez de en un caveat. Solo rdkit y CPU (`evals/scaffold_overlap.py`).
+
+### Calidad del retrieval: la ablacion es el resultado
+
+Dos conjuntos de consultas, ninguno anotado a mano (`evals/retrieval_quality.py`):
+
+**1. Consultas de compuesto, con verdad de referencia POR CONSTRUCCION.** Si se
+pregunta por un compuesto nombrado, el documento correcto se sabe: su ficha
+`potency:<patogeno>:<inchikey>`. 200 consultas muestreadas con plantillas
+variadas, sin etiquetar nada. Y medidas en **dos condiciones**, porque reportar
+solo la primera seria propaganda — el atajo lexico esta disenado justo para
+clavar estas consultas:
+
+| condicion | P@1 | R@8 | MRR |
+|---|---|---|---|
+| **hibrido (el sistema real)** | **0.825** | 0.990 | 0.897 |
+| **solo semantico, sin atajo lexico** | **0.030** | 0.030 | 0.030 |
+
+**El embedding no aporta practicamente nada en la busqueda por compuesto.** No
+es un matiz: con R@8 = 0.03, la ficha correcta ni siquiera aparece entre las ocho
+recuperadas en el 97% de los casos. Todo el acierto del sistema en este tipo de
+consulta viene del atajo lexico. Es coherente con el diagnostico de Fase 5 (dos
+fichas de compuestos distintos salian a 0.94 de similitud entre si, mas cerca
+que la consulta de su propia ficha) y **valida retroactivamente** el trabajo del
+fallo 7 y el fallo 8: sin el atajo, el RAG contestaba preguntas sobre un
+compuesto con las fichas de otros, que es exactamente lo que se observo antes de
+corregirlo.
+
+Dicho esto, la conclusion NO es "el embedding es inutil". Es que **no sirve para
+desambiguar entre 33 791 fichas que comparten plantilla**, que es una propiedad
+del corpus, no del modelo. Para el resto de consultas si funciona:
+
+**2. Consultas no-compuesto, con etiqueta debil por clase de evidencia** (una
+pregunta sobre mecanismos debe traer `background`/`literature`, no fichas de
+potencia sueltas). Es un proxy declarado como tal, no relevancia documento a
+documento: **11 de 12 (91.7%)** traen la clase esperada en el top-8. El unico
+fallo es informativo: *"¿que umbral se uso para considerar que un compuesto es
+un hit?"* devuelve fichas de potencia y agregados de cribado en vez de la ficha
+de metodologia, que es donde esta la respuesta. Etiquetar relevancia a mano para
+un conjunto grande no cabe en el calendario y no se ha intentado.
