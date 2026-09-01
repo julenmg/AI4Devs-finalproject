@@ -14,10 +14,15 @@ Replica la arquitectura de referencia del máster (el "software estimator")
 aplicada a un dominio nuevo: **CAG → RAG → agentes → evaluación → despliegue**.
 
 **Alcance del modelo — mantener esta frontera clara en todo momento:** el
-modelo DTI predice **afinidad de unión fármaco-diana a nivel molecular**. Los
-efectos biológicos posteriores (eficacia clínica, resistencia real en el
-organismo, etc.) quedan fuera de lo que el modelo captura. No framear ningún
-resultado como si el sistema predijera eficacia clínica.
+modelo ajustado predice **potencia fenotípica in vitro (pMIC)**: la
+concentración que inhibe el crecimiento del cultivo. Los efectos biológicos
+posteriores (eficacia clínica, resistencia real en el organismo, etc.) quedan
+fuera de lo que el modelo captura, y tampoco predice **afinidad de unión** a una
+diana molecular concreta — el checkpoint base sí es un modelo de afinidad, pero
+~98% del dato de ajuste es de célula completa, donde el "target" es el organismo
+(ver `docs/decisions.md`, Fase 1). No framear ningún resultado como si el sistema
+predijera eficacia clínica ni unión fármaco-diana. Verificado empíricamente en
+Fase 7 con las 66 filas de binding real.
 
 ## Fuentes de datos
 

@@ -19,6 +19,10 @@ import pandas as pd
 import streamlit as st
 
 from app.config import settings
+from app.generation.agentic.agent import run_agent
+from app.generation.agentic.tools import load_screen
+from app.generation.cag.static_context import answer_with_static_context
+from app.generation.rag.retrieval import answer_with_retrieval, retrieve
 
 st.set_page_config(page_title="EskapeGuard", page_icon="🧬", layout="wide")
 
@@ -75,18 +79,21 @@ CUBOS = {
 # --------------------------------------------------------------------------- #
 @st.cache_data(show_spinner=False)
 def cargar_cribado(pathogen: str) -> pd.DataFrame:
-    from app.generation.agentic.tools import load_screen
-
     return load_screen(pathogen)
 
 
-@st.cache_resource(show_spinner="Cargando índice RAG…")
-def precalentar_rag():
-    """Fuerza la carga del modelo de embeddings y del indice en la primera
-    llamada, para que las consultas de la demo no paguen ese coste en camara."""
-    from app.generation.rag.retrieval import retrieve
+@st.cache_resource(show_spinner=False)
+def precalentar():
+    """Paga TODO el arranque en frio una sola vez, al levantar la app.
 
+    Medido antes de moverlo aqui: con los imports y el calentamiento dentro del
+    handler del boton, la primera consulta del RAG tardaba ~75 s (18 s de
+    imports + 7 s de carga del modelo de embeddings + la consulta). En regimen
+    estable son ~15.7 s, de los cuales 13.7 s son la llamada al LLM. Ninguna de
+    esas esperas debe caer durante la grabacion."""
     retrieve("calentamiento del indice", k=1)
+    for pathogen in settings.pathogens:
+        cargar_cribado(pathogen)
     return True
 
 
@@ -113,6 +120,9 @@ def mostrar_verificacion(v: dict, tipo: str) -> None:
         st.error(f"❌ Verificación fallida — {etiqueta} · {v}")
 
 
+with st.spinner("Precalentando índice RAG y cribado… (solo la primera vez)"):
+    precalentar()
+
 st.title("EskapeGuard")
 st.caption(
     "Priorización de candidatos a reposicionamiento frente a *Klebsiella "
@@ -137,8 +147,6 @@ with tab_cag:
     )
     pregunta_cag = st.text_area("Pregunta", PREGUNTA_CLAVE, height=80, key="q_cag")
     if st.button("Preguntar al CAG", type="primary", key="btn_cag"):
-        from app.generation.cag.static_context import answer_with_static_context
-
         with st.spinner("Consultando…"):
             st.session_state["resp_cag"] = answer_with_static_context(pregunta_cag)
     if "resp_cag" in st.session_state:
@@ -156,9 +164,6 @@ with tab_rag:
     st.subheader("La misma pregunta, con evidencia real recuperada")
     pregunta_rag = st.selectbox("Pregunta", PREGUNTAS_RAG, index=0, key="q_rag")
     if st.button("Preguntar al RAG", type="primary", key="btn_rag"):
-        precalentar_rag()
-        from app.generation.rag.retrieval import answer_with_retrieval
-
         with st.spinner("Recuperando evidencia y respondiendo…"):
             st.session_state["resp_rag"] = answer_with_retrieval(pregunta_rag)
 
@@ -232,8 +237,6 @@ with tab_agente:
     st.subheader("Pregunta al agente")
     pregunta_ag = st.selectbox("Pregunta", PREGUNTAS_AGENTE, index=0, key="q_ag")
     if st.button("Ejecutar agente", type="primary", key="btn_ag"):
-        from app.generation.agentic.agent import run_agent
-
         with st.spinner("El agente está decidiendo qué herramientas usar…"):
             st.session_state["resp_ag"] = run_agent(pregunta_ag)
 
