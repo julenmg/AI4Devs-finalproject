@@ -31,7 +31,7 @@ frontera se sostiene en todo el sistema y está verificada con datos (§2.2).
 
 ### 0.4. URL del proyecto:
 
-**Vídeo de demostración:** _[enlace pendiente de publicación]_
+**Vídeo de demostración:** https://drive.google.com/file/d/1pICPcC9J0anrXkkSUsCdRuBjkFBPLheI/view
 
 No hay URL pública: el sistema requiere GPU y ~2 GB de pesos, que no caben en
 las plataformas gratuitas de despliegue. La evidencia de funcionamiento es el
@@ -110,7 +110,7 @@ No es una herramienta clínica ni pretende serlo.
 
 ### 1.3. Diseno y experiencia de usuario:
 
-**Vídeo de demostración:** _[enlace pendiente de publicación]_
+**Vídeo de demostración:** https://drive.google.com/file/d/1pICPcC9J0anrXkkSUsCdRuBjkFBPLheI/view
 
 La interfaz (`streamlit_app.py`) es deliberadamente mínima: su función es hacer
 demostrable el sistema, no ser un producto. Tres pestañas que siguen la propia
