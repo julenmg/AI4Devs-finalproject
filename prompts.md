@@ -12,6 +12,7 @@
 5. [Historias de usuario](#5-historias-de-usuario)
 6. [Tickets de trabajo](#6-tickets-de-trabajo)
 7. [Pull requests](#7-pull-requests)
+8. [Limitaciones y próximos pasos](#8-limitaciones-y-próximos-pasos)
 
 ---
 
@@ -237,7 +238,7 @@ negativos.
 > aparte: si el parseo falla, la métrica miente en las dos direcciones. Incluye un
 > test que documenta un límite aceptado en vez de esconderlo ("0.985" encaja
 > también con el patrón de separador de miles, así que la comprobación es
-> deliberadamente permisiva). La decisión resultó acertada: en la batería de 110
+> deliberadamente permisiva). La decisión resultó acertada: en la batería de 95
 > preguntas de Fase 7 aparecieron dos clases nuevas de falso positivo —notación
 > científica reescrita por el modelo y el "719" de ABT-719 leído como una
 > predicción— y ambas se corrigieron añadiendo tests con los textos reales

@@ -133,6 +133,39 @@ Requiere **Python 3.11** y [uv](https://docs.astral.sh/uv/). GPU NVIDIA
 recomendada (el proyecto se desarrolló sobre una GTX 1070 de 8 GB); en CPU
 funciona todo salvo la inferencia del modelo DTI, que resulta impracticable.
 
+#### Lo que funciona en un clon limpio, sin ingesta ni GPU
+
+Es el camino corto, y probablemente el que interesa primero:
+
+```bash
+uv sync
+cp .env.example .env        # rellena ANTHROPIC_API_KEY
+uv run streamlit run streamlit_app.py
+```
+
+Con eso ya se pueden usar dos de las tres pestañas:
+
+- **Pestaña 1 (CAG)** — el contexto fijo vive en el código, no lee ningún dato
+  local. Funciona entera, incluida la demostración de dónde se rompe.
+- **Pestaña 3, tabla del cribado** — los **1.505 candidatos clasificados en
+  cubos** vienen versionados en `data/processed/repurposing_screen_*.csv`, que
+  es el entregable del caso de estudio. Se navega sin GPU y sin ingesta.
+
+La **pestaña 2 (RAG)** y las consultas al agente necesitan el índice vectorial,
+y el índice necesita la ingesta. Sin ella no fallan con un error: simplemente
+recuperan cero fragmentos y lo dicen. También van versionadas las cifras de la
+evaluación (`evals/results.json` y el resto de `evals/*.json`), así que **los
+números de §2.2 son auditables aunque reproducirlos exija la ingesta completa**.
+
+#### Instalación completa
+
+`data/` no versiona los seis CSV de ChEMBL y CO-ADD (~200 MB en bruto) ni el
+dataset curado que sale de ellos, así que hay que regenerarlos. Lo que **sí**
+viene versionado es la parte del corpus que depende de una API externa: los
+**99 abstracts de PubMed** (`data/raw/pubmed_*.json`) y el mapa de nombres de
+diana de ChEMBL (`data/raw/chembl_targets.json`). Esos no se vuelven a
+descargar, de modo que reconstruir el índice no depende de que PubMed responda.
+
 ```bash
 # 1. Dependencias (crea .venv). torch va fijado a una build cu121: ver §2.4
 uv sync
@@ -140,24 +173,34 @@ uv sync
 # 2. Clave de API
 cp .env.example .env        # rellena ANTHROPIC_API_KEY
 
-# 3. Comprobación de que el checkpoint DTI carga y predice
-uv run python -m scripts.smoke_test
+# 3. Ingesta (~15-25 min; CO-ADD descarga ~160 MB y se procesa por bloques)
+uv run python -m app.ingestion.chembl_loader     # ChEMBL vía API REST
+uv run python -m app.ingestion.coadd_loader      # bulk de CO-ADD
+uv run python -m app.ingestion.curate_dataset    # dataset curado
 
 # 4. Índice RAG (~8,5 min; descarga el modelo de embeddings la primera vez)
 uv run python -m scripts.build_index --with-literature
 
-# 5. Demo
+# 5. Demo, ya con las tres pestañas operativas
 uv run streamlit run streamlit_app.py
 ```
 
-Los datos curados (`data/processed/`) y el cribado de reposicionamiento vienen
-versionados en el repositorio, así que **no hace falta reejecutar la ingesta ni
-las ~33 min de GPU del cribado**. Para regenerarlos desde cero:
+El paso 3 es requisito de más cosas que el índice: `scripts/screen_repurposing.py`
+y `evals/run.py` también leen los CSV curados, así que en un clon limpio no
+corren hasta haberlo ejecutado.
+
+Opcional, para comprobar que el checkpoint DTI carga y predice:
 
 ```bash
-uv run python -m app.ingestion.chembl_loader     # descarga ChEMBL
-uv run python -m app.ingestion.coadd_loader      # descarga CO-ADD
-uv run python -m app.ingestion.curate_dataset    # dataset curado
+uv run python -m scripts.smoke_test
+```
+
+#### Regenerar el modelo y el cribado
+
+Ambos artefactos vienen resueltos en el repositorio —el adapter LoRA elegido y
+el CSV del cribado— y ambos presuponen la ingesta del paso 3:
+
+```bash
 uv run python -m training.lora_finetune          # fine-tune (~8,6 h en GPU)
 uv run python -m scripts.screen_repurposing      # cribado (~33 min en GPU)
 ```
@@ -287,8 +330,9 @@ recuperar evidencia real por consulta) y luego a agente en la Fase 6
 son su función dentro de la narrativa del proyecto.
 
 **RAG (Fase 5)** — Escala el CAG indexando evidencia real en un vector
-store Chroma persistente: 34.078 fragmentos derivados de cinco clases de
-documento generadas por plantilla determinista a partir del dataset
+store Chroma persistente: 34.078 fragmentos, resultado de trocear los 33.913
+documentos del corpus (de los cuales 33.791 son fichas de potencia por compuesto
+y patógeno), generados por plantilla determinista a partir del dataset
 curado de Fase 1 y los CSV originales de ChEMBL/CO-ADD — nunca redactadas
 a mano libre. Incluyen fichas de potencia fenotípica por compuesto y
 patógeno, agregados de cribado primario, las 66 filas reales de afinidad
@@ -376,12 +420,20 @@ plantilla; todo el acierto en búsqueda por compuesto viene del atajo
 léxico. En 12 consultas no-compuesto (mecanismos, literatura, metodología)
 sí funciona: 11 de 12 traen la clase de evidencia esperada.
 
-*Anti-invención.* `verify_answer` (RAG) y `verify_predictions` (agente) se
-agregan sobre una batería generada desde el propio corpus, más un bloque
-adversario de compuestos inexistentes e intentos de inyección. Ambos
-verificadores son **sintácticos**: detectan una cita inexistente o una
-cifra sin respaldo, pero no una afirmación falsa bien citada — por eso las
-respuestas críticas se revisaron además a mano.
+*Anti-invención.* Batería de 95 preguntas generadas desde el propio corpus
+—60 al RAG, 20 al agente y 15 adversarias, contables una a una en
+`evals/hallucination.json`—: **0 citas inválidas en las 60 del RAG**,
+**15/15 rechazos** en el bloque adversario de compuestos inexistentes e intentos
+de inyección, y 3 avisos de cifra en el RAG más 3 de predicción en el agente
+sobre 1.295 predicciones citadas. Los 8 avisos se revisaron a mano y **ninguno
+era una invención**: eran artefactos sintácticos del verificador —notación
+científica que el modelo reescribe (`2.05x10³` donde la ficha dice `2050`), el
+"50" de un "top 50" y el "719" de `ABT-719` leídos como cifras—. Se corrigió el
+verificador con tests de regresión sobre esos textos reales, pero **la corrida
+agregada del JSON es anterior a la corrección** y no pudo reejecutarse porque se
+agotó el crédito de la API. Ambos verificadores son además **sintácticos**: no
+detectan una afirmación falsa bien citada, y por eso se revisaron a mano 21
+respuestas críticas (0 casos). Detalle en `docs/decisions.md`, Fase 7.
 
 ### 2.3. Descripcion de alto nivel del proyecto y estructura de ficheros
 La estructura sigue el flujo del dato, no las capas técnicas: **ingesta →
@@ -421,7 +473,7 @@ evals/                           # Fase 7 — evaluación objetiva
 ├── binding_check.py             #   las 66 filas de afinidad real
 ├── scaffold_overlap.py          #   solape químico train/test
 ├── retrieval_quality.py         #   P@1 / R@k / MRR con y sin atajo léxico
-├── hallucination.py             #   110 preguntas, anti-invención
+├── hallucination.py             #   95 preguntas, anti-invención
 └── run.py                       #   agrega todo en results.json
 scripts/                         # entradas ejecutables
 ├── build_index.py               #   construye el índice RAG
@@ -497,6 +549,16 @@ afirmación falsa bien citada, por lo que se complementaron con revisión manual
 **84 tests, sin red, sin LLM y sin GPU** (`uv run pytest`, ~30 s). No cubren
 "que el código se ejecute": cubren las invariantes que pueden romperse en
 silencio y que sostienen la honestidad del sistema.
+
+En un **clon limpio pasan 62 y se saltan 22**, con un mensaje que dice qué
+ejecutar. Los 22 necesitan el dataset local o el índice vectorial, y eso es
+deliberado: las invariantes del corpus se comprueban **contra el corpus real**
+—33.913 documentos generados de verdad— y no contra mocks. Un test que verifica
+que ninguna ficha de potencia afirma eficacia clínica, o que la normalización de
+nombres es inyectiva sobre los 717 nombres reales, no dice nada si se ejecuta
+sobre datos inventados para el test. Los otros 62 —extractor de números,
+clasificación en cubos, esquemas de las herramientas, detección de predicciones
+alteradas— no tocan disco y corren en cualquier máquina.
 
 | fichero | n | qué protege |
 |---|---|---|
@@ -692,8 +754,10 @@ resultado["verification"]   # comprobación de que no se alteró ninguna predicc
 
 *Implementado en:* reglas 1, 2 y 4 del prompt del agente, cubo
 `desacuerdo_modelo_experimento`, y `verify_predictions` como comprobación
-mecánica. Verificado en Fase 7: 0 predicciones alteradas sobre 1 295 citadas, y
-rechazo del intento explícito de "ajusta la predicción hasta que coincida".
+mecánica. Verificado en Fase 7 sobre 1.295 predicciones citadas: los 3 avisos
+que saltaron resultaron ser artefactos del verificador y no ajustes reales al
+revisarlos a mano (ver §2.2), y el intento explícito de "ajusta la predicción
+hasta que coincida" se rechazó.
 
 ---
 
@@ -755,7 +819,7 @@ distingue predicción de medida; ninguna cita inventada en la batería.
 - Cuantificar el solape químico entre train y test.
 - Verificar la frontera molecular con las 66 filas apartadas, con un control.
 - Medir el retrieval con y sin el atajo léxico.
-- Agregar los verificadores anti-invención sobre 110 preguntas y revisar a mano
+- Agregar los verificadores anti-invención sobre 95 preguntas y revisar a mano
   las críticas.
 - Montar la demo mínima y grabar la evidencia de funcionamiento.
 

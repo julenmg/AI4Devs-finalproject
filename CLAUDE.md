@@ -39,10 +39,12 @@ Fase 7 con las 66 filas de binding real.
   fuentes: *Klebsiella* 30.683 filas ChEMBL + 82.516 CO-ADD inhibition +
   4.631 dose-response; *Acinetobacter* 17.358 filas ChEMBL + 100.519 CO-ADD
   inhibition + 4.904 dose-response (detalle y comparación de volumen en
-  `docs/decisions.md`, sección Fase 1). Fase 1 cerrada: ingesta + curación
-  (`curate_dataset.py`) — dataset QSAR de potencia fenotípica (SMILES->pMIC,
-  no binding específico) en `data/processed/curated_<patogeno>.csv`, con
-  los Ki/Kd reales (66 filas) apartados para verificación en Fase 7.
+  `docs/decisions.md`, sección Fase 1). La ingesta y la curación
+  (`curate_dataset.py`) producen un dataset QSAR de potencia fenotípica
+  (SMILES->pMIC, no binding específico) en
+  `data/processed/curated_<patogeno>.csv`, con los Ki/Kd reales (66 filas)
+  apartados para la verificación de la Fase 7. **Esos CSV no se versionan**
+  (~200 MB en bruto): se regeneran con la ingesta, ver README §1.4.
 
 ## Modelo base
 
@@ -75,20 +77,22 @@ prueba de criterio técnico que se evalúa, no un trámite.
 
 ## Fases del proyecto
 
-| # | Fase | Qué implica |
-|---|------|-------------|
-| 1 | Dataset base | Subset ChEMBL + CO-ADD para 1-2 patógenos elegidos |
-| 2 | Cargar y validar checkpoint IBM | Instalar `biomed-multi-alignment`, predicción de ejemplo |
-| 3 | Fine-tune LoRA | Ajuste sobre dianas bacterianas curadas |
-| 4 | Prototipo CAG | Contexto fijo, sin retrieval — ver nota arriba |
-| 5 | Escalar a RAG | Indexar extractos reales de ChEMBL/CO-ADD/literatura |
-| 6 | Agente + caso de estudio | RAG y modelo fine-tuneado como herramientas; caso de reposicionamiento con compuestos de colección clínica |
-| 7 | Evaluación objetiva | RMSE/correlación en holdout real, calidad del retrieval, verificar que el agente no inventa cifras |
-| 8 | Despliegue y documentación | App ligera (Gradio/Streamlit/FastAPI) o vídeo 2-3 min; README completo |
+**Las ocho fases están cerradas.** La tabla queda como índice de qué cubre
+cada una y de dónde mirar el resultado; el detalle y las decisiones, en
+`docs/decisions.md`.
 
-Detalle completo de tareas por fase: ver `docs/plan_proyecto_final.pdf` en
-este repo (si no está aún, cópialo desde el plan generado en la conversación
-de Claude.ai).
+| # | Fase | Qué implica | Resultado |
+|---|------|-------------|-----------|
+| 1 | Dataset base | Subset ChEMBL + CO-ADD para los patógenos elegidos | 113.058 + 117.853 filas curadas; 66 Ki/Kd apartados |
+| 2 | Cargar y validar checkpoint IBM | Instalar `biomed-multi-alignment`, predicción de ejemplo | pKd 5.4933 sobre el par de ejemplo oficial |
+| 3 | Fine-tune LoRA | Ajuste sobre el dataset curado | r=8, α=16, ~8,6 h en GTX 1070 |
+| 4 | Prototipo CAG | Contexto fijo, sin retrieval — ver nota arriba | 5 preguntas de validación; sus 3 límites justifican la Fase 5 |
+| 5 | Escalar a RAG | Indexar extractos reales de ChEMBL/CO-ADD/literatura | 34.078 fragmentos citables; 8 fallos encontrados y corregidos |
+| 6 | Agente + caso de estudio | RAG y modelo fine-tuneado como herramientas; caso de reposicionamiento con compuestos de colección clínica | Tool-calling con 3 herramientas; 1.505 candidatos en 4 cubos |
+| 7 | Evaluación objetiva | RMSE/correlación en holdout real, calidad del retrieval, verificar que el agente no inventa cifras | RMSE 0,882; checkpoints indistinguibles (p=0,29); frontera confirmada |
+| 8 | Despliegue y documentación | App ligera (Gradio/Streamlit/FastAPI) o vídeo 2-3 min; README completo | Demo Streamlit + vídeo; README y `prompts.md` completos |
+
+Detalle completo de tareas por fase: ver `docs/plan_proyecto_final_AMR.pdf`.
 
 ## Estructura del repo
 

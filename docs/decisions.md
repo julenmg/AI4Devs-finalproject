@@ -1610,7 +1610,12 @@ un hit?"* devuelve fichas de potencia y agregados de cribado en vez de la ficha
 de metodologia, que es donde esta la respuesta. Etiquetar relevancia a mano para
 un conjunto grande no cabe en el calendario y no se ha intentado.
 
-### Anti-invencion: 110 preguntas generadas desde el corpus
+### Anti-invencion: 95 preguntas generadas desde el corpus
+
+95 = 60 al RAG + 20 al agente + 15 adversarias, que es lo que fija el generador
+(`N_RAG`, `N_AGENTE` y las tres listas del bloque adversario en
+`evals/hallucination.py`) y lo que se puede contar entrada por entrada en
+`evals/hallucination.json`. El tamano disenado y el ejecutado coinciden.
 
 Las baterias de Fases 5 y 6 (9 + 6 preguntas) eran ilustrativas. Aqui se generan
 por plantilla desde el propio corpus y se agregan los dos verificadores
@@ -1698,3 +1703,66 @@ Todo lo que llame al LLM —el CAG, el RAG, el agente y por tanto la grabacion d
 video de demostracion— esta parado hasta que se recargue. Lo que no depende de la
 API sigue funcionando: el modelo DTI, el cribado precomputado y versionado, el
 indice y las metricas de esta fase.
+
+## Fase 8 - Despliegue y documentación
+
+- **No hay URL pública, y es una decisión de alcance, no de prisa.** El sistema
+  necesita el checkpoint DTI (1,8 GB), el índice Chroma (311 MB) e inferencia en
+  GPU. Streamlit Cloud ofrece 1 GB de RAM y ninguna GPU, así que la única URL
+  posible habría sido una versión **sin el modelo DTI**: el RAG y la tabla del
+  cribado, pero no la predicción. Alternativa descartada precisamente por eso —
+  habría desplegado el sistema sin la pieza que más cuesta y más aporta, y lo
+  que la evaluación tiene que poder ver es el pipeline entero. La evidencia de
+  funcionamiento es un vídeo en local, que sí enseña el DTI ejecutándose.
+- **Mitigación previa que hizo barata esta decisión:** el cribado se precomputó y
+  se versionó en la Fase 6 (`repurposing_screen_*.csv`, ~350 KB). Gracias a eso
+  el caso de estudio —los 1.505 candidatos clasificados en cubos— se explora en
+  cualquier máquina sin GPU y sin ingesta, que es la parte del sistema que un
+  evaluador querrá tocar primero.
+- **La demo es deliberadamente mínima porque es el guion del vídeo, no un
+  producto.** Tres pestañas que siguen la narrativa del proyecto (CAG → RAG →
+  agente) y nada más. Las decisiones de diseño son todas de grabación, no de
+  producto: preguntas precargadas en desplegables para no teclear en cámara,
+  tipografía a 17 px pensando en vídeo comprimido y no en pantalla, tabla del
+  cribado recortada a seis columnas legibles, y el resultado de los
+  verificadores siempre a la vista en vez de escondido tras un desplegable —
+  porque es parte de lo que la demo tiene que enseñar.
+- **La comparación CAG → RAG usa la MISMA pregunta a propósito.** Es el momento
+  clave del vídeo: con contexto fijo el sistema no puede responder una pregunta
+  cuantitativa y lo dice; con evidencia recuperada responde con valores reales y
+  su cita. Cambiar la pregunta entre pestañas habría convertido una demostración
+  en una anécdota, porque la diferencia podría atribuirse a la pregunta y no a
+  la arquitectura.
+- **Arranque en frío eliminado del camino de grabación.** Medido: con los
+  imports y el calentamiento dentro del handler del botón, la primera consulta
+  del RAG tardaba ~75 s (18 s de imports, 7 s de carga del modelo de embeddings,
+  el resto la consulta). Movidos al arranque de la app, las consultas quedan en
+  ~8-15 s, de los cuales 13,7 s son la llamada al LLM — irreducible sin recortar
+  la respuesta o la evidencia, que no se toca.
+- **Sin Docker y sin CI, dicho explícitamente.** No hay usuarios concurrentes ni
+  datos transaccionales: el dato es de solo lectura una vez curado y la demo
+  sirve una sesión a la vez. Un Dockerfile tendría que empaquetar 2 GB de pesos
+  para reproducir algo que `uv sync` ya reproduce, y una CI que no puede
+  ejecutar la GPU ni descargar 200 MB de CO-ADD solo correría el subconjunto de
+  tests que ya se ejecuta en local. Ambos habrían sido infraestructura sin
+  capacidad añadida. Es la misma línea que se trazó en la Fase 0 al no replicar
+  el `docker-compose` multi-servicio de la arquitectura de referencia.
+- **Lo que quedó sin reejecutar, y qué implica.** Al corregir los dos falsos
+  positivos del verificador detectados en la Fase 7 se lanzó de nuevo la batería
+  de 95 preguntas y **se agotó el crédito de la API** a mitad del bloque RAG.
+  Consecuencia: las cifras agregadas de `evals/hallucination.json` son de la
+  corrida ANTERIOR a esas correcciones, y por eso muestran 3 avisos de cifra y 3
+  de predicción. Los ocho se revisaron uno a uno a mano y ninguno era una
+  invención (ver "Revisión manual: 21 respuestas críticas", Fase 7). Se decidió
+  **no maquillar el JSON ni omitir la discrepancia**: el README §2.2 explica las
+  cifras tal como están en el fichero, qué resultó ser cada aviso y por qué la
+  reejecución no se completó. Un número corregido a mano en la documentación,
+  sin el fichero que lo respalde, habría sido peor que la discrepancia.
+- **Reproducibilidad: el README dice ahora lo que hay.** El texto anterior
+  afirmaba que los datos curados venían versionados; no es cierto (solo lo están
+  el cribado, los abstracts de PubMed y el mapa de dianas). §1.4 se reescribió
+  separando lo que funciona en un clon limpio de lo que exige la ingesta
+  completa. En la misma línea, `tests/conftest.py` convierte en *skip* con
+  mensaje accionable lo que antes era un ERROR por fichero ausente: en un clon
+  limpio pasan 62 tests y se saltan 22. Que esos 22 dependan del dataset es
+  deliberado — comprueban invariantes contra el corpus real, no contra mocks.
